@@ -1,0 +1,155 @@
+/* ===========================================
+   BASE.CSS - Reset, Typography, CRT Effects
+   =========================================== */
+
+/* ===== RESET ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== FONTS ===== */
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== BASE STYLES ===== */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'JetBrainsMono', 'Fira Code', 'Consolas', monospace;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-tertiary);
+  text-shadow: 0 0 8px var(--accent-tertiary);
+}
+
+code, pre {
+  font-family: inherit;
+  background: var(--bg-tertiary);
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+
+/* ===== CRT SCANLINES OVERLAY ===== */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: scanlines-scroll 20s linear infinite;
+}
+
+@keyframes scanlines-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
+}
+
+/* ===== CRT FLICKER (subtle) ===== */
+.crt-flicker {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.98; }
+}
+
+/* ===== GLOW EFFECTS ===== */
+.glow-text {
+  text-shadow:
+    0 0 5px var(--accent-primary),
+    0 0 10px var(--accent-primary),
+    0 0 20px var(--accent-primary);
+}
+
+.glow-text-cyan {
+  text-shadow:
+    0 0 5px var(--accent-tertiary),
+    0 0 10px var(--accent-tertiary);
+}
+
+.glow-box {
+  box-shadow:
+    0 0 5px var(--accent-primary),
+    0 0 10px rgba(233, 69, 96, 0.3);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-secondary);
+  border: 1px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}

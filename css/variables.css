@@ -1,0 +1,40 @@
+/* ===========================================
+   VARIABLES.CSS - Pywal-Compatible Theme System
+   Swap these values for Pywal integration
+   =========================================== */
+
+:root {
+  /* Base colors */
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --bg-window: #121212;
+
+  /* Accent colors */
+  --accent-primary: #e94560;
+  --accent-secondary: #7b2cbf;
+  --accent-tertiary: #00d9ff;
+
+  /* Text colors */
+  --text-primary: #eaeaea;
+  --text-muted: #888888;
+  --text-dim: #555555;
+
+  /* Effects */
+  --border-pixel-width: 3px;
+  --shadow-offset: 4px;
+  --scanline-opacity: 0.04;
+  --glow-intensity: 10px;
+
+  /* Spacing */
+  --gap-xs: 0.25rem;
+  --gap-sm: 0.5rem;
+  --gap-md: 1rem;
+  --gap-lg: 1.5rem;
+  --gap-xl: 2rem;
+
+  /* Layout */
+  --header-height: 2.5rem;
+  --window-border-radius: 0;
+  --container-max-width: 1200px;
+}

@@ -1,0 +1,179 @@
+/* ===========================================
+   COMPONENTS.CSS - Windows, Cards, Buttons
+   =========================================== */
+
+/* ===== WINDOW COMPONENT ===== */
+.window {
+  background: var(--bg-window);
+  border: var(--border-pixel-width) solid var(--accent-primary);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--accent-secondary);
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.window:hover {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    calc(var(--shadow-offset) + 2px) calc(var(--shadow-offset) + 2px) 0 var(--accent-secondary);
+}
+
+.window__titlebar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: var(--gap-xs) var(--gap-sm);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.window__titlebar-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.window__titlebar-dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--bg-primary);
+  background: transparent;
+}
+
+.window__titlebar-dot--close { background: var(--bg-primary); }
+
+.window__content {
+  padding: var(--gap-md);
+}
+
+/* ===== CARD COMPONENT ===== */
+.card {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--text-dim);
+  padding: var(--gap-md);
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--accent-tertiary);
+}
+
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  background: rgba(0, 217, 255, 0.05);
+}
+
+/* ===== BUTTON COMPONENT ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: var(--gap-sm) var(--gap-md);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--accent-primary);
+  background: transparent;
+  color: var(--accent-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.btn--filled {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+}
+
+.btn--filled:hover {
+  background: transparent;
+  color: var(--accent-primary);
+}
+
+/* ===== TAG/BADGE COMPONENT ===== */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--accent-secondary);
+  color: var(--accent-tertiary);
+}
+
+/* ===== AVATAR ===== */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border: var(--border-pixel-width) solid var(--accent-primary);
+  box-shadow: 3px 3px 0 var(--accent-secondary);
+  image-rendering: pixelated;
+  object-fit: cover;
+}
+
+/* ===== TERMINAL OUTPUT ===== */
+.terminal-line {
+  display: flex;
+  gap: var(--gap-sm);
+  font-size: 0.9rem;
+  margin-bottom: var(--gap-xs);
+}
+
+.terminal-line__prompt {
+  color: var(--accent-tertiary);
+}
+
+.terminal-line__cmd {
+  color: var(--text-primary);
+}
+
+.terminal-line__output {
+  color: var(--text-muted);
+  padding-left: 1.5rem;
+}
+
+/* ===== ICON GRID ===== */
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-md);
+  justify-content: center;
+}
+
+.icon-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xs);
+  padding: var(--gap-sm);
+  transition: transform 0.2s ease;
+}
+
+.icon-grid__item:hover {
+  transform: scale(1.1);
+}
+
+.icon-grid__item img,
+.icon-grid__item svg {
+  width: 40px;
+  height: 40px;
+  filter: grayscale(100%) brightness(1.5);
+  transition: filter 0.2s ease;
+}
+
+.icon-grid__item:hover img,
+.icon-grid__item:hover svg {
+  filter: grayscale(0%) brightness(1);
+}
+
+.icon-grid__label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
