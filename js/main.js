@@ -148,4 +148,42 @@ document.addEventListener('DOMContentLoaded', () => {
     win.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(win);
   });
+
+  // Animated background GIF rotation
+  const bgGifs = [
+    '../assets/bg/845aeb7ff1dd9ccdd2c49ced47fc91a2.gif',
+    '../assets/bg/9025ea7f413dc8671de146a8db7bf2a1.gif',
+    '../assets/bg/Ghost-in-the-shell-makoto.gif',
+    '../assets/bg/akira-kaneda.gif',
+    '../assets/bg/anime-bg.gif',
+    '../assets/bg/anime-girl-motorcycle.gif',
+    '../assets/bg/ashita-no-joe-joe-and-noriko.gif',
+    '../assets/bg/ashita-no-joe-joe-and-yoko.gif',
+    '../assets/bg/ec757c0e41dbb5df2624793349a2d97e.gif',
+    '../assets/bg/faye-valentine-cowboy-bebop-shoot.gif',
+    '../assets/bg/faye-valentine-cowboy-bebop-spike.gif',
+    '../assets/bg/faye-valentine-cowboy-bebop.gif',
+    '../assets/bg/faye-valentine-space-cowboy.gif',
+    '../assets/bg/images.steamusercontent.gif',
+    '../assets/bg/motomami.gif',
+    '../assets/bg/person-walking-down-the-streets-wearing-a-coat-and-a-cap-with-attitude-purewhiteash.gif',
+    '../assets/bg/reinhard-logh-gingaeiyuu.gif',
+    '../assets/bg/tumblr_d83045031ed735bae48c81138c10ad7a_8d01fbf6_500.gif'
+  ];
+
+  const animatedBg = document.querySelector('.animated-bg');
+
+  function setRandomGif() {
+    const randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
+    if (animatedBg) {
+      animatedBg.style.backgroundImage = `url('${randomGif}')`;
+      console.log(`🎨 Background changed to: ${randomGif}`);
+    }
+  }
+
+  // Set initial random GIF
+  setRandomGif();
+
+  // Change GIF every 30 seconds
+  setInterval(setRandomGif, 30000);
 });
