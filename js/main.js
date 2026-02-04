@@ -151,37 +151,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Animated background GIF rotation
   const bgGifs = [
-    '../assets/bg/845aeb7ff1dd9ccdd2c49ced47fc91a2.gif',
-    '../assets/bg/9025ea7f413dc8671de146a8db7bf2a1.gif',
-    '../assets/bg/Ghost-in-the-shell-makoto.gif',
-    '../assets/bg/akira-kaneda.gif',
-    '../assets/bg/anime-bg.gif',
-    '../assets/bg/anime-girl-motorcycle.gif',
-    '../assets/bg/ashita-no-joe-joe-and-noriko.gif',
-    '../assets/bg/ashita-no-joe-joe-and-yoko.gif',
-    '../assets/bg/ec757c0e41dbb5df2624793349a2d97e.gif',
-    '../assets/bg/faye-valentine-cowboy-bebop-shoot.gif',
-    '../assets/bg/faye-valentine-cowboy-bebop-spike.gif',
-    '../assets/bg/faye-valentine-cowboy-bebop.gif',
-    '../assets/bg/faye-valentine-space-cowboy.gif',
-    '../assets/bg/images.steamusercontent.gif',
-    '../assets/bg/motomami.gif',
-    '../assets/bg/person-walking-down-the-streets-wearing-a-coat-and-a-cap-with-attitude-purewhiteash.gif',
-    '../assets/bg/reinhard-logh-gingaeiyuu.gif',
-    '../assets/bg/tumblr_d83045031ed735bae48c81138c10ad7a_8d01fbf6_500.gif'
+    // Favorito primero 🔥
+    'assets/bg/aesthethic-cool-anime1999.gif',
+
+    // Resto de GIFs
+    'assets/bg/Ghost-in-the-shell-makoto.gif',
+    'assets/bg/akira-kaneda.gif',
+    'assets/bg/akira-kaneda2.gif',
+    'assets/bg/anime-bg.gif',
+    'assets/bg/anime-girl-motorcycle.gif',
+    'assets/bg/ashita-no-joe-joe-and-carlos.gif',
+    'assets/bg/ashita-no-joe-joe-and-danpei.gif',
+    'assets/bg/ashita-no-joe-joe-and-noriko.gif',
+    'assets/bg/ashita-no-joe-joe-and-rikiishi.gif',
+    'assets/bg/ashita-no-joe-joe-and-yoko.gif',
+    'assets/bg/ashita-no-joe-joe-and-yoko2.gif',
+    'assets/bg/ashita-no-joe-joe-and-yoko3.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-PEAK.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-aesthethic.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-eclipse_.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-gay.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-rain.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-tren.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-vinlandsaga.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki-yoko.gif',
+    'assets/bg/ashita-no-joe-joe-yabuki.gif',
+    'assets/bg/ashita-no-joe-あしたのジョー.gif',
+    'assets/bg/berserk-griffith-eclipse.gif',
+    'assets/bg/berserk-guts-aesthethic.gif',
+    'assets/bg/berserk-guts-casca.gif',
+    'assets/bg/bye-joe-yabuki-seeyouagain.gif',
+    'assets/bg/evangelion-rei-asuka-shinji-aesthethic.gif',
+    'assets/bg/faye-valentine-cowboy-bebop-shoot.gif',
+    'assets/bg/faye-valentine-cowboy-bebop-spike.gif',
+    'assets/bg/faye-valentine-cowboy-bebop.gif',
+    'assets/bg/faye-valentine-lamilfToda-elvaginon.gif',
+    'assets/bg/faye-valentine-space-cowboy.gif',
+    'assets/bg/griffith-berserk-eclipse💀.gif',
+    'assets/bg/griffith-berserk-eclipse💀2.gif',
+    'assets/bg/griffith-vs-guts.gif',
+    'assets/bg/griffith💀osomaduro.gif',
+    'assets/bg/joe-yabuki-rikiishi.gif',
+    'assets/bg/moto-aesthethic-retro-nostalgic.gif',
+    'assets/bg/motomami.gif',
+    'assets/bg/person-walking-down-the-streets-wearing-a-coat-and-a-cap-with-attitude-purewhiteash.gif',
+    'assets/bg/reinhard-logh-gingaeiyuu.gif',
+    'assets/bg/swing-joe-yabuki-snow.gif'
   ];
 
   const animatedBg = document.querySelector('.animated-bg');
+  let isFirstLoad = true;
 
   function setRandomGif() {
-    const randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
+    let randomGif;
+
+    // Primera carga: 30% favorito, 70% random
+    if (isFirstLoad) {
+      const probability = Math.random();
+      if (probability < 0.4) {
+        // 30% de probabilidad: favorito
+        randomGif = bgGifs[0];
+        console.log('🔥 Favorito seleccionado! (30% chance)');
+      } else {
+        // 70% de probabilidad: random
+        randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
+        console.log('🎲 Random seleccionado! (70% chance)');
+      }
+      isFirstLoad = false;
+    } else {
+      // Rotaciones siguientes: siempre random
+      randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
+    }
+
     if (animatedBg) {
       animatedBg.style.backgroundImage = `url('${randomGif}')`;
       console.log(`🎨 Background changed to: ${randomGif}`);
     }
   }
 
-  // Set initial random GIF
+  // Set initial GIF (30% favorito / 70% random)
   setRandomGif();
 
   // Change GIF every 30 seconds
