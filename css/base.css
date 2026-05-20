@@ -12,21 +12,7 @@
 }
 
 /* ===== FONTS ===== */
-@font-face {
-  font-family: 'JetBrainsMono';
-  src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'JetBrainsMono';
-  src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Fuentes servidas por Google Fonts (link en index.html) */
 
 /* ===== BASE STYLES ===== */
 html {
