@@ -2,6 +2,37 @@
    MAIN.JS - Keyboard Navigation & Interactivity
    =========================================== */
 
+// Project data for modals
+const projectData = [
+  {
+    id: 0,
+    title: 'Dashboard React',
+    desc: 'Panel de administración con gráficos, calculadora, contador y TO-DO list. Todo construido con React y react-router-dom.',
+    tags: ['React', 'Node.js', 'MongoDB'],
+    code: 'https://github.com/dizzi1222',
+    live: '#',
+    screenshot: '📊'
+  },
+  {
+    id: 1,
+    title: 'Portfolio Terminal',
+    desc: 'Portfolio interactivo con estética de terminal Linux. Comandos CLI, efectos CRT, navegación estilo Vim. Optimizado para devs que viven entre zsh, kitty y Hyprland.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi',
+    live: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/',
+    screenshot: '🖥️'
+  },
+  {
+    id: 2,
+    title: 'Dotfiles Config',
+    desc: 'Configuración completa de Arch Linux con Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets y Rofi. Todo gestionado con GNU Stow y dotfiles propios.',
+    tags: ['Lua', 'Shell', 'YAML'],
+    code: 'https://github.com/dizzi1222',
+    live: '#',
+    screenshot: '⚙️'
+  }
+];
+
 // Update clock in header
 function updateClock() {
   const now = new Date();
@@ -61,9 +92,10 @@ document.addEventListener('keydown', (e) => {
       overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
       break;
 
-    // Close overlay with Escape
+    // Close overlays with Escape
     case 'Escape':
       overlay.style.display = 'none';
+      closeProjectModal();
       break;
   }
 });
@@ -102,6 +134,39 @@ overlayStyles.textContent = `
   }
 `;
 document.head.appendChild(overlayStyles);
+
+// Modal functions
+function openProjectModal(id) {
+  const p = projectData[id];
+  if (!p) return;
+  document.getElementById('modal-filename').textContent = `project_${String(id + 1).padStart(2, '0')}_preview.sh`;
+  document.getElementById('modal-screenshot').textContent = p.screenshot;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent = p.desc;
+  const tagsEl = document.getElementById('modal-tags');
+  tagsEl.innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  const linksEl = document.getElementById('modal-links');
+  linksEl.innerHTML = `
+    <a href="${p.code}" target="_blank" class="btn"> View Code</a>
+    <a href="${p.live}" target="_blank" class="btn btn--filled"> Live Preview</a>
+  `;
+  document.getElementById('project-modal').classList.add('active');
+}
+
+function closeProjectModal() {
+  document.getElementById('project-modal').classList.remove('active');
+}
+
+// Make project windows clickable
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#projects .window[data-project]').forEach(win => {
+    const id = parseInt(win.dataset.project);
+    if (id < projectData.length) {
+      win.style.cursor = 'pointer';
+      win.addEventListener('click', () => openProjectModal(id));
+    }
+  });
+});
 
 // Console easter egg
 console.log(`
@@ -187,9 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'assets/bg/faye-valentine-cowboy-bebop.gif',
     'assets/bg/faye-valentine-lamilfToda-elvaginon.gif',
     'assets/bg/faye-valentine-space-cowboy.gif',
-    'TokyoGhoulPeak.jpg',
-    'SuiGodIshidaTokyoCinemaGhoul.jpg',
-    'TokyoGodPeak.jpg',
+    'assets/bg/TokyoGhoulPeak.jpg',
+    'assets/bg/SuiGodIshidaTokyoCinemaGhoul.jpg',
+    'assets/bg/TokyoGodPeak.jpg',
     'assets/bg/griffith-berserk-eclipse💀.gif',
     'assets/bg/griffith-berserk-eclipse💀2.gif',
     'assets/bg/griffith-vs-guts.gif',
