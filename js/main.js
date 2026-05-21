@@ -55,6 +55,15 @@ const projectData = [
       'https://github.com/user-attachments/assets/9144215e-6156-43c3-beba-4cca7f431337',
       'https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992'
     ]
+  },
+  {
+    id: 5,
+    title: 'PCE-Agencia',
+    desc: 'App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos. Construida con JavaScript moderno, diseño responsive y flujo de datos limpio.',
+    tags: ['JavaScript', 'HTML', 'CSS'],
+    code: 'https://github.com/dhardi007/PCE-Agencia',
+    live: 'https://github.com/dhardi007/PCE-Agencia',
+    screenshot: '💼'
   }
 ];
 
