@@ -475,7 +475,7 @@ const bgGifs = [
 ];
 
 const animatedBg = document.querySelector('.animated-bg');
-const heroBg = document.querySelector('.hero-bg');
+const animatedBg = document.querySelector('.animated-bg');
 let isFirstLoad = true;
 
 function setRandomGif() {
@@ -487,7 +487,6 @@ function setRandomGif() {
     randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
   }
   if (animatedBg) animatedBg.style.backgroundImage = `url('${randomGif}')`;
-  if (heroBg) heroBg.style.backgroundImage = `url('${randomGif}')`;
   glitchBurst();
 }
 setRandomGif();

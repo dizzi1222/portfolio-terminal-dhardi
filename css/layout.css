@@ -94,23 +94,12 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image: url('../assets/bg/aesthethic-cool-anime1999.gif');
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
-
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(13, 13, 13, 0.4) 0%,
-    rgba(26, 26, 46, 0.3) 100%
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(13, 13, 13, 0.5) 100%
   );
-  backdrop-filter: blur(3px);
-  pointer-events: none;
+  overflow: hidden;
 }
 
 .hero-code-overlay {
