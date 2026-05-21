@@ -478,15 +478,6 @@ const animatedBg = document.querySelector('.animated-bg');
 const heroBg = document.querySelector('.hero-bg');
 let isFirstLoad = true;
 
-// Hero gets its OWN gifs — a curated subset + one random
-const heroGifs = [
-  'assets/bg/Ghost-in-the-shell-makoto.gif', 'assets/bg/akira-kaneda.gif',
-  'assets/bg/evangelion-rei-asuka-shinji-aesthethic.gif', 'assets/bg/faye-valentine-cowboy-bebop.gif',
-  'assets/bg/berserk-guts-aesthethic.gif', 'assets/bg/ashita-no-joe-joe-yabuki-PEAK.gif',
-  'assets/bg/moto-aesthethic-retro-nostalgic.gif', 'assets/bg/faye-valentine-space-cowboy.gif',
-  'assets/bg/swing-joe-yabuki-snow.gif', 'assets/bg/griffith-vs-guts.gif'
-];
-
 function setRandomGif() {
   let randomGif;
   if (isFirstLoad) {
@@ -496,17 +487,11 @@ function setRandomGif() {
     randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
   }
   if (animatedBg) animatedBg.style.backgroundImage = `url('${randomGif}')`;
+  if (heroBg) heroBg.style.backgroundImage = `url('${randomGif}')`;
+  glitchBurst();
 }
 setRandomGif();
 setInterval(setRandomGif, 30000);
-
-function setHeroGif() {
-  const gif = heroGifs[Math.floor(Math.random() * heroGifs.length)];
-  if (heroBg) heroBg.style.backgroundImage = `url('${gif}')`;
-  glitchBurst();
-}
-setHeroGif();
-setInterval(setHeroGif, 20000);
 
 // ---- Hero code overlay ----
 const heroCommands = [
