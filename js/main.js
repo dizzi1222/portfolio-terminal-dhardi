@@ -164,7 +164,7 @@ const projectData = [
     image: 'assets/modal-tech-Dashboard-REACT.png'
   },
   {
-    id: 1, title: 'Portfolio Comercial (dev.to)',
+    id: 1, title: 'Portfolio (dev.to)',
     desc: 'Portfolio profesional con Tailwind CSS, i18n en ES/EN/DE, modales interactivos, scroll-spy y temas claro/oscuro. Diseñado para clients y reclutadores.',
     descEn: 'Professional portfolio with Tailwind CSS, i18n in ES/EN/DE, interactive modals, scroll-spy and light/dark themes. Designed for clients and recruiters.',
     tags: ['HTML', 'Tailwind', 'JavaScript'],
