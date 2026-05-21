@@ -237,7 +237,48 @@ document.addEventListener('keydown', (e) => {
       if (sections[idx]) {
         document.getElementById(sections[idx]).scrollIntoView({ behavior: 'smooth' });
         currentSection = idx;
-      }
+}
+
+// ---- Typewriter ----
+const typewriterQuotes = [
+  '">_ “El único modo de hacer un gran trabajo es amar lo que haces.” — Steve Jobs',
+  '">_ “Primero resuelve el problema, luego escribe el código.” — John Johnson',
+  '">_ “Talk is cheap. Show me the code.” — Linus Torvalds',
+  '">_ “El software es un gran arte.” — Jeff Atwood',
+  '">_ “La simplicidad es la máxima sofisticación.” — Leonardo da Vinci',
+  '">_ “Código limpio siempre parece que fue escrito por alguien que se preocupa.” — Robert C. Martin',
+  '">_ “No es un bug, es una característica no documentada.” — Anónimo',
+  '">_ “Primero haz que funcione, luego haz que sea rápido.” — Kent Beck'
+];
+let typewriterEl = document.getElementById('typewriter');
+let twIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeWriter() {
+  if (!typewriterEl) return;
+  const current = typewriterQuotes[twIndex];
+  if (isDeleting) {
+    typewriterEl.textContent = current.substring(0, charIndex--);
+    if (charIndex < 0) {
+      isDeleting = false;
+      charIndex = 0;
+      twIndex = (twIndex + 1) % typewriterQuotes.length;
+      setTimeout(typeWriter, 300);
+      return;
+    }
+    setTimeout(typeWriter, 25);
+  } else {
+    typewriterEl.textContent = current.substring(0, charIndex++);
+    if (charIndex > current.length) {
+      isDeleting = true;
+      setTimeout(typeWriter, 2000);
+      return;
+    }
+    setTimeout(typeWriter, 40);
+  }
+}
+if (typewriterEl) setTimeout(typeWriter, 1000);
       break;
     case '?':
       overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
