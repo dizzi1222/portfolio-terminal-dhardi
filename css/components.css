@@ -394,3 +394,14 @@
   color: var(--text-muted);
   line-height: 1.7;
 }
+
+/* ===== HERO FILENAME LINK ===== */
+.hero-filename {
+  cursor: pointer;
+  text-decoration: underline dotted var(--text-dim);
+  transition: color 0.2s;
+}
+.hero-filename:hover {
+  color: var(--accent-primary);
+  text-decoration: underline solid var(--accent-primary);
+}

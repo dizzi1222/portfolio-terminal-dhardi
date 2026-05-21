@@ -297,6 +297,11 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// ---- Hero filename click → scroll to about ----
+document.querySelector('.hero-filename')?.addEventListener('click', () => {
+  document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+});
+
 // ---- Modal functions ----
 function openProjectModal(id) {
   const p = projectData[id];
