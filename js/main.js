@@ -474,8 +474,7 @@ const bgGifs = [
   'assets/bg/reinhard-logh-gingaeiyuu.gif', 'assets/bg/swing-joe-yabuki-snow.gif'
 ];
 
-const animatedBg = document.querySelector('.animated-bg');
-const animatedBg = document.querySelector('.animated-bg');
+const heroBg = document.querySelector('.hero-bg');
 let isFirstLoad = true;
 
 function setRandomGif() {
@@ -486,7 +485,7 @@ function setRandomGif() {
   } else {
     randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
   }
-  if (animatedBg) animatedBg.style.backgroundImage = `url('${randomGif}')`;
+  if (heroBg) heroBg.style.backgroundImage = `url('${randomGif}')`;
   glitchBurst();
 }
 setRandomGif();
