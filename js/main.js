@@ -293,16 +293,6 @@ function typeWriter() {
   }
 }
 if (typewriterEl) setTimeout(typeWriter, 1000);
-      break;
-    case '?':
-      overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
-      break;
-    case 'Escape':
-      overlay.style.display = 'none';
-      closeProjectModal();
-      break;
-  }
-});
 
 document.getElementById('keybindings-overlay').addEventListener('click', (e) => {
   if (e.target.id === 'keybindings-overlay') e.target.style.display = 'none';
