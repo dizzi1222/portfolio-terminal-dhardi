@@ -13,11 +13,12 @@
 }
 
 .window:hover {
-  transform: scale(1.08) translateY(-6px) rotate(-0.8deg);
+  transform: scale(1.18) translateY(-14px);
   box-shadow:
-    0 0 30px rgba(233, 69, 96, 0.5),
-    0 0 60px rgba(233, 69, 96, 0.2),
-    0 0 20px var(--accent-tertiary);
+    0 0 40px rgba(233, 69, 96, 0.5),
+    0 0 80px rgba(233, 69, 96, 0.25),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 30px var(--accent-tertiary);
   border-color: var(--accent-tertiary);
 }
 
