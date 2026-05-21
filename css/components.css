@@ -16,7 +16,8 @@
   transform: translate(-4px, -4px) scale(1.02);
   box-shadow:
     calc(var(--shadow-offset) + 4px) calc(var(--shadow-offset) + 4px) 0 var(--accent-secondary),
-    0 0 20px rgba(233, 69, 96, 0.5);
+    0 0 20px rgba(233, 69, 96, 0.5),
+    0 0 15px var(--accent-tertiary);
   border-color: var(--accent-tertiary);
 }
 

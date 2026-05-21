@@ -535,7 +535,9 @@
                 <span class="terminal-line__cmd">wget cv.pdf</span>
               </div>
               <div class="terminal-line__output">
-                <a href="https://dizzi1222.github.io/dhardi.dev/assets/cv.pdf" target="_blank">⬇ Descargar CV (PDF)</a>
+                <a href="#" onclick="openCVModal();return false">⬇ Ver CV</a>
+                <span style="color:var(--text-dim);font-size:0.8rem;margin-left:var(--gap-sm)">|</span>
+                <a href="https://dizzi1222.github.io/dhardi.dev/assets/cv.pdf" target="_blank">⬇ Descargar PDF</a>
               </div>
             </div>
           </div>
@@ -566,6 +568,27 @@
       </div>
     </div>
 
+    <!-- CV Modal -->
+    <div id="cv-modal" class="modal-overlay">
+      <div class="modal-backdrop" onclick="closeCVModal()"></div>
+      <div class="window modal-window" style="max-width:700px">
+        <div class="window__titlebar">
+          <div class="window__titlebar-dots">
+            <span class="window__titlebar-dot window__titlebar-dot--close"></span>
+            <span class="window__titlebar-dot"></span>
+            <span class="window__titlebar-dot"></span>
+          </div>
+          <span id="cv-modal-filename">cv_preview.sh</span>
+          <button class="modal-close-btn" onclick="closeCVModal()">✕</button>
+        </div>
+        <div class="window__content">
+          <img id="cv-modal-image" src="assets/modal-placeholder-cv.png" alt="CV preview" style="width:100%;border-radius:4px;border:1px solid var(--bg-tertiary)" />
+          <p id="cv-modal-desc" style="margin:var(--gap-md) 0;color:var(--text-muted);line-height:1.7"></p>
+          <div id="cv-modal-links" style="display:flex;gap:var(--gap-sm);flex-wrap:wrap"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer: Neovim Statusline Style -->
     <footer class="footer">
       <div class="footer__left">
@@ -577,7 +600,7 @@
         <span>html</span>
         <span>1,1</span>
         <span>All</span>
-        <span><a href="https://dizzi1222.github.io/dhardi.dev" target="_blank" style="color: var(--accent-tertiary); text-decoration: underline;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-i18n="footer.commercial">→ Versión Comercial</span></a></span>
+        <span><a href="https://dizzi1222.github.io/dhardi.dev" target="_blank" style="color: var(--accent-tertiary); text-decoration: underline;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 13c-2.32 0-4.45-1.09-5.83-2.93l2.5-4.33A5.003 5.003 0 0012 17c.74 0 1.44-.16 2.07-.45L17.5 18.5 14 20.9c-1.67.7-3.5.7-5.17 0L12 18zm5.09-3.07l-2.5-4.33A5.003 5.003 0 0012 7c-.74 0-1.44.16-2.07.45L7.5 5.5 11 3.1c1.67-.7 3.5-.7 5.17 0L14 6.93l3.09 5.34v2.66z"/></svg><span data-i18n="footer.commercial">→ Versión Comercial</span></a></span>
       </div>
     </footer>
 
@@ -601,6 +624,6 @@
       </div>
     </div>
 
-    <script src="js/main.js?v=9"></script>
+    <script src="js/main.js?v=10"></script>
   </body>
 </html>

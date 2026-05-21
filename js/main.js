@@ -32,6 +32,7 @@ const i18n = {
     },
     projects: { code: 'View Code', live: 'Live Preview', private: 'Privado', open: '▶ Abrir proyecto' },
     contact: { available: 'Disponible' },
+    cv: { title: 'Diego Härdi · CV', desc: 'Descarga mi currículum para ver mi experiencia completa, educación y habilidades técnicas.', download: '⬇ Descargar CV (PDF)' },
     footer: { commercial: '→ Versión Comercial' }
   },
   en: {
@@ -62,6 +63,7 @@ const i18n = {
     },
     projects: { code: 'View Code', live: 'Live Preview', private: 'Private', open: '▶ Open project' },
     contact: { available: 'Available' },
+    cv: { title: 'Diego Härdi · CV', desc: 'Download my resume to see my complete experience, education and technical skills.', download: '⬇ Download CV (PDF)' },
     footer: { commercial: '→ Commercial Version' }
   },
   de: {
@@ -92,6 +94,7 @@ const i18n = {
     },
     projects: { code: 'Quellcode', live: 'Live-Vorschau', private: 'Privat', open: '▶ Projekt öffnen' },
     contact: { available: 'Verfügbar' },
+    cv: { title: 'Diego Härdi · Lebenslauf', desc: 'Lade meinen Lebenslauf herunter, um meine vollständige Erfahrung, Ausbildung und technische Fähigkeiten zu sehen.', download: '⬇ Lebenslauf herunterladen (PDF)' },
     footer: { commercial: '→ Kommerzielle Version' }
   }
 };
@@ -237,7 +240,18 @@ document.addEventListener('keydown', (e) => {
       if (sections[idx]) {
         document.getElementById(sections[idx]).scrollIntoView({ behavior: 'smooth' });
         currentSection = idx;
-}
+      }
+break;
+    case '?':
+      overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
+      break;
+    case 'Escape':
+      overlay.style.display = 'none';
+      closeProjectModal();
+      closeCVModal();
+      break;
+  }
+});
 
 // ---- Typewriter ----
 const typewriterQuotes = [
@@ -574,4 +588,19 @@ function glitchBurst() {
   if (codeOverlay) {
     codeOverlay.querySelectorAll('.hero-code-line').forEach(el => el.classList.add('glitch'));
   }
+}
+
+// ---- CV Modal ----
+function openCVModal() {
+  const cv = i18n[lang].cv;
+  document.getElementById('cv-modal-filename').textContent = 'cv_preview.sh';
+  document.getElementById('cv-modal-image').src = 'assets/modal-placeholder-cv.png';
+  document.getElementById('cv-modal-desc').textContent = cv.desc;
+  document.getElementById('cv-modal-links').innerHTML =
+    `<a href="https://dizzi1222.github.io/dhardi.dev/assets/cv.pdf" target="_blank" class="btn btn--filled">${cv.download}</a>`;
+  document.getElementById('cv-modal').classList.add('active');
+}
+
+function closeCVModal() {
+  document.getElementById('cv-modal').classList.remove('active');
 }
