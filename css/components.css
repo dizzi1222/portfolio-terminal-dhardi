@@ -405,3 +405,22 @@
   color: var(--accent-primary);
   text-decoration: underline solid var(--accent-primary);
 }
+
+/* ===== TYPEWRITER ===== */
+.hero__typewriter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent-tertiary);
+  margin-top: var(--gap-sm);
+  min-height: 1.5em;
+}
+
+.hero__typewriter::after {
+  content: '█';
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
