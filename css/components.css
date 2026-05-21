@@ -428,3 +428,37 @@
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+/* ===== TERMINAL CURSOR ===== */
+.terminal-line__cmd::after {
+  content: '█';
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+  color: var(--accent-tertiary);
+  opacity: 0.7;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border: 1px solid var(--text-dim);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-tertiary);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-primary) var(--bg-primary);
+}
