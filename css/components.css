@@ -9,24 +9,28 @@
   box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--accent-secondary);
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .window:hover {
-  transform: scale(1.2) translateY(-5px);
+  transform: scale(1.25) translateY(-8px);
   box-shadow:
-    0 0 30px rgba(233, 69, 96, 0.5),
-    0 0 60px rgba(233, 69, 96, 0.2),
-    0 0 20px var(--accent-tertiary);
+    0 0 40px rgba(233, 69, 96, 0.5),
+    0 0 80px rgba(233, 69, 96, 0.25),
+    0 0 30px var(--accent-tertiary);
   border-color: var(--accent-tertiary);
 }
 
-#projects {
+#projects-header {
   background: #000;
+  padding-bottom: var(--gap-md);
 }
 
-#projects .window {
-  background: #000;
+#projects-divider {
+  border: none;
+  border-top: 2px solid var(--accent-primary);
+  margin: 0 0 var(--gap-lg) 0;
+  opacity: 0.6;
 }
 
 /* Shine effect on hover */
