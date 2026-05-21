@@ -38,3 +38,14 @@
   --window-border-radius: 0;
   --container-max-width: 1200px;
 }
+
+.light-mode {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #e8e8e8;
+  --bg-tertiary: #ddd;
+  --bg-window: #fff;
+  --text-primary: #1a1a1a;
+  --text-muted: #666;
+  --text-dim: #999;
+  --scanline-opacity: 0.02;
+}

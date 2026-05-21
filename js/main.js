@@ -2,132 +2,195 @@
    MAIN.JS - Keyboard Navigation & Interactivity
    =========================================== */
 
-// Project data for modals
+// ---- i18n ----
+const i18n = {
+  es: {
+    hero: { tagline: 'Desarrollador MERN Stack | Arch Linux Enthusiast | Neovim + LazyVim' },
+    sections: { tech: 'Tech Stack', design: 'Design', projects: 'Projects', about: 'About', contact: 'Contact' },
+    tech: {
+      hint: 'Haz clic en cualquier tecnología para saber más',
+      'Node.js': 'Runtime JS del lado del servidor. Lo uso para construir APIs RESTful y backends escalables con Express.',
+      'Express': 'Framework minimalista para Node.js. Mi elección para crear servidores, middlewares y APIs limpias.',
+      'React': 'Biblioteca de UI declarativa. Construyo interfaces interactivas con componentes y hooks reutilizables.',
+      'MongoDB': 'Base de datos NoSQL. La uso como principal almacenamiento en mis proyectos MERN con Mongoose.',
+      'Git': 'Control de versiones esencial. Flujo con feature branches, rebase interactivo y commits semánticos.',
+      'Arch': 'Mi daily driver. Arch Linux + Hyprland, todo configurado desde cero con dotfiles propios.',
+      'Neovim': 'Editor principal con LazyVim. Plugins personalizados, LSP para TS/JS, y flujo 100% teclado.',
+      'TypeScript': 'Tipado estático para JS. Código más robusto y mantenible en backend y frontend.',
+      'Docker': 'Contenedores para desarrollo y producción. Entornos reproducibles y despliegues consistentes.',
+      'Figma': 'Diseño de interfaces y prototipado. Design systems, componentes reutilizables y colaboración en equipo.',
+      'Google Stitch': 'Prototipado con IA. Generación rápida de mockups y exploración de variantes de diseño.',
+      'Design System': 'Sistemas de diseño atómicos con Tailwind, Storybook y consistencia visual garantizada.',
+      'Prototyping': 'Prototipado interactivo desde wireframes low-fi hasta high-fi en Figma.'
+    },
+    about: {
+      name: 'Diego Härdi', role: 'DevOps & Software Engineer',
+      born: 'San Pedro de Macorís, RD', lives: 'Jarabacoa, RD',
+      passport: '🇨🇭 Suizo', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
+      langs: 'ES · EN · DE (A2)',
+      bio: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.'
+    },
+    projects: { code: 'View Code', live: 'Live Preview', private: 'Privado' },
+    contact: { available: 'Disponible' },
+    footer: { commercial: '→ Versión Comercial' }
+  },
+  en: {
+    hero: { tagline: 'MERN Stack Developer | Arch Linux Enthusiast | Neovim + LazyVim' },
+    sections: { tech: 'Tech Stack', design: 'Design', projects: 'Projects', about: 'About', contact: 'Contact' },
+    tech: {
+      hint: 'Click any technology to learn more',
+      'Node.js': 'Server-side JS runtime. I use it to build RESTful APIs and scalable backends with Express.',
+      'Express': 'Minimalist Node.js framework. My choice for creating servers, middleware and clean APIs.',
+      'React': 'Declarative UI library. I build interactive interfaces with reusable components and hooks.',
+      'MongoDB': 'NoSQL database. I use it as primary storage in my MERN projects with Mongoose.',
+      'Git': 'Essential version control. Flow with feature branches, interactive rebase and semantic commits.',
+      'Arch': 'My daily driver. Arch Linux + Hyprland, everything configured from scratch with custom dotfiles.',
+      'Neovim': 'Main editor with LazyVim. Custom plugins, LSP for TS/JS, 100% keyboard workflow.',
+      'TypeScript': 'Static typing for JS. More robust and maintainable code on backend and frontend.',
+      'Docker': 'Containers for development and production. Reproducible environments and consistent deployments.',
+      'Figma': 'Interface design and prototyping. Design systems, reusable components and team collaboration.',
+      'Google Stitch': 'AI-powered prototyping. Rapid mockup generation and design variant exploration.',
+      'Design System': 'Atomic design systems with Tailwind, Storybook and guaranteed visual consistency.',
+      'Prototyping': 'Interactive prototyping from low-fi wireframes to high-fi in Figma.'
+    },
+    about: {
+      name: 'Diego Härdi', role: 'DevOps & Software Engineer',
+      born: 'San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
+      passport: '🇨🇭 Swiss', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
+      langs: 'ES · EN · DE (A2)',
+      bio: "By day I build full-stack apps with the MERN stack. By night I'm immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn't exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems."
+    },
+    projects: { code: 'View Code', live: 'Live Preview', private: 'Private' },
+    contact: { available: 'Available' },
+    footer: { commercial: '→ Commercial Version' }
+  }
+};
+
+const ghIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>';
+
+let lang = localStorage.getItem('terminal-lang') || 'es';
+function t(path) {
+  let val = i18n[lang];
+  for (const k of path.split('.')) { if (val) val = val[k]; else return ''; }
+  return val || '';
+}
+
+function switchLanguage(l) {
+  lang = l;
+  localStorage.setItem('terminal-lang', l);
+  document.getElementById('lang-btn').textContent = l.toUpperCase();
+  updateI18n();
+}
+
+function updateI18n() {
+  const el = document.getElementById('hero-tagline');
+  if (el) el.textContent = t('hero.tagline');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const text = t(el.getAttribute('data-i18n'));
+    if (text) el.textContent = text;
+  });
+  const td = document.getElementById('tech-desc');
+  if (td && !td.dataset.active) td.textContent = t('tech.hint');
+  updateProjectCards();
+  updateAboutLabels();
+}
+
+function updateProjectCards() {
+  document.querySelectorAll('#projects .window[data-project]').forEach(win => {
+    const id = parseInt(win.dataset.project);
+    const p = projectData[id];
+    if (!p) return;
+    const titleEl = win.querySelector('h3');
+    const descEl = win.querySelector('p');
+    if (titleEl) titleEl.textContent = p.title;
+    if (descEl) descEl.textContent = p.descEn && lang === 'en' ? p.descEn : p.desc;
+  });
+}
+
+function updateAboutLabels() {
+  const a = i18n[lang].about;
+  document.querySelectorAll('[data-about]').forEach(el => {
+    const key = el.getAttribute('data-about');
+    if (a[key]) el.textContent = a[key];
+  });
+}
+
+// ---- Project data ----
 const projectData = [
   {
-    id: 0,
-    title: 'Dashboard React',
+    id: 0, title: 'Dashboard React',
     desc: 'Panel de administración con gráficos, calculadora, contador y TO-DO list. Todo construido con React y react-router-dom.',
-    tags: ['React', 'Node.js', 'MongoDB'],
-    code: 'https://github.com/dizzi1222',
-    live: '#',
-    screenshot: '📊'
+    descEn: 'Admin panel with charts, calculator, counter and TO-DO list. Built with React and react-router-dom.',
+    tags: ['React', 'Node.js', 'MongoDB'], code: 'https://github.com/dizzi1222', live: '#', screenshot: '📊'
   },
   {
-    id: 1,
-    title: 'Portfolio Terminal',
+    id: 1, title: 'Portfolio Terminal',
     desc: 'Portfolio interactivo con estética de terminal Linux. Comandos CLI, efectos CRT, navegación estilo Vim. Optimizado para devs que viven entre zsh, kitty y Hyprland.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi',
-    live: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/',
-    screenshot: '🖥️'
+    descEn: 'Interactive portfolio with Linux terminal aesthetics. CLI commands, CRT effects, Vim-style navigation. Optimized for devs living between zsh, kitty and Hyprland.',
+    tags: ['HTML', 'CSS', 'JavaScript'], code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi', live: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/', screenshot: '🖥️'
   },
   {
-    id: 2,
-    title: 'Dotfiles Config',
+    id: 2, title: 'Dotfiles Config',
     desc: 'Configuración completa de Arch Linux con Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets y Rofi. Todo gestionado con GNU Stow y dotfiles propios.',
-    tags: ['Lua', 'Shell', 'YAML'],
-    code: 'https://github.com/dizzi1222',
-    live: '#',
-    screenshot: '⚙️'
+    descEn: 'Complete Arch Linux configuration with Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets and Rofi. All managed with GNU Stow and custom dotfiles.',
+    tags: ['Lua', 'Shell', 'YAML'], code: 'https://github.com/dizzi1222', live: '#', screenshot: '⚙️'
   },
   {
-    id: 3,
-    title: 'PTD-Talento',
+    id: 3, title: 'PTD-Talento',
     desc: 'Marketplace de talento para Cincinnatus Institute. MVP completo con autenticación, catálogo de estudiantes, watch list de reclutadores, panel admin y notificaciones. Arquitectura MERN con Docker.',
+    descEn: 'Talent marketplace for Cincinnatus Institute. Full MVP with auth, student catalog, recruiter watch list, admin panel and notifications. MERN architecture with Docker.',
     tags: ['React', 'Node.js', 'MongoDB', 'Docker', 'Figma'],
-    code: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
-    live: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front',
-    screenshot: '🏗️',
-    isPrivate: true,
-    backUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
-    frontUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front'
+    code: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back', live: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front',
+    screenshot: '🏗️', isPrivate: true,
+    backUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back', frontUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front'
   },
   {
-    id: 4,
-    title: 'Nvim Config',
-    desc: 'Configuración universal de Neovim con LazyVim. Sincronización multiplataforma (Linux Hyprland, Windows, WSL). Plugins personalizados, LSP para TS/JS/Lua, snippets, y atajos tipo IDE. Setup con dotfiles, sync scripts y PowerToys para Windows.',
-    tags: ['Lua', 'LazyVim', 'Neovim'],
-    code: 'https://github.com/dizzi1222/nvim',
-    live: 'https://github.com/dizzi1222/nvim-wsl',
+    id: 4, title: 'Nvim Config',
+    desc: 'Configuración universal de Neovim con LazyVim. Sincronización multiplataforma (Linux Hyprland, Windows, WSL). Plugins personalizados, LSP para TS/JS/Lua, snippets, y atajos tipo IDE.',
+    descEn: 'Universal Neovim configuration with LazyVim. Cross-platform sync (Linux Hyprland, Windows, WSL). Custom plugins, LSP for TS/JS/Lua, snippets, and IDE-like shortcuts.',
+    tags: ['Lua', 'LazyVim', 'Neovim'], code: 'https://github.com/dizzi1222/nvim', live: 'https://github.com/dizzi1222/nvim-wsl',
     screenshot: '💤',
-    nvimScreenshots: [
-      'https://github.com/user-attachments/assets/9144215e-6156-43c3-beba-4cca7f431337',
-      'https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992'
-    ]
+    nvimScreenshots: ['https://github.com/user-attachments/assets/9144215e-6156-43c3-beba-4cca7f431337', 'https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992']
   },
   {
-    id: 5,
-    title: 'PCE-Agencia',
+    id: 5, title: 'PCE-Agencia',
     desc: 'App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos. Construida con JavaScript moderno, diseño responsive y flujo de datos limpio.',
-    tags: ['JavaScript', 'HTML', 'CSS'],
-    code: 'https://github.com/dhardi007/PCE-Agencia',
-    live: 'https://github.com/dhardi007/PCE-Agencia',
-    screenshot: '💼'
+    descEn: 'Finance and travel app — budget management, itinerary planning and expense tracking. Built with modern JavaScript, responsive design and clean data flow.',
+    tags: ['JavaScript', 'HTML', 'CSS'], code: 'https://github.com/dhardi007/PCE-Agencia', live: 'https://github.com/dhardi007/PCE-Agencia', screenshot: '💼'
   }
 ];
 
-// Update clock in header
+// ---- Clock ----
 function updateClock() {
   const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  document.getElementById('current-time').textContent = `${hours}:${minutes}`;
+  document.getElementById('current-time').textContent =
+    `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 }
-
 setInterval(updateClock, 1000);
 updateClock();
 
-// Keyboard navigation (Vim-style)
-const sections = ['hero', 'tech', 'projects', 'design', 'contact'];
+// ---- Keyboard navigation ----
+const sections = ['hero', 'about', 'tech', 'design', 'projects', 'contact'];
 let currentSection = 0;
 
 document.addEventListener('keydown', (e) => {
   const key = e.key;
   const overlay = document.getElementById('keybindings-overlay');
-
   switch(key) {
-    // Scroll down
-    case 'j':
-      window.scrollBy({ top: 100, behavior: 'smooth' });
-      break;
-
-    // Scroll up
-    case 'k':
-      window.scrollBy({ top: -100, behavior: 'smooth' });
-      break;
-
-    // Go to top
-    case 'g':
-      if (!e.shiftKey) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    case 'j': window.scrollBy({ top: 100, behavior: 'smooth' }); break;
+    case 'k': window.scrollBy({ top: -100, behavior: 'smooth' }); break;
+    case 'g': if (!e.shiftKey) window.scrollTo({ top: 0, behavior: 'smooth' }); break;
+    case 'G': window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); break;
+    case '1': case '2': case '3': case '4': case '5': case '6':
+      const idx = parseInt(key) - 1;
+      if (sections[idx]) {
+        document.getElementById(sections[idx]).scrollIntoView({ behavior: 'smooth' });
+        currentSection = idx;
       }
       break;
-
-    // Go to bottom
-    case 'G':
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      break;
-
-    // Jump to sections by number
-    case '1':
-    case '2':
-    case '3':
-    case '4':
-    case '5':
-      const sectionIndex = parseInt(key) - 1;
-      if (sections[sectionIndex]) {
-        document.getElementById(sections[sectionIndex]).scrollIntoView({ behavior: 'smooth' });
-        currentSection = sectionIndex;
-      }
-      break;
-
-    // Toggle help overlay
     case '?':
       overlay.style.display = overlay.style.display === 'none' ? 'flex' : 'none';
       break;
-
-    // Close overlays with Escape
     case 'Escape':
       overlay.style.display = 'none';
       closeProjectModal();
@@ -135,48 +198,60 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Click outside overlay to close
 document.getElementById('keybindings-overlay').addEventListener('click', (e) => {
-  if (e.target.id === 'keybindings-overlay') {
-    e.target.style.display = 'none';
-  }
+  if (e.target.id === 'keybindings-overlay') e.target.style.display = 'none';
 });
 
-// Add overlay styles dynamically
+// Overlay styles
 const overlayStyles = document.createElement('style');
 overlayStyles.textContent = `
-  .keybindings-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-  }
-
-  .keybindings-overlay code {
-    background: var(--accent-secondary);
-    padding: 0.2rem 0.4rem;
-    margin-right: 0.5rem;
-  }
-
-  .keybindings-overlay p {
-    margin-bottom: 0.5rem;
-  }
+  .keybindings-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:10000; }
+  .keybindings-overlay code { background:var(--accent-secondary); padding:0.2rem 0.4rem; margin-right:0.5rem; }
+  .keybindings-overlay p { margin-bottom:0.5rem; }
 `;
 document.head.appendChild(overlayStyles);
 
-// Modal functions
+// ---- Scroll spy ----
+const spyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      const names = { hero: '~/', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', contact: '~/contact' };
+      const el = document.querySelector('.header__path');
+      if (el && names[id]) el.textContent = names[id];
+    }
+  });
+}, { threshold: 0.3, rootMargin: '0px 0px -100px 0px' });
+sections.forEach(s => {
+  const el = document.getElementById(s);
+  if (el) spyObserver.observe(el);
+});
+
+// ---- Theme toggle ----
+function switchTheme(theme) {
+  localStorage.setItem('terminal-theme', theme);
+  if (theme === 'light') {
+    document.documentElement.classList.add('light-mode');
+    document.getElementById('theme-btn').textContent = '☀';
+  } else {
+    document.documentElement.classList.remove('light-mode');
+    document.getElementById('theme-btn').textContent = '☾';
+  }
+}
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('#theme-btn');
+  if (btn) {
+    const current = localStorage.getItem('terminal-theme') || 'dark';
+    switchTheme(current === 'dark' ? 'light' : 'dark');
+  }
+});
+
+// ---- Modal functions ----
 function openProjectModal(id) {
   const p = projectData[id];
   if (!p) return;
+  const prj = i18n[lang].projects;
   document.getElementById('modal-filename').textContent = `project_${String(id + 1).padStart(2, '0')}_preview.sh`;
-  document.getElementById('modal-screenshot').textContent = p.screenshot;
-  // Use nvim screenshots if available
   const screenshotEl = document.getElementById('modal-screenshot');
   if (p.nvimScreenshots) {
     screenshotEl.textContent = '';
@@ -192,25 +267,26 @@ function openProjectModal(id) {
     screenshotEl.innerHTML = '';
   }
   document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-desc').textContent = p.desc;
-  const tagsEl = document.getElementById('modal-tags');
-  tagsEl.innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+  document.getElementById('modal-desc').textContent = lang === 'en' && p.descEn ? p.descEn : p.desc;
+  document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
   const linksEl = document.getElementById('modal-links');
-  linksEl.innerHTML = p.nvimScreenshots
-    ? `
-    <a href="${p.code}" target="_blank" class="btn"> Linux Config</a>
-    <a href="${p.live}" target="_blank" class="btn btn--filled"> WSL/Windows</a>
-  `
-    : p.isPrivate
-    ? `
-    <a href="${p.backUrl}" target="_blank" class="btn"> Backend (Repo)</a>
-    <a href="${p.frontUrl}" target="_blank" class="btn btn--filled"> Frontend (Repo)</a>
-    <span class="tag" style="align-self:center">🔒 Privado</span>
-  `
-    : `
-    <a href="${p.code}" target="_blank" class="btn"> View Code</a>
-    <a href="${p.live}" target="_blank" class="btn btn--filled"> Live Preview</a>
-  `;
+  if (p.nvimScreenshots) {
+    linksEl.innerHTML = `
+      <a href="${p.code}" target="_blank" class="btn">${ghIcon} Linux Config</a>
+      <a href="${p.live}" target="_blank" class="btn btn--filled">${ghIcon} WSL/Windows</a>
+    `;
+  } else if (p.isPrivate) {
+    linksEl.innerHTML = `
+      <a href="${p.backUrl}" target="_blank" class="btn">${ghIcon} ${prj.code} · Backend</a>
+      <a href="${p.frontUrl}" target="_blank" class="btn btn--filled">${ghIcon} ${prj.code} · Frontend</a>
+      <span class="tag" style="align-self:center">🔒 ${prj.private}</span>
+    `;
+  } else {
+    linksEl.innerHTML = `
+      <a href="${p.code}" target="_blank" class="btn">${ghIcon} ${prj.code}</a>
+      <a href="${p.live}" target="_blank" class="btn btn--filled">${ghIcon} ${prj.live}</a>
+    `;
+  }
   document.getElementById('project-modal').classList.add('active');
 }
 
@@ -218,7 +294,6 @@ function closeProjectModal() {
   document.getElementById('project-modal').classList.remove('active');
 }
 
-// Make project windows clickable
 document.querySelectorAll('#projects .window[data-project]').forEach(win => {
   const id = parseInt(win.dataset.project);
   if (id < projectData.length) {
@@ -227,25 +302,12 @@ document.querySelectorAll('#projects .window[data-project]').forEach(win => {
   }
 });
 
-// Tech descriptions data
-const techData = {
-  'Node.js': 'Runtime JS del lado del servidor. Lo uso para construir APIs RESTful y backends escalables con Express.',
-  'Express': 'Framework minimalista para Node.js. Mi elección para crear servidores, middlewares y APIs limpias.',
-  'React': 'Biblioteca de UI declarativa. Construyo interfaces interactivas con componentes y hooks reutilizables.',
-  'MongoDB': 'Base de datos NoSQL. La uso como principal almacenamiento en mis proyectos MERN con Mongoose.',
-  'Git': 'Control de versiones esencial. Flujo con feature branches, rebase interactivo y commits semánticos.',
-  'Arch': 'Mi daily driver. Arch Linux + Hyprland, todo configurado desde cero con dotfiles propios.',
-  'Neovim': 'Editor principal con LazyVim. Plugins personalizados, LSP para TS/JS, y flujo 100% teclado.',
-  'Figma': 'Diseño de interfaces y prototipado. Design systems, componentes reutilizables y colaboración en equipo.',
-  'Google Stitch': 'Prototipado con IA. Generación rápida de mockups y exploración de variantes de diseño.',
-  'TypeScript': 'Tipado estático para JS. Código más robusto y mantenible en backend y frontend.',
-  'Docker': 'Contenedores para desarrollo y producción. Entornos reproducibles y despliegues consistentes.'
-};
-
-// Random tech popup
+// ---- Tech popup + persistent description ----
 const popupEl = document.createElement('div');
 popupEl.className = 'tech-popup';
 document.body.appendChild(popupEl);
+
+const techDescHint = document.getElementById('tech-desc');
 
 document.querySelectorAll('.icon-grid__item').forEach(item => {
   item.style.cursor = 'pointer';
@@ -253,11 +315,10 @@ document.querySelectorAll('.icon-grid__item').forEach(item => {
     const label = item.querySelector('.icon-grid__label');
     if (!label) return;
     const name = label.textContent;
-    const desc = techData[name];
+    const desc = t(`tech.${name}`);
     if (!desc) return;
     popupEl.textContent = `${name}: ${desc}`;
     popupEl.style.display = 'block';
-
     const rect = item.getBoundingClientRect();
     const popupW = 320;
     let left = rect.left + rect.width / 2 - popupW / 2;
@@ -265,9 +326,12 @@ document.querySelectorAll('.icon-grid__item').forEach(item => {
     if (left + popupW > window.innerWidth - 10) left = window.innerWidth - popupW - 10;
     popupEl.style.left = left + 'px';
     popupEl.style.top = (rect.bottom + 8) + 'px';
-
     clearTimeout(popupEl._hideTimer);
     popupEl._hideTimer = setTimeout(() => { popupEl.style.display = 'none'; }, 2500);
+    if (techDescHint) {
+      techDescHint.textContent = `${name}: ${desc}`;
+      techDescHint.dataset.active = 'true';
+    }
   });
 });
 
@@ -277,7 +341,23 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Console easter egg
+// ---- Language toggle ----
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('#lang-btn');
+  if (btn) switchLanguage(lang === 'es' ? 'en' : 'es');
+});
+
+// ---- Theme init ----
+(function init() {
+  const savedLang = localStorage.getItem('terminal-lang') || 'es';
+  const savedTheme = localStorage.getItem('terminal-theme') || 'dark';
+  document.getElementById('lang-btn').textContent = savedLang.toUpperCase();
+  switchTheme(savedTheme);
+  lang = savedLang;
+  updateI18n();
+})();
+
+// ---- Console easter egg ----
 console.log(`
 %c╔═══════════════════════════════════════╗
 ║   Diego's Portfolio - Terminal Style  ║
@@ -286,25 +366,8 @@ console.log(`
 ╚═══════════════════════════════════════╝
 `, 'color: #e94560; font-family: monospace;');
 
-// Typing effect for hero tagline (optional enhancement)
-function typeWriter(element, text, speed = 50) {
-  let i = 0;
-  element.textContent = '';
-
-  function type() {
-    if (i < text.length) {
-      element.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-
-  type();
-}
-
-// Add subtle animation to windows on scroll (exclude modal)
+// ---- Scroll reveal ----
 const windows = document.querySelectorAll('.window:not(.modal-window)');
-
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -313,7 +376,6 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1 });
-
 windows.forEach(win => {
   win.style.opacity = '0';
   win.style.transform = 'translateY(20px)';
@@ -321,54 +383,30 @@ windows.forEach(win => {
   observer.observe(win);
 });
 
-// Animated background GIF rotation
+// ---- Background GIF rotation ----
 const bgGifs = [
-  'assets/bg/aesthethic-cool-anime1999.gif',
-  'assets/bg/Ghost-in-the-shell-makoto.gif',
-  'assets/bg/akira-kaneda.gif',
-  'assets/bg/akira-kaneda2.gif',
-  'assets/bg/anime-bg.gif',
-  'assets/bg/anime-girl-motorcycle.gif',
-  'assets/bg/ashita-no-joe-joe-and-carlos.gif',
-  'assets/bg/ashita-no-joe-joe-and-danpei.gif',
-  'assets/bg/ashita-no-joe-joe-and-noriko.gif',
-  'assets/bg/ashita-no-joe-joe-and-rikiishi.gif',
-  'assets/bg/ashita-no-joe-joe-and-yoko.gif',
-  'assets/bg/ashita-no-joe-joe-and-yoko2.gif',
-  'assets/bg/ashita-no-joe-joe-and-yoko3.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-PEAK.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-aesthethic.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-eclipse_.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-gay.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-rain.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-tren.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-vinlandsaga.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki-yoko.gif',
-  'assets/bg/ashita-no-joe-joe-yabuki.gif',
-  'assets/bg/ashita-no-joe-あしたのジョー.gif',
-  'assets/bg/berserk-griffith-eclipse.gif',
-  'assets/bg/berserk-guts-aesthethic.gif',
-  'assets/bg/berserk-guts-casca.gif',
-  'assets/bg/bye-joe-yabuki-seeyouagain.gif',
-  'assets/bg/evangelion-rei-asuka-shinji-aesthethic.gif',
-  'assets/bg/faye-valentine-cowboy-bebop-shoot.gif',
-  'assets/bg/faye-valentine-cowboy-bebop-spike.gif',
-  'assets/bg/faye-valentine-cowboy-bebop.gif',
-  'assets/bg/faye-valentine-lamilfToda-elvaginon.gif',
-  'assets/bg/faye-valentine-space-cowboy.gif',
-  'assets/bg/TokyoGhoulPeak.jpg',
-  'assets/bg/SuiGodIshidaTokyoCinemaGhoul.jpg',
-  'assets/bg/TokyoGodPeak.jpg',
-  'assets/bg/griffith-berserk-eclipse💀.gif',
-  'assets/bg/griffith-berserk-eclipse💀2.gif',
-  'assets/bg/griffith-vs-guts.gif',
-  'assets/bg/griffith💀osomaduro.gif',
-  'assets/bg/joe-yabuki-rikiishi.gif',
-  'assets/bg/moto-aesthethic-retro-nostalgic.gif',
-  'assets/bg/motomami.gif',
+  'assets/bg/aesthethic-cool-anime1999.gif', 'assets/bg/Ghost-in-the-shell-makoto.gif',
+  'assets/bg/akira-kaneda.gif', 'assets/bg/akira-kaneda2.gif', 'assets/bg/anime-bg.gif',
+  'assets/bg/anime-girl-motorcycle.gif', 'assets/bg/ashita-no-joe-joe-and-carlos.gif',
+  'assets/bg/ashita-no-joe-joe-and-danpei.gif', 'assets/bg/ashita-no-joe-joe-and-noriko.gif',
+  'assets/bg/ashita-no-joe-joe-and-rikiishi.gif', 'assets/bg/ashita-no-joe-joe-and-yoko.gif',
+  'assets/bg/ashita-no-joe-joe-and-yoko2.gif', 'assets/bg/ashita-no-joe-joe-and-yoko3.gif',
+  'assets/bg/ashita-no-joe-joe-yabuki-PEAK.gif', 'assets/bg/ashita-no-joe-joe-yabuki-aesthethic.gif',
+  'assets/bg/ashita-no-joe-joe-yabuki-eclipse_.gif', 'assets/bg/ashita-no-joe-joe-yabuki-gay.gif',
+  'assets/bg/ashita-no-joe-joe-yabuki-rain.gif', 'assets/bg/ashita-no-joe-joe-yabuki-tren.gif',
+  'assets/bg/ashita-no-joe-joe-yabuki-vinlandsaga.gif', 'assets/bg/ashita-no-joe-joe-yabuki-yoko.gif',
+  'assets/bg/ashita-no-joe-joe-yabuki.gif', 'assets/bg/ashita-no-joe-あしたのジョー.gif',
+  'assets/bg/berserk-griffith-eclipse.gif', 'assets/bg/berserk-guts-aesthethic.gif',
+  'assets/bg/berserk-guts-casca.gif', 'assets/bg/bye-joe-yabuki-seeyouagain.gif',
+  'assets/bg/evangelion-rei-asuka-shinji-aesthethic.gif', 'assets/bg/faye-valentine-cowboy-bebop-shoot.gif',
+  'assets/bg/faye-valentine-cowboy-bebop-spike.gif', 'assets/bg/faye-valentine-cowboy-bebop.gif',
+  'assets/bg/faye-valentine-lamilfToda-elvaginon.gif', 'assets/bg/faye-valentine-space-cowboy.gif',
+  'assets/bg/TokyoGhoulPeak.jpg', 'assets/bg/SuiGodIshidaTokyoCinemaGhoul.jpg', 'assets/bg/TokyoGodPeak.jpg',
+  'assets/bg/griffith-berserk-eclipse💀.gif', 'assets/bg/griffith-berserk-eclipse💀2.gif',
+  'assets/bg/griffith-vs-guts.gif', 'assets/bg/griffith💀osomaduro.gif', 'assets/bg/joe-yabuki-rikiishi.gif',
+  'assets/bg/moto-aesthethic-retro-nostalgic.gif', 'assets/bg/motomami.gif',
   'assets/bg/person-walking-down-the-streets-wearing-a-coat-and-a-cap-with-attitude-purewhiteash.gif',
-  'assets/bg/reinhard-logh-gingaeiyuu.gif',
-  'assets/bg/swing-joe-yabuki-snow.gif'
+  'assets/bg/reinhard-logh-gingaeiyuu.gif', 'assets/bg/swing-joe-yabuki-snow.gif'
 ];
 
 const animatedBg = document.querySelector('.animated-bg');
@@ -376,23 +414,13 @@ let isFirstLoad = true;
 
 function setRandomGif() {
   let randomGif;
-
   if (isFirstLoad) {
-    const probability = Math.random();
-    if (probability < 0.4) {
-      randomGif = bgGifs[0];
-    } else {
-      randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
-    }
+    randomGif = Math.random() < 0.4 ? bgGifs[0] : bgGifs[Math.floor(Math.random() * bgGifs.length)];
     isFirstLoad = false;
   } else {
     randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
   }
-
-  if (animatedBg) {
-    animatedBg.style.backgroundImage = `url('${randomGif}')`;
-  }
+  if (animatedBg) animatedBg.style.backgroundImage = `url('${randomGif}')`;
 }
-
 setRandomGif();
 setInterval(setRandomGif, 30000);

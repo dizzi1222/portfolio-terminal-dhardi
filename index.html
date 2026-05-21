@@ -51,7 +51,10 @@
         <span class="header__path">@portfolio:~$</span>
       </div>
       <div class="header__right">
-        <span>󰻀 arch linux</span>
+        <span class="available-badge"><span class="available-dot"></span><span data-i18n="contact.available">Disponible</span></span>
+        <button id="lang-btn" class="header-btn" title="Toggle language">ES</button>
+        <button id="theme-btn" class="header-btn" title="Toggle theme">☾</button>
+        <span>󰻀 arch</span>
         <span>󰍛 8GB</span>
         <span id="current-time">00:00</span>
       </div>
@@ -88,13 +91,44 @@
                 />
                 <div class="hero__intro">
                   <h1 class="hero__name glow-text">Diego</h1>
-                  <p class="hero__tagline">
+                  <p class="hero__tagline" id="hero-tagline" data-i18n="hero.tagline">
                     Desarrollador
-                    <span style="color: var(--accent-tertiary)"
-                      >MERN Stack</span
-                    >
+                    <span style="color: var(--accent-tertiary)">MERN Stack</span>
                     | Arch Linux Enthusiast | Neovim + LazyVim
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+          <div class="window" style="max-width: 650px; margin: 0 auto">
+            <div class="window__titlebar">
+              <div class="window__titlebar-dots">
+                <span class="window__titlebar-dot window__titlebar-dot--close"></span>
+                <span class="window__titlebar-dot"></span>
+                <span class="window__titlebar-dot"></span>
+              </div>
+              <span>cat about.sh</span>
+            </div>
+            <div class="window__content">
+              <div style="display:flex;align-items:flex-start;gap:var(--gap-lg);flex-wrap:wrap">
+                <img src="assets/avatar/avatar-anom-tokyo-ken-touka-ghouls.jpg" alt="Avatar" class="avatar" style="width:100px;height:100px" />
+                <div style="flex:1;min-width:200px">
+                  <h2 style="color:var(--accent-tertiary);margin-bottom:var(--gap-sm)"><span data-i18n="sections.about">About</span> <span style="color:var(--text-dim);font-size:0.9rem">· v1.0.0</span></h2>
+                  <div class="about-grid">
+                    <span class="about-grid__label">Nombre</span><span class="about-grid__value" data-about="name">Diego Härdi</span>
+                    <span class="about-grid__label">Rol</span><span class="about-grid__value" data-about="role">DevOps &amp; Software Engineer</span>
+                    <span class="about-grid__label">Nacido</span><span class="about-grid__value" data-about="born">San Pedro de Macorís, RD</span>
+                    <span class="about-grid__label">Vive</span><span class="about-grid__value" data-about="lives">Jarabacoa, RD</span>
+                    <span class="about-grid__label">Pasaporte</span><span class="about-grid__value" data-about="passport">🇨🇭 Suizo</span>
+                    <span class="about-grid__label">OS</span><span class="about-grid__value" data-about="os">Arch Linux · Hyprland</span>
+                    <span class="about-grid__label">Editor</span><span class="about-grid__value" data-about="editor">Neovim · LazyVim</span>
+                    <span class="about-grid__label">Idiomas</span><span class="about-grid__value" data-about="langs">ES · EN · DE (A2)</span>
+              </div>
+              <p class="about-bio" data-about="bio">Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.</p>
                 </div>
               </div>
             </div>
@@ -115,7 +149,7 @@
               <span>tech_stack.json</span>
             </div>
             <div class="window__content">
-              <h2 class="section__title">// Tech Stack</h2>
+              <h2 class="section__title">// <span data-i18n="sections.tech">Tech Stack</span></h2>
               <div class="icon-grid">
                 <div class="icon-grid__item">
                   <svg
@@ -217,6 +251,7 @@
                   <span class="icon-grid__label">Docker</span>
                 </div>
               </div>
+              <p class="tech-hint" id="tech-desc" data-i18n="tech.hint">Haz clic en cualquier tecnología para saber más</p>
             </div>
           </div>
         </section>
@@ -235,7 +270,7 @@
               <span>design_portfolio.sh</span>
             </div>
             <div class="window__content">
-              <h2 class="section__title">// Design</h2>
+              <h2 class="section__title">// <span data-i18n="sections.design">Design</span></h2>
               <div class="icon-grid">
                 <div class="icon-grid__item">
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4 4 0 1 1 8 0 4 4 0 0 1-8 0zM4 20a4 4 0 0 1 4-4h4v4a4 4 0 0 1-8 0zM12 0v8h4a4 4 0 0 0 0-8h-4zM4 4a4 4 0 0 0 4 4h4V4a4 4 0 0 0-8 0zM4 12a4 4 0 0 0 4 4h4v-8H8a4 4 0 0 0-4 4z"/></svg>
@@ -263,7 +298,7 @@
 
         <!-- Projects Section -->
         <section class="section" id="projects">
-          <h2 class="section__title">// Projects</h2>
+          <h2 class="section__title">// <span data-i18n="sections.projects">Projects</span></h2>
           <div class="tiling-container" style="padding: 0">
             <div class="window" data-project="0">
               <div class="window__titlebar">
@@ -485,6 +520,14 @@
                   ><svg width="14" height="14" viewBox="0 0 24 24" fill="#888888" style="vertical-align: middle; margin-right: 4px"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> diegosamuel042@gmail.com</a
                 >
               </div>
+
+              <div class="terminal-line" style="margin-top: var(--gap-md)">
+                <span class="terminal-line__prompt">$</span>
+                <span class="terminal-line__cmd">wget cv.pdf</span>
+              </div>
+              <div class="terminal-line__output">
+                <a href="https://dizzi1222.github.io/dhardi.dev/assets/cv.pdf" target="_blank">⬇ Descargar CV (PDF)</a>
+              </div>
             </div>
           </div>
         </section>
@@ -525,7 +568,7 @@
         <span>html</span>
         <span>1,1</span>
         <span>All</span>
-        <span><a href="https://dizzi1222.github.io/dhardi.dev" target="_blank" style="color: var(--accent-tertiary); text-decoration: underline;">🌐 Versión Comercial</a></span>
+        <span><a href="https://dizzi1222.github.io/dhardi.dev" target="_blank" style="color: var(--accent-tertiary); text-decoration: underline;"><span data-i18n="footer.commercial">→ Versión Comercial</span></a></span>
       </div>
     </footer>
 
@@ -543,7 +586,7 @@
           <p><code>j/k</code> - Scroll up/down</p>
           <p><code>g</code> - Go to top</p>
           <p><code>G</code> - Go to bottom</p>
-          <p><code>1-5</code> - Jump to section</p>
+          <p><code>1-6</code> - Jump to section</p>
           <p><code>?</code> - Toggle this help</p>
         </div>
       </div>
