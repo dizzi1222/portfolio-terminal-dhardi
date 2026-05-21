@@ -14,7 +14,9 @@
 }
 
 .window:hover {
-  transform: scale(1.2) translateY(-5px) rotate(5deg);
+  animation: window-pop 0.3s ease forwards;
+  outline: 2px solid #00ff00;
+  outline-offset: 4px;
   box-shadow:
     0 0 50px rgba(233, 69, 96, 0.6),
     0 0 100px rgba(233, 69, 96, 0.25),
@@ -44,6 +46,12 @@
 
 .window:hover::before {
   left: 150%;
+}
+
+@keyframes window-pop {
+  0% { transform: scale(1) rotate(0deg); }
+  70% { transform: scale(1.25) rotate(6deg); }
+  100% { transform: scale(1.2) rotate(5deg); }
 }
 
 .window__titlebar {
