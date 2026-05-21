@@ -132,7 +132,9 @@ function updateProjectCards() {
     if (!p) return;
     const titleEl = win.querySelector('h3');
     const descEl = win.querySelector('p');
-    if (titleEl) titleEl.textContent = p.title;
+    if (titleEl) titleEl.innerHTML = p.isPrivate
+      ? `${p.title} <span class="tag">${t('projects.private')}</span>`
+      : p.title;
     if (descEl) descEl.textContent = p.descEn && lang === 'en' ? p.descEn : p.desc;
     const btn = win.querySelector('button');
     if (btn) btn.innerHTML = `${ghIcon} ${t('projects.open')}`;
