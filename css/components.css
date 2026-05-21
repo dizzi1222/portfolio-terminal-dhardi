@@ -21,8 +21,12 @@
   border-color: var(--accent-tertiary);
 }
 
+#projects {
+  background: #000;
+}
+
 #projects .window {
-  background: var(--bg-primary);
+  background: #000;
 }
 
 /* Shine effect on hover */
