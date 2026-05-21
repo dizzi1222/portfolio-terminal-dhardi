@@ -155,42 +155,59 @@ const projectData = [
     id: 0, title: 'Dashboard React',
     desc: 'Panel de administración con gráficos, calculadora, contador y TO-DO list. Todo construido con React y react-router-dom.',
     descEn: 'Admin panel with charts, calculator, counter and TO-DO list. Built with React and react-router-dom.',
-    tags: ['React', 'Node.js', 'MongoDB'], code: 'https://github.com/dizzi1222', live: '#', screenshot: '📊'
+    tags: ['React', 'Node.js', 'MongoDB'],
+    code: 'https://github.com/dizzi1222/REACT-Diego-Dizzi-Dashboard',
+    live: 'https://dhardi007.github.io/REACT-Diego-Dizzi-Dashboard/',
+    image: 'assets/modal-tech-Dashboard-REACT.png'
   },
   {
     id: 1, title: 'Portfolio Terminal',
     desc: 'Portfolio interactivo con estética de terminal Linux. Comandos CLI, efectos CRT, navegación estilo Vim. Optimizado para devs que viven entre zsh, kitty y Hyprland.',
     descEn: 'Interactive portfolio with Linux terminal aesthetics. CLI commands, CRT effects, Vim-style navigation. Optimized for devs living between zsh, kitty and Hyprland.',
-    tags: ['HTML', 'CSS', 'JavaScript'], code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi', live: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/', screenshot: '🖥️'
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi',
+    live: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/',
+    image: 'assets/modal-tech-portfolio-terminal.png'
   },
   {
     id: 2, title: 'Dotfiles Config',
     desc: 'Configuración completa de Arch Linux con Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets y Rofi. Todo gestionado con GNU Stow y dotfiles propios.',
     descEn: 'Complete Arch Linux configuration with Hyprland, Neovim (LazyVim), Kitty, Zsh, Waybar, EWW widgets and Rofi. All managed with GNU Stow and custom dotfiles.',
-    tags: ['Lua', 'Shell', 'YAML'], code: 'https://github.com/dizzi1222', live: '#', screenshot: '⚙️'
+    tags: ['Lua', 'Shell', 'YAML'],
+    code: 'https://github.com/dizzi1222/dotfiles-dizzi',
+    live: 'https://github.com/dizzi1222/dotfiles-dizzi',
+    image: 'assets/modal-tech-dotfiles.png'
   },
   {
     id: 3, title: 'PTD-Talento',
     desc: 'Marketplace de talento para Cincinnatus Institute. MVP completo con autenticación, catálogo de estudiantes, watch list de reclutadores, panel admin y notificaciones. Arquitectura MERN con Docker.',
     descEn: 'Talent marketplace for Cincinnatus Institute. Full MVP with auth, student catalog, recruiter watch list, admin panel and notifications. MERN architecture with Docker.',
     tags: ['React', 'Node.js', 'MongoDB', 'Docker', 'Figma'],
-    code: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back', live: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front',
-    screenshot: '🏗️', isPrivate: true,
-    backUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back', frontUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front'
+    code: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
+    live: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front',
+    image: 'assets/modal-tech-ptd-talento.png',
+    isPrivate: true,
+    backUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
+    frontUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front'
   },
   {
     id: 4, title: 'Nvim Config',
     desc: 'Configuración universal de Neovim con LazyVim. Sincronización multiplataforma (Linux Hyprland, Windows, WSL). Plugins personalizados, LSP para TS/JS/Lua, snippets, y atajos tipo IDE.',
     descEn: 'Universal Neovim configuration with LazyVim. Cross-platform sync (Linux Hyprland, Windows, WSL). Custom plugins, LSP for TS/JS/Lua, snippets, and IDE-like shortcuts.',
-    tags: ['Lua', 'LazyVim', 'Neovim'], code: 'https://github.com/dizzi1222/nvim', live: 'https://github.com/dizzi1222/nvim-wsl',
-    screenshot: '💤',
+    tags: ['Lua', 'LazyVim', 'Neovim'],
+    code: 'https://github.com/dizzi1222/nvim',
+    live: 'https://github.com/dizzi1222/nvim-wsl',
+    image: 'assets/modal-tech-nvim.png',
     nvimScreenshots: ['https://github.com/user-attachments/assets/9144215e-6156-43c3-beba-4cca7f431337', 'https://github.com/user-attachments/assets/8adb6f60-bb35-4704-b4ab-12bd587f3992']
   },
   {
     id: 5, title: 'PCE-Agencia',
     desc: 'App de finanzas y viajes — gestión de presupuestos, planificación de itinerarios y seguimiento de gastos. Construida con JavaScript moderno, diseño responsive y flujo de datos limpio.',
     descEn: 'Finance and travel app — budget management, itinerary planning and expense tracking. Built with modern JavaScript, responsive design and clean data flow.',
-    tags: ['JavaScript', 'HTML', 'CSS'], code: 'https://github.com/dhardi007/PCE-Agencia', live: 'https://github.com/dhardi007/PCE-Agencia', screenshot: '💼'
+    tags: ['JavaScript', 'HTML', 'CSS'],
+    code: 'https://github.com/dhardi007/PCE-Agencia',
+    live: 'https://github.com/dhardi007/PCE-Agencia',
+    image: 'assets/modal-tech-pce-agencia-reskyt.png'
   }
 ];
 
@@ -295,8 +312,13 @@ function openProjectModal(id) {
     screenshotEl.innerHTML = p.nvimScreenshots.map(url =>
       `<img src="${url}" alt="Nvim screenshot" style="width:100%;display:block;border-bottom:2px solid var(--text-dim)" />`
     ).join('');
+  } else if (p.image) {
+    screenshotEl.textContent = '';
+    screenshotEl.style.padding = '0';
+    screenshotEl.style.minHeight = 'auto';
+    screenshotEl.innerHTML = `<img src="${p.image}" alt="${p.title}" style="width:100%;display:block" />`;
   } else {
-    screenshotEl.textContent = p.screenshot;
+    screenshotEl.textContent = '📁';
     screenshotEl.style.padding = '';
     screenshotEl.style.minHeight = '';
   }
