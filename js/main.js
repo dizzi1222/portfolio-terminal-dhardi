@@ -250,6 +250,7 @@ document.addEventListener('click', (e) => {
 function openProjectModal(id) {
   const p = projectData[id];
   if (!p) return;
+  console.log('Modal opened:', id, p.title);
   const prj = i18n[lang].projects;
   document.getElementById('modal-filename').textContent = `project_${String(id + 1).padStart(2, '0')}_preview.sh`;
   const screenshotEl = document.getElementById('modal-screenshot');
@@ -264,7 +265,6 @@ function openProjectModal(id) {
     screenshotEl.textContent = p.screenshot;
     screenshotEl.style.padding = '';
     screenshotEl.style.minHeight = '';
-    screenshotEl.innerHTML = '';
   }
   document.getElementById('modal-title').textContent = p.title;
   document.getElementById('modal-desc').textContent = lang === 'en' && p.descEn ? p.descEn : p.desc;
@@ -410,6 +410,7 @@ const bgGifs = [
 ];
 
 const animatedBg = document.querySelector('.animated-bg');
+const heroBg = document.querySelector('.hero-bg');
 let isFirstLoad = true;
 
 function setRandomGif() {
@@ -421,6 +422,7 @@ function setRandomGif() {
     randomGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
   }
   if (animatedBg) animatedBg.style.backgroundImage = `url('${randomGif}')`;
+  if (heroBg) heroBg.style.backgroundImage = `url('${randomGif}')`;
 }
 setRandomGif();
 setInterval(setRandomGif, 30000);

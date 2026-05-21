@@ -152,6 +152,15 @@
   object-fit: cover;
 }
 
+.avatar--rounded {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-primary);
+  box-shadow: 3px 3px 0 var(--accent-secondary);
+  object-fit: cover;
+}
+
 /* ===== TERMINAL OUTPUT ===== */
 .terminal-line {
   display: flex;
