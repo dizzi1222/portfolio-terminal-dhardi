@@ -475,7 +475,6 @@ const bgGifs = [
 ];
 
 const animatedBg = document.querySelector('.animated-bg');
-const animatedBg = document.querySelector('.animated-bg');
 let isFirstLoad = true;
 
 function setRandomGif() {
