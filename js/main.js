@@ -164,13 +164,13 @@ const projectData = [
     image: 'assets/modal-tech-Dashboard-REACT.png'
   },
   {
-    id: 1, title: 'Portfolio Terminal',
-    desc: 'Portfolio interactivo con estética de terminal Linux. Comandos CLI, efectos CRT, navegación estilo Vim. Optimizado para devs que viven entre zsh, kitty y Hyprland.',
-    descEn: 'Interactive portfolio with Linux terminal aesthetics. CLI commands, CRT effects, Vim-style navigation. Optimized for devs living between zsh, kitty and Hyprland.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    code: 'https://github.com/dizzi1222/portfolio-terminal-dhardi',
-    live: 'https://dizzi1222.github.io/portfolio-terminal-dhardi/',
-    image: 'assets/modal-tech-portfolio-terminal.png'
+    id: 1, title: 'Portfolio Comercial (dev.to)',
+    desc: 'Portfolio profesional con Tailwind CSS, i18n en ES/EN/DE, modales interactivos, scroll-spy y temas claro/oscuro. Diseñado para clients y reclutadores.',
+    descEn: 'Professional portfolio with Tailwind CSS, i18n in ES/EN/DE, interactive modals, scroll-spy and light/dark themes. Designed for clients and recruiters.',
+    tags: ['HTML', 'Tailwind', 'JavaScript'],
+    code: 'https://github.com/dizzi1222/dhardi.dev',
+    live: 'https://dizzi1222.github.io/dhardi.dev/',
+    image: 'assets/modal-tech-devto.png'
   },
   {
     id: 2, title: 'Dotfiles Config',
