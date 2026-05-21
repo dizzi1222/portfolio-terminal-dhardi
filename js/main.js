@@ -30,7 +30,7 @@ const i18n = {
       langs: 'ES · EN · DE (A2)',
       bio: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.'
     },
-    projects: { code: 'View Code', live: 'Live Preview', private: 'Privado' },
+    projects: { code: 'View Code', live: 'Live Preview', private: 'Privado', open: '▶ Abrir proyecto' },
     contact: { available: 'Disponible' },
     footer: { commercial: '→ Versión Comercial' }
   },
@@ -60,7 +60,7 @@ const i18n = {
       langs: 'ES · EN · DE (A2)',
       bio: "By day I build full-stack apps with the MERN stack. By night I'm immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn't exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems."
     },
-    projects: { code: 'View Code', live: 'Live Preview', private: 'Private' },
+    projects: { code: 'View Code', live: 'Live Preview', private: 'Private', open: '▶ Open project' },
     contact: { available: 'Available' },
     footer: { commercial: '→ Commercial Version' }
   }
@@ -423,6 +423,51 @@ function setRandomGif() {
   }
   if (animatedBg) animatedBg.style.backgroundImage = `url('${randomGif}')`;
   if (heroBg) heroBg.style.backgroundImage = `url('${randomGif}')`;
+  glitchBurst();
 }
 setRandomGif();
 setInterval(setRandomGif, 30000);
+
+// ---- Hero code overlay ----
+const heroCommands = [
+  '$ npm run dev -- --port 5173', '$ nvim src/App.tsx', '$ git push origin main',
+  '$ systemctl --user start hyprland', '$ sudo pacman -Syu', '$ yarn build',
+  '$ docker compose up -d', '$ cargo run', '$ python3 server.py',
+  '$ ls -la ~/dotfiles', '$ cat ~/.config/hypr/hyprland.conf',
+  '$ ssh deploy@prod-server', '$ npx create-react-app', '$ brew update && brew upgrade',
+  '$ git stash pop', '$ tmux new -s dev', '$ kill -9 $(lsof -t :3000)',
+  '$ curl -X POST https://api.example.com', '$ pnpm audit --fix',
+  '$ nvim +Lazy update', '$ zellij attach session', '$ rm -rf node_modules && npm i',
+  '$ chmod +x deploy.sh', '$ ./gradlew build', '$ pip install -r requirements.txt'
+];
+
+const codeOverlay = document.querySelector('.hero-code-overlay');
+let codeLines = [];
+let cmdIndex = 0;
+
+function spawnCodeLine() {
+  if (!codeOverlay) return;
+  const line = document.createElement('div');
+  line.className = 'hero-code-line';
+  line.textContent = heroCommands[cmdIndex % heroCommands.length];
+  cmdIndex++;
+  const w = codeOverlay.offsetWidth || 800;
+  const h = codeOverlay.offsetHeight || 400;
+  line.style.left = (10 + Math.random() * (w * 0.6)) + 'px';
+  line.style.top = (10 + Math.random() * (h * 0.8)) + 'px';
+  line.style.animationDelay = '0s';
+  if (Math.random() < 0.15) line.classList.add('glitch');
+  line.style.opacity = '0.25';
+  codeOverlay.appendChild(line);
+  setTimeout(() => { if (line.parentNode) line.remove(); }, 4500);
+}
+
+// spawn a few lines initially, then keep adding
+for (let i = 0; i < 7; i++) setTimeout(spawnCodeLine, i * 600);
+setInterval(spawnCodeLine, 5000);
+
+function glitchBurst() {
+  if (codeOverlay) {
+    codeOverlay.querySelectorAll('.hero-code-line').forEach(el => el.classList.add('glitch'));
+  }
+}
