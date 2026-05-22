@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="css/variables.css?v=13" />
     <link rel="stylesheet" href="css/base.css?v=13" />
     <link rel="stylesheet" href="css/components.css?v=13" />
-    <link rel="stylesheet" href="css/layout.css?v=13" />
+    <link rel="stylesheet" href="css/layout.css?v=14" />
   </head>
   <body>
     <!-- Animated Background -->
@@ -58,7 +58,21 @@
         <span>󰍛 8GB</span>
         <span id="current-time">00:00</span>
       </div>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu">󰅬</button>
     </header>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu">
+      <span class="available-badge"><span class="available-dot"></span><span data-i18n="contact.available">Disponible</span></span>
+      <div class="mobile-menu__row">
+        <button id="mobile-lang-btn" class="header-btn">ES</button>
+        <button id="mobile-theme-btn" class="header-btn">☾</button>
+      </div>
+      <div class="mobile-menu__row">
+        <span class="mobile-menu__info">󰻀 arch</span>
+        <span class="mobile-menu__info">󰍛 8GB</span>
+        <span class="mobile-menu__info" id="mobile-current-time">00:00</span>
+      </div>
+    </div>
 
     <!-- Main Content -->
     <main class="main">
@@ -620,6 +634,6 @@
       </div>
     </div>
 
-    <script src="js/main.js?v=12"></script>
+    <script src="js/main.js?v=13"></script>
   </body>
 </html>
