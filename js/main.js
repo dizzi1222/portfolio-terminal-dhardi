@@ -194,9 +194,9 @@ const projectData = [
     frontUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-front'
   },
   {
-    id: 4, title: 'Nvim Config',
-    desc: 'Configuración universal de Neovim con LazyVim. Sincronización multiplataforma (Linux Hyprland, Windows, WSL). Plugins personalizados, LSP para TS/JS/Lua, snippets, y atajos tipo IDE.',
-    descEn: 'Universal Neovim configuration with LazyVim. Cross-platform sync (Linux Hyprland, Windows, WSL). Custom plugins, LSP for TS/JS/Lua, snippets, and IDE-like shortcuts.',
+    id: 4, title: 'Nvim · WSL + Linux',
+    desc: 'Configuración universal de Neovim con LazyVim para Windows (WSL) y Linux (Hyprland). Sincronización multiplataforma, LSP completo, snippets personalizados, y atajos tipo IDE en ambos entornos.',
+    descEn: 'Universal Neovim config with LazyVim for Windows (WSL) and Linux (Hyprland). Cross-platform sync, full LSP, custom snippets, and IDE-like shortcuts in both environments.',
     tags: ['Lua', 'LazyVim', 'Neovim'],
     code: 'https://github.com/dizzi1222/nvim',
     live: 'https://github.com/dizzi1222/nvim-wsl',
