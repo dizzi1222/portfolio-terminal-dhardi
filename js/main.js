@@ -348,25 +348,88 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// ---- Mobile menu toggle ----
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const btn = document.getElementById('mobile-menu-btn');
-  menu.classList.toggle('open');
-  btn.classList.toggle('open');
-  btn.textContent = menu.classList.contains('open') ? '󰅮' : '󰅬';
+// ---- Mobile menu: swipe-to-reveal + click toggle ----
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileBtn = document.getElementById('mobile-menu-btn');
+let dragStartY = 0, dragLastY = 0, isDragging = false, dragInitialized = false;
+const DRAG_THRESHOLD = 0.4;
+
+function openMobileMenu() {
+  mobileMenu.classList.add('open');
+  mobileBtn.classList.add('open');
+  mobileBtn.textContent = '󰅮';
+  mobileMenu.style.transform = '';
+  mobileMenu.style.opacity = '';
 }
 function closeMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const btn = document.getElementById('mobile-menu-btn');
-  menu.classList.remove('open');
-  btn.classList.remove('open');
-  btn.textContent = '󰅬';
+  mobileMenu.classList.remove('open');
+  mobileBtn.classList.remove('open');
+  mobileBtn.textContent = '󰅬';
+  mobileMenu.style.transform = '';
+  mobileMenu.style.opacity = '';
 }
-document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
-document.addEventListener('scroll', closeMobileMenu, { passive: true });
+
+mobileBtn.addEventListener('click', () => {
+  if (isDragging) return;
+  mobileMenu.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+});
+
+document.addEventListener('touchstart', (e) => {
+  const t = e.target;
+  if (!mobileBtn.contains(t) && !(mobileMenu.classList.contains('open') && mobileMenu.contains(t))) {
+    dragInitialized = false;
+    return;
+  }
+  dragStartY = e.touches[0].clientY;
+  dragLastY = dragStartY;
+  isDragging = false;
+  dragInitialized = true;
+  mobileMenu.classList.add('dragging');
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+  if (!dragInitialized) return;
+  if (!isDragging) {
+    const delta = e.touches[0].clientY - dragStartY;
+    const isOpen = mobileBtn.classList.contains('open');
+    if ((isOpen && delta < -5) || (!isOpen && delta > 5)) isDragging = true;
+    else return;
+  }
+  e.preventDefault();
+  dragLastY = e.touches[0].clientY;
+  const delta = dragLastY - dragStartY;
+  const menuH = mobileMenu.scrollHeight || 200;
+  const absDelta = Math.abs(delta);
+  const progress = Math.min(absDelta / menuH, 1);
+  const isOpening = delta > 0;
+  if (isOpening) {
+    mobileMenu.style.transform = `translateY(${-100 + progress * 100}%)`;
+  } else {
+    mobileMenu.style.transform = `translateY(${-progress * 100}%)`;
+  }
+  mobileMenu.style.opacity = progress;
+}, { passive: false });
+
+document.addEventListener('touchend', () => {
+  if (!isDragging) { dragInitialized = false; return; }
+  isDragging = false;
+  dragInitialized = false;
+  mobileMenu.classList.remove('dragging');
+  const delta = dragLastY - dragStartY;
+  const menuH = mobileMenu.scrollHeight || 200;
+  const progress = Math.min(Math.abs(delta) / menuH, 1);
+  const isOpening = delta > 0;
+  if (progress > DRAG_THRESHOLD && isOpening) {
+    openMobileMenu();
+  } else if (progress > DRAG_THRESHOLD && !isOpening && mobileBtn.classList.contains('open')) {
+    closeMobileMenu();
+  } else {
+    mobileBtn.classList.contains('open') ? openMobileMenu() : closeMobileMenu();
+  }
+});
+
+document.addEventListener('scroll', () => { if (!isDragging) closeMobileMenu(); }, { passive: true });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
-// Sync mobile lang/theme buttons with desktop
 document.getElementById('mobile-lang-btn').addEventListener('click', () => { document.getElementById('lang-btn').click(); closeMobileMenu(); });
 document.getElementById('mobile-theme-btn').addEventListener('click', () => { document.getElementById('theme-btn').click(); });
 
