@@ -112,6 +112,8 @@ function switchLanguage(l) {
   lang = l;
   localStorage.setItem('terminal-lang', l);
   document.getElementById('lang-btn').textContent = l.toUpperCase();
+  const ml = document.getElementById('mobile-lang-btn');
+  if (ml) ml.textContent = l.toUpperCase();
   updateI18n();
 }
 
@@ -217,8 +219,10 @@ const projectData = [
 // ---- Clock ----
 function updateClock() {
   const now = new Date();
-  document.getElementById('current-time').textContent =
-    `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  const t = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  document.getElementById('current-time').textContent = t;
+  const mt = document.getElementById('mobile-current-time');
+  if (mt) mt.textContent = t;
 }
 setInterval(updateClock, 1000);
 updateClock();
@@ -326,12 +330,14 @@ sections.forEach(s => {
 // ---- Theme toggle ----
 function switchTheme(theme) {
   localStorage.setItem('terminal-theme', theme);
+  const icon = theme === 'light' ? '☀' : '☾';
+  document.getElementById('theme-btn').textContent = icon;
+  const mt = document.getElementById('mobile-theme-btn');
+  if (mt) mt.textContent = icon;
   if (theme === 'light') {
     document.documentElement.classList.add('light-mode');
-    document.getElementById('theme-btn').textContent = '☀';
   } else {
     document.documentElement.classList.remove('light-mode');
-    document.getElementById('theme-btn').textContent = '☾';
   }
 }
 document.addEventListener('click', (e) => {
@@ -341,6 +347,28 @@ document.addEventListener('click', (e) => {
     switchTheme(current === 'dark' ? 'light' : 'dark');
   }
 });
+
+// ---- Mobile menu toggle ----
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('mobile-menu-btn');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.textContent = menu.classList.contains('open') ? '󰅮' : '󰅬';
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('mobile-menu-btn');
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  btn.textContent = '󰅬';
+}
+document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+document.addEventListener('scroll', closeMobileMenu, { passive: true });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileMenu(); });
+// Sync mobile lang/theme buttons with desktop
+document.getElementById('mobile-lang-btn').addEventListener('click', () => { document.getElementById('lang-btn').click(); closeMobileMenu(); });
+document.getElementById('mobile-theme-btn').addEventListener('click', () => { document.getElementById('theme-btn').click(); });
 
 // ---- Hero filename click → scroll to about ----
 document.querySelector('.hero-filename')?.addEventListener('click', () => {
@@ -462,6 +490,8 @@ document.addEventListener('click', (e) => {
   const savedLang = localStorage.getItem('terminal-lang') || 'es';
   const savedTheme = localStorage.getItem('terminal-theme') || 'dark';
   document.getElementById('lang-btn').textContent = savedLang.toUpperCase();
+  const ml = document.getElementById('mobile-lang-btn');
+  if (ml) ml.textContent = savedLang.toUpperCase();
   switchTheme(savedTheme);
   lang = savedLang;
   updateI18n();
