@@ -213,6 +213,15 @@ const projectData = [
     code: 'https://github.com/dhardi007/PCE-Agencia',
     live: 'https://github.com/dhardi007/PCE-Agencia',
     image: 'assets/modal-tech-pce-agencia-reskyt.png'
+  },
+  {
+    id: 6, title: 'Proyección Astral',
+    desc: 'Página melancólica y romántica dedicada a una persona especial. Tipografía cuidada, atmósfera onírica, estética lunar.',
+    descEn: 'Melancholic and romantic page dedicated to a special person. Careful typography, dreamlike atmosphere, lunar aesthetic.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    code: 'https://github.com/dizzi1222/proyeccion-astral-disculpa',
+    live: 'https://dizzi1222.github.io/proyeccion-astral-disculpa/',
+    image: 'assets/modal-proyeccion-astral.png'
   }
 ];
 
