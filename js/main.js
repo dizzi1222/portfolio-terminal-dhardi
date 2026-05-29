@@ -14,6 +14,7 @@ const i18n = {
       'React': 'Biblioteca de UI declarativa. Construyo interfaces interactivas con componentes y hooks reutilizables.',
       'MongoDB': 'Base de datos NoSQL. La uso como principal almacenamiento en mis proyectos MERN con Mongoose.',
       'PostgreSQL': 'Base de datos relacional open-source. La uso para proyectos que requieren esquemas estructurados, integridad referencial y consultas SQL avanzadas.',
+      'Python': 'Lenguaje multipropósito. Automatización, scripting rápido y prototipado de herramientas internas.',
       'Git': 'Control de versiones esencial. Flujo con feature branches, rebase interactivo y commits semánticos.',
       'Arch': 'Mi daily driver. Arch Linux + Hyprland, todo configurado desde cero con dotfiles propios.',
       'Neovim': 'Editor principal con LazyVim. Plugins personalizados, LSP para TS/JS, y flujo 100% teclado.',
