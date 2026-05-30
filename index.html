@@ -549,32 +549,33 @@
               </div>
               <span>cic_cert_download.sh — <span id="cert-status">loading...</span></span>
             </div>
-            <div class="window__content" style="text-align: center; padding: var(--gap-lg)">
-              <div style="font-size: 2.5rem; margin-bottom: var(--gap-sm); line-height: 1" id="cert-spinner">◴</div>
-              <p style="color: var(--accent-tertiary); font-family: var(--font-mono); font-size: 0.85rem; margin: var(--gap-sm) 0">
-                $ wget cic-associate-certificate.pdf
-              </p>
-              <p style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.75rem; margin-top: var(--gap-sm)">
-                ⏳ Esperando programa oficial de certificación CIC...
-              </p>
-              <div style="background: var(--bg-secondary); height: 4px; border-radius: 2px; margin: var(--gap-md) auto; max-width: 250px; overflow: hidden">
-                <div id="cert-bar" style="background: var(--accent-tertiary); height: 100%; width: 42%; transition: width 0.5s ease"></div>
+            <div class="window__content" style="padding: var(--gap-lg)">
+              <div style="text-align: center">
+                <div style="font-size: 2.5rem; margin-bottom: var(--gap-sm); line-height: 1" id="cert-spinner">◴</div>
+                <p style="color: var(--accent-tertiary); font-family: var(--font-mono); font-size: 0.85rem; margin: var(--gap-sm) 0">
+                  $ wget cic-associate-certificate.pdf
+                </p>
+                <p style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.75rem; margin-top: var(--gap-sm)">
+                  ⏳ Esperando programa oficial de certificación CIC...
+                </p>
+                <div style="background: var(--bg-secondary); height: 4px; border-radius: 2px; margin: var(--gap-md) auto; max-width: 250px; overflow: hidden">
+                  <div id="cert-bar" style="background: var(--accent-tertiary); height: 100%; width: 42%; transition: width 0.5s ease"></div>
+                </div>
+                <div style="margin-top: var(--gap-sm)">
+                  <span id="cert-text" style="color: var(--text-dim); font-size: 0.7rem; font-family: var(--font-mono)">
+                    Cap. Interna ✓ — Esperando fecha de examen oficial
+                  </span>
+                  <span style="animation: blink 1s step-end infinite">_</span>
+                </div>
               </div>
-              <div style="margin-top: var(--gap-sm)">
-                <span id="cert-text" style="color: var(--text-dim); font-size: 0.7rem; font-family: var(--font-mono)">
-                  Cap. Interna ✓ — Esperando fecha de examen oficial
-                </span>
-                <span style="animation: blink 1s step-end infinite">_</span>
+              <div style="margin-top: var(--gap-md); padding-top: var(--gap-md); border-top: 1px solid var(--text-dim)">
+                <div class="terminal-line" style="cursor: pointer" onclick="openCertModal()">
+                  <span class="terminal-line__prompt">$</span>
+                  <span class="terminal-line__cmd" style="color: var(--accent-tertiary)">cat certificaciones.json</span>
+                  <span style="color:var(--text-dim);font-size:0.75rem;margin-left:var(--gap-md)">▶ ver detalles</span>
+                </div>
               </div>
-              <p style="color: var(--text-muted); font-size: 0.65rem; margin-top: var(--gap-lg); opacity: 0.6">
-                ※ placeholder hasta recibir certificación oficial
-              </p>
             </div>
-          </div>
-          <div class="terminal-line" style="margin-top: var(--gap-md); cursor: pointer" onclick="openCertModal()">
-            <span class="terminal-line__prompt">$</span>
-            <span class="terminal-line__cmd" style="color: var(--accent-tertiary)">cat certificaciones.json</span>
-            <span style="color:var(--text-dim);font-size:0.75rem;margin-left:var(--gap-md)">▶ ver detalles</span>
           </div>
         </section>
 
@@ -714,7 +715,7 @@
     <!-- Cert Modal -->
     <div id="cert-modal" class="modal-overlay">
       <div class="modal-backdrop" onclick="closeCertModal()"></div>
-      <div class="window modal-window" style="max-width: 520px">
+      <div class="window modal-window" style="max-width: 560px">
         <div class="window__titlebar">
           <div class="window__titlebar-dots">
             <span class="window__titlebar-dot window__titlebar-dot--close"></span>
@@ -724,53 +725,36 @@
           <span style="color:var(--accent-tertiary)">certificaciones.json</span>
           <button class="modal-close-btn" onclick="closeCertModal()">✕</button>
         </div>
-        <div class="window__content" style="padding:var(--gap-lg)">
-          <div class="terminal-line" style="margin-bottom:var(--gap-md)">
+        <div class="window__content" style="padding:0">
+          <div class="terminal-line" style="padding:var(--gap-md) var(--gap-lg) 0">
             <span class="terminal-line__prompt">$</span>
-            <span class="terminal-line__cmd" id="cert-modal-filename">cat cic-associate.json</span>
+            <span class="terminal-line__cmd" id="cert-modal-filename">cat certificaciones.json</span>
           </div>
-          <div class="terminal-line__output">
-            <div class="cert-modal-card">
-              <div class="flex items-center gap-3" style="display:flex;align-items:center;gap:var(--gap-sm);margin-bottom:var(--gap-sm)">
-                <span class="text-3xl" id="cert-modal-spinner" style="font-size:2rem">◴</span>
-                <div>
-                  <p class="text-accent" style="color:var(--accent-tertiary);font-weight:700">CIC Associate Developer</p>
-                  <p class="text-dim" style="color:var(--text-dim);font-size:0.75rem;font-family:var(--font-mono)">Certificación oficial · Bootcamp Cincinnatus</p>
-                </div>
-              </div>
-              <div style="background:var(--bg-secondary);height:4px;border-radius:2px;overflow:hidden">
-                <div id="cert-modal-bar" style="background:linear-gradient(90deg,var(--accent-tertiary),var(--accent-secondary));height:100%;width:42%;transition:width 0.5s ease"></div>
-              </div>
-              <div class="flex justify-between" style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-dim);font-family:var(--font-mono);margin-top:2px">
-                <span>progress</span>
-                <span id="cert-modal-text">Cap. Interna ✓ — Waiting for exam date</span>
-              </div>
-            </div>
-
-            <div class="cert-modal-card" style="opacity:0.7;margin-top:var(--gap-sm)">
-              <div style="display:flex;align-items:center;gap:var(--gap-sm)">
-                <span style="font-size:1.5rem">🔜</span>
-                <div>
-                  <p style="font-weight:700">AWS Cloud Practitioner</p>
-                  <p style="color:var(--text-dim);font-size:0.75rem;font-family:var(--font-mono)">In planning</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="cert-modal-card" style="opacity:0.5;margin-top:var(--gap-sm)">
-              <div style="display:flex;align-items:center;gap:var(--gap-sm)">
-                <span style="font-size:1.5rem">🔜</span>
-                <div>
-                  <p style="font-weight:700">Google Cloud Associate</p>
-                  <p style="color:var(--text-dim);font-size:0.75rem;font-family:var(--font-mono)">In planning</p>
-                </div>
-              </div>
-            </div>
-
-            <div style="margin-top:var(--gap-lg);text-align:center">
-              <p style="color:var(--text-dim);font-size:0.65rem;font-family:var(--font-mono)">※ placeholder — update on official certification receipt <span style="animation:blink 1s step-end infinite">_</span></p>
-            </div>
-          </div>
+          <pre class="cert-json" style="margin:0;padding:var(--gap-md) var(--gap-lg);font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);line-height:1.8;overflow-x:auto">{
+  "certifications": [
+    {
+      "title": "CIC Associate Developer",
+      "status": "<span id="cert-modal-status" style="color:var(--accent-tertiary)">in_progress</span>",
+      "progress": "<span id="cert-modal-text">42%</span>",
+      "issuer": "Cincinnatus Bootcamp",
+      "<span id="cert-modal-spinner" style="display:inline-block;width:1em">◴</span>": "loading..."
+    },
+    {
+      "title": "AWS Cloud Practitioner",
+      "status": "planned",
+      "progress": "0%",
+      "issuer": "Amazon Web Services"
+    },
+    {
+      "title": "Google Cloud Associate",
+      "status": "planned",
+      "progress": "0%",
+      "issuer": "Google Cloud"
+    }
+  ],
+  "updated_at": "<span id="cert-modal-date">2026-05-30T12:00:00Z</span>",
+  "note": "※ placeholder — update on official certification receipt<span style=\"animation:blink 1s step-end infinite\">_</span>"
+}</pre>
         </div>
       </div>
     </div>
