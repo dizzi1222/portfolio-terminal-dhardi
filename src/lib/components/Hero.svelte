@@ -122,5 +122,14 @@
     <span class="hud-key">G</span> <span class="hud-meta">bottom</span>
     <span class="hud-sep">│</span>
     <span class="hud-key">/</span> <span class="hud-meta">search</span>
+    <span class="hud-sep">│</span>
+    <span class="hud-key">m</span> <span class="hud-meta">player
+      <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-left:2px">
+        <rect x="2" y="2" width="20" height="20" rx="2"/>
+        <path d="M9 18V9l8-2v9"/>
+        <circle cx="7" cy="18" r="2.5"/>
+        <circle cx="17" cy="16" r="2.5"/>
+      </svg>
+    </span>
   </div>
 </section>
