@@ -614,9 +614,6 @@ code, pre {
 
 /* Footer */
 
-
-.footer__right { display: flex; align-items: center; gap: var(--gap-md); }
-
 /* Hero code overlay */
 .hero-code-overlay {
   position: absolute;
@@ -714,7 +711,9 @@ code, pre {
   gap: var(--gap-md);
 }
 .footer__mode {
-  color: var(--accent-primary);
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  padding: 0.1rem 0.5rem;
   font-weight: 700;
 }
 .footer__right {

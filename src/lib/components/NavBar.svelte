@@ -12,9 +12,9 @@
   onMount(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-      if (currentY > lastScrollY && currentY > 80) {
+      if (currentY > lastScrollY) {
         visible = false;
-      } else if (currentY < lastScrollY) {
+      } else if (currentY < lastScrollY && currentY < 500) {
         visible = true;
       }
       lastScrollY = currentY;
