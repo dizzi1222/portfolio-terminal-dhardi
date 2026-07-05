@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { sections, type Section } from '$lib/stores/scroll.svelte';
+  import { sections, scroll, type Section } from '$lib/stores/scroll.svelte';
   import { onMount } from 'svelte';
 
   let visible = $state(true);
@@ -45,7 +45,7 @@
   </div>
   <div class="navbar__content">
     {#each sections as s}
-      <button class="navbar__link" onclick={() => scrollTo(s)}>
+      <button class="navbar__link" class:active={scroll.value === s} onclick={() => scrollTo(s)}>
         {sectionLabels[s]}
       </button>
     {/each}
@@ -125,5 +125,11 @@
     color: var(--accent-tertiary);
     background: rgba(0,217,255,0.08);
     text-shadow: 0 0 6px var(--accent-tertiary);
+  }
+
+  .navbar__link.active {
+    color: var(--accent-primary);
+    background: rgba(233,69,96,0.1);
+    font-weight: 700;
   }
 </style>
