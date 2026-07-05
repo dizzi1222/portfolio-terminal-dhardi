@@ -9,7 +9,9 @@
   import SectionNav from '$lib/components/SectionNav.svelte';
   import { initTheme, bgGifActive, toggleBgGif } from '$lib/stores/theme.svelte';
   import { initLang } from '$lib/stores/lang.svelte';
-  import { sections, scroll } from '$lib/stores/scroll.svelte';
+  import { sections, scroll, type Section } from '$lib/stores/scroll.svelte';
+  import { player } from '$lib/stores/player.svelte';
+  import MusicPlayer from '$lib/components/MusicPlayer.svelte';
 
   let { children } = $props();
 
@@ -39,25 +41,33 @@
       bgGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
     }, 30000);
 
-    const observer = new IntersectionObserver((entries) => {
-      let best: typeof sections[number] | null = null;
-      let bestRatio = 0;
-      for (const entry of entries) {
-        if (entry.intersectionRatio > bestRatio) {
-          bestRatio = entry.intersectionRatio;
-          best = entry.target.id as typeof sections[number];
+    function updateSection() {
+      let current: Section = sections[0];
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 150) {
+          current = id as Section;
         }
       }
-      if (best) scroll.set(best);
-    }, { threshold: [0.1, 0.3, 0.5, 0.7, 0.9] });
-
-    for (const id of sections) {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+      scroll.set(current);
     }
+
+    let ticking = false;
+    function handleScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => { updateSection(); ticking = false; });
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    updateSection();
 
     document.addEventListener('toggle-keybindings', () => {
       showKeybindings = !showKeybindings;
+    });
+
+    document.addEventListener('toggle-music', () => {
+      player.toggle();
     });
 
     document.addEventListener('keydown', (e) => {
@@ -66,6 +76,7 @@
       }
       if (e.key === 'Escape') {
         showKeybindings = false;
+        if (player.visible) player.hide();
       }
       const sections = ['hero', 'about', 'tech', 'design', 'projects', 'certs', 'contact'];
       if (e.key >= '1' && e.key <= '7') {
@@ -83,6 +94,7 @@
       if (e.key === 'j') window.scrollBy({ top: 100, behavior: 'smooth' });
       if (e.key === 'k') window.scrollBy({ top: -100, behavior: 'smooth' });
       if (e.key === 'b') toggleBgGif();
+      if (e.key === 'm') player.toggle();
     });
   });
 
@@ -123,13 +135,14 @@
   </div>
 </main>
 
+<MusicPlayer />
 <Footer />
 
 <!-- Keybindings Overlay -->
 {#if showKeybindings}
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
   <div class="keybindings-overlay" onclick={() => showKeybindings = false} role="dialog" aria-label="Keyboard shortcuts" tabindex="-1">
-    <div class="window" style="max-width:400px">
+    <div class="window" style="max-width:420px">
       <div class="window__titlebar">
         <span>keybindings.md</span>
       </div>
@@ -139,8 +152,11 @@
         <p><code>G</code> - Go to bottom</p>
         <p><code>1-7</code> - Jump to section</p>
         <p><code>b</code> - Toggle animated BG</p>
+        <p><code>m</code> - Toggle music player</p>
+        <p><code>Space</code> - Play/Pause (when player open)</p>
+        <p><code>←/→</code> - Prev/Next track (when player open)</p>
         <p><code>?</code> - Toggle this help</p>
-        <p><code>Esc</code> - Close</p>
+        <p><code>Esc</code> - Close / hide player</p>
       </div>
     </div>
   </div>

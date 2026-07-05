@@ -60,10 +60,10 @@
         </div>
       </div>
       <div style="margin-top:var(--gap-md);padding-top:var(--gap-md);border-top:1px solid var(--text-dim)">
-        <div class="terminal-line" style="cursor:pointer" onclick={() => showModal = true} onkeydown={(e) => { if (e.key === 'Enter') showModal = true; }} role="button" tabindex="0">
+        <div class="terminal-line cert-download-line" onclick={() => showModal = true} onkeydown={(e) => { if (e.key === 'Enter') showModal = true; }} role="button" tabindex="0">
           <span class="terminal-line__prompt">$</span>
           <span class="terminal-line__cmd" style="color:var(--accent-tertiary)">{t('cert.download')}</span>
-          <span style="color:var(--text-dim);font-size:0.75rem;margin-left:var(--gap-md)">▶ ver detalles</span>
+          <span class="cert-ver-detalles">▶ ver detalles</span>
         </div>
       </div>
     </div>
@@ -88,7 +88,7 @@
       <div class="window__content" style="padding:0">
         <div class="terminal-line" style="padding:var(--gap-md) var(--gap-lg) 0">
           <span class="terminal-line__prompt">$</span>
-          <span class="terminal-line__cmd">cat certificaciones.json</span>
+          <span class="terminal-line__cmd terminal-line__cmd--cursor">cat certificaciones.json</span>
         </div>
         <pre style="margin:0;padding:var(--gap-md) var(--gap-lg);font-family:inherit;font-size:0.75rem;color:var(--text-dim);line-height:1.8;overflow-x:auto">{`{
   "certifications": [`}<br />{@render certItems()}<br />{`  ],
@@ -110,3 +110,26 @@
     {`    }{#if i < certs.length - 1},{/if}`}<br />
   {/each}
 {/snippet}
+
+<style>
+  .cert-download-line {
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    margin: 0 -0.5rem;
+  }
+  .cert-download-line:hover {
+    background: rgba(233, 69, 96, 0.08);
+  }
+  .cert-download-line:hover .cert-ver-detalles {
+    color: var(--accent-tertiary) !important;
+    text-shadow: 0 0 8px rgba(233, 69, 96, 0.4);
+  }
+  .cert-ver-detalles {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    margin-left: var(--gap-md);
+    transition: all 0.2s ease;
+  }
+</style>

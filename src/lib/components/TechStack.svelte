@@ -110,7 +110,7 @@
     border: 1px solid var(--accent-secondary);
     border-radius: 6px;
     font-size: 0.78rem;
-    color: var(--text-primary);
+    color: #d0d0d0;
     line-height: 1.5;
     box-shadow: 0 4px 16px rgba(0,0,0,0.4);
   }

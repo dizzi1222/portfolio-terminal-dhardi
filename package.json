@@ -22,6 +22,7 @@
 		"vite": "^8.0.16"
 	},
 	"dependencies": {
+		"music-metadata": "^11.13.0",
 		"resend": "^6.17.1"
 	}
 }

@@ -29,6 +29,7 @@ yarn-error.log*
 .vercel/
 .vscode/
 
-# Old static assets (migrated to static/)
-/assets/
+# Audio files (large, not committed to git)
+/static/playlist/
 
+.vercel

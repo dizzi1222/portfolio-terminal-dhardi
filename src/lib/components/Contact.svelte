@@ -19,8 +19,25 @@
   let honeypot = $state('');
   let sending = $state(false);
 
-  function openCV() { cvModalOpen = true; }
-  function closeCV() { cvModalOpen = false; }
+  function openCV() {
+    cvModalOpen = true;
+    document.dispatchEvent(new CustomEvent('detail-open'));
+  }
+  function closeCV() {
+    cvModalOpen = false;
+    document.dispatchEvent(new CustomEvent('detail-close'));
+  }
+
+  function handleCvKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape') closeCV();
+  }
+
+  $effect(() => {
+    if (cvModalOpen) {
+      document.addEventListener('keydown', handleCvKeydown);
+      return () => document.removeEventListener('keydown', handleCvKeydown);
+    }
+  });
 
   async function handleSubmit() {
     if (sending) return;
@@ -132,7 +149,7 @@
       <div class="terminal-line__output">
         <button class="btn" onclick={openCV}>⬇ Ver CV</button>
         <span style="color:var(--text-dim);font-size:0.8rem;margin-left:var(--gap-sm)">|</span>
-        <a href="https://dizzi1222.github.io/dhardi.dev/assets/cv.pdf" target="_blank">⬇ Descargar PDF</a>
+        <a href="/cv.pdf" target="_blank">⬇ Descargar PDF</a>
       </div>
 
       <!-- Contact Form -->
@@ -213,7 +230,7 @@
             : 'Descarga mi currículum para ver mi experiencia completa, educación y habilidades técnicas.'}
         </p>
         <div style="display:flex;gap:var(--gap-sm);flex-wrap:wrap">
-          <a href="https://dizzi1222.github.io/dhardi.dev/assets/cv.pdf" target="_blank" class="btn btn--filled">
+          <a href="/cv.pdf" target="_blank" class="btn btn--filled">
             ⬇ {currentLang === 'en' ? 'Download CV (PDF)' : 'Descargar CV (PDF)'}
           </a>
         </div>

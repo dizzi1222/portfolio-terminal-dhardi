@@ -36,6 +36,23 @@
   --scanline-opacity: 0.02;
 }
 
+.light-mode .icon-grid__item svg {
+  filter: grayscale(20%) brightness(0.7);
+  color: var(--accent-primary);
+}
+.light-mode .icon-grid__item:hover svg {
+  filter: grayscale(0%) brightness(1);
+}
+.light-mode .design-tooltip,
+.light-mode .tech-tooltip,
+.light-mode .toast-notif {
+  color: #d0d0d0;
+  background: rgba(20, 20, 40, 0.95);
+}
+.light-mode .toast-notif {
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
@@ -539,7 +556,7 @@ code, pre {
   border: 1px solid rgba(244, 114, 182, 0.2);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
-  color: var(--text-primary);
+  color: #d0d0d0;
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease;
@@ -550,8 +567,8 @@ code, pre {
 /* Floating phrases */
 .floating-phrase {
   position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
+  bottom: 3.5rem;
+  right: 1.5rem;
   z-index: 9997;
   font-size: 0.75rem;
   color: var(--text-dim);
@@ -747,4 +764,43 @@ code, pre {
 .tech-content .section__title {
   position: relative;
   z-index: 1;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border: 1px solid var(--text-dim);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border: 2px solid var(--bg-primary);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-tertiary);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-primary) var(--bg-primary);
+}
+
+/* ===== TERMINAL CURSOR (only on specific elements) ===== */
+.terminal-line__cmd--cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  margin-left: 3px;
+  color: var(--accent-tertiary);
+  opacity: 0.7;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }

@@ -61,6 +61,15 @@
         {sectionLabels[s]}
       </button>
     {/each}
+      <button class="navbar__link navbar__link--music" onclick={() => document.dispatchEvent(new CustomEvent('toggle-music'))}>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:2px">
+          <rect x="2" y="2" width="20" height="20" rx="2"/>
+          <path d="M9 18V9l8-2v9"/>
+          <circle cx="7" cy="18" r="2.5"/>
+          <circle cx="17" cy="16" r="2.5"/>
+        </svg>
+        Music
+      </button>
   </div>
 </nav>
 
@@ -143,5 +152,12 @@
     color: var(--accent-primary);
     background: rgba(233,69,96,0.1);
     font-weight: 700;
+  }
+  .navbar__link--music {
+    color: var(--accent-tertiary) !important;
+    font-weight: 700;
+  }
+  .navbar__link--music:hover {
+    text-shadow: 0 0 10px var(--accent-tertiary) !important;
   }
 </style>
