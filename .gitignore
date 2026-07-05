@@ -30,6 +30,7 @@ yarn-error.log*
 .vscode/
 
 # Audio files (large, not committed to git)
+/assets/
 /static/playlist/
 
 .vercel
