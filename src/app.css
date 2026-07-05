@@ -3,6 +3,7 @@
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #16213e;
   --bg-window: #121212;
+  --navbar-bg: rgba(18,18,18,0.85);
   --accent-primary: #e94560;
   --accent-secondary: #7b2cbf;
   --accent-tertiary: #00d9ff;
@@ -28,6 +29,7 @@
   --bg-secondary: #e8e8e8;
   --bg-tertiary: #ddd;
   --bg-window: rgba(255,255,255,0.75);
+  --navbar-bg: rgba(248,248,248,0.92);
   --text-primary: #1a1a1a;
   --text-muted: #666;
   --text-dim: #999;
@@ -36,14 +38,6 @@
 
 .light-mode .window {
   background: rgba(255,255,255,0.75);
-}
-
-.navbar {
-  background: rgba(18,18,18,0.85);
-}
-
-.light-mode .navbar {
-  background: rgba(248,248,248,0.92);
 }
 
 .light-mode .modal-window {

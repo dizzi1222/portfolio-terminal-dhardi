@@ -73,6 +73,7 @@
     z-index: 999;
     transform: translateY(0);
     transition: transform 0.3s ease;
+    background: var(--navbar-bg);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-bottom: 2px solid var(--accent-secondary);
