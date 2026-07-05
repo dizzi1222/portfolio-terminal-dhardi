@@ -50,7 +50,12 @@ export const i18n = {
       bio: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.'
     },
     projects: {
-      code: 'View Code', live: 'Live Preview', private: 'Privado', open: 'Abrir proyecto'
+      code: 'View Code', live: 'Live Preview', private: 'Private', open: 'Open project',
+      details: 'View details', back: '← Back to start',
+      status: 'Status', category: 'Category', team: 'Team size',
+      year: 'Year', completed: 'Completed', inProgress: 'In development',
+      solo: 'Solo', team: 'Team',
+      footer: 'Designed and developed by Diego Härdi . Every line of code, with intention and affection.'
     },
     contact: {
       available: 'Disponible'
@@ -108,7 +113,12 @@ export const i18n = {
       bio: "By day I build full-stack apps with the MERN stack. By night I'm immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn't exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems."
     },
     projects: {
-      code: 'View Code', live: 'Live Preview', private: 'Private', open: 'Open project'
+      code: 'View Code', live: 'Live Preview', private: 'Private', open: 'Open project',
+      details: 'Ver detalles', back: '← Volver al inicio',
+      status: 'Estado', category: 'Categoría', team: 'Tamaño del equipo',
+      year: 'Año', completed: 'Completado', inProgress: 'En desarrollo',
+      solo: 'Solo', team: 'Equipo',
+      footer: 'Diseñado y desarrollado por Diego Härdi . Cada línea de código, con intención y cariño.'
     },
     contact: {
       available: 'Available'
@@ -166,7 +176,12 @@ export const i18n = {
       bio: 'Tagsüber entwickle ich Full-Stack-Apps mit dem MERN-Stack. Nachts tauche ich in Neovim-Konfigurationen ein, optimiere mein Arch Linux Hyprland oder automatisiere Workflows. Ich spreche TypeScript, JavaScript, Lua und die Sprache von sauberen, wartbaren Systemen.'
     },
     projects: {
-      code: 'Quellcode', live: 'Live-Vorschau', private: 'Privat', open: 'Projekt öffnen'
+      code: 'Quellcode', live: 'Live-Vorschau', private: 'Privat', open: 'Projekt öffnen',
+      details: 'Details anzeigen', back: '← Zurück zum Anfang',
+      status: 'Status', category: 'Kategorie', team: 'Teamgröße',
+      year: 'Jahr', completed: 'Abgeschlossen', inProgress: 'In Entwicklung',
+      solo: 'Allein', team: 'Team',
+      footer: 'Entworfen und entwickelt von Diego Härdi . Jede Zeile Code, mit Absicht und Zuneigung.'
     },
     contact: {
       available: 'Verfügbar'

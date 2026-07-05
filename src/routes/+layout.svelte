@@ -2,11 +2,14 @@
   import '../app.css';
   import { onMount } from 'svelte';
   import Header from '$lib/components/Header.svelte';
+  import NavBar from '$lib/components/NavBar.svelte';
   import Footer from '$lib/components/Footer.svelte';
   import Toast from '$lib/components/Toast.svelte';
   import RandomPhrases from '$lib/components/RandomPhrases.svelte';
-  import { initTheme } from '$lib/stores/theme.svelte';
+  import SectionNav from '$lib/components/SectionNav.svelte';
+  import { initTheme, bgGifActive, toggleBgGif } from '$lib/stores/theme.svelte';
   import { initLang } from '$lib/stores/lang.svelte';
+  import { sections, scroll } from '$lib/stores/scroll.svelte';
 
   let { children } = $props();
 
@@ -36,6 +39,27 @@
       bgGif = bgGifs[Math.floor(Math.random() * bgGifs.length)];
     }, 30000);
 
+    const observer = new IntersectionObserver((entries) => {
+      let best: typeof sections[number] | null = null;
+      let bestRatio = 0;
+      for (const entry of entries) {
+        if (entry.intersectionRatio > bestRatio) {
+          bestRatio = entry.intersectionRatio;
+          best = entry.target.id as typeof sections[number];
+        }
+      }
+      if (best) scroll.set(best);
+    }, { threshold: [0.1, 0.3, 0.5, 0.7, 0.9] });
+
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+
+    document.addEventListener('toggle-keybindings', () => {
+      showKeybindings = !showKeybindings;
+    });
+
     document.addEventListener('keydown', (e) => {
       if (e.key === '?') {
         showKeybindings = !showKeybindings;
@@ -58,6 +82,7 @@
       }
       if (e.key === 'j') window.scrollBy({ top: 100, behavior: 'smooth' });
       if (e.key === 'k') window.scrollBy({ top: -100, behavior: 'smooth' });
+      if (e.key === 'b') toggleBgGif();
     });
   });
 
@@ -71,7 +96,9 @@
 </script>
 
 <!-- Animated Background -->
-<div class="animated-bg" style="background-image:url('{bgGif}')"></div>
+{#if $bgGifActive}
+  <div class="animated-bg" style="background-image:url('{bgGif}')"></div>
+{/if}
 
 <!-- CRT Scanlines Overlay -->
 <div class="crt-overlay"></div>
@@ -85,8 +112,10 @@
 </svg>
 
 <Header />
+<NavBar />
 <Toast />
 <RandomPhrases />
+<SectionNav />
 
 <main class="main">
   <div class="container">
@@ -98,7 +127,8 @@
 
 <!-- Keybindings Overlay -->
 {#if showKeybindings}
-  <div class="keybindings-overlay" onclick={() => showKeybindings = false}>
+  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+  <div class="keybindings-overlay" onclick={() => showKeybindings = false} role="dialog" aria-label="Keyboard shortcuts" tabindex="-1">
     <div class="window" style="max-width:400px">
       <div class="window__titlebar">
         <span>keybindings.md</span>
@@ -108,6 +138,7 @@
         <p><code>g</code> - Go to top</p>
         <p><code>G</code> - Go to bottom</p>
         <p><code>1-7</code> - Jump to section</p>
+        <p><code>b</code> - Toggle animated BG</p>
         <p><code>?</code> - Toggle this help</p>
         <p><code>Esc</code> - Close</p>
       </div>

@@ -1,40 +1,63 @@
-
 # ⚡ portfolio-terminal-dhardi
 
-Un portafolio web interactivo inspirado en la estética de la **terminal (CLI)**, diseñado para mostrar proyectos y habilidades de una manera técnica y minimalista. Optimizado para desarrolladores que viven entre `zsh`, `kitty` y entornos `tiling` como Hyprland.
+Un portafolio web interactivo inspirado en la estética de la **terminal (CLI)**, construido con **SvelteKit 2 + Svelte 5 Runes + TypeScript + pure CSS**. Optimizado para desarrolladores que viven entre `zsh`, `kitty` y entornos `tiling` como Hyprland.
 
-> **Live Demo:** [dizzi1222.github.io/portfolio-terminal-dhardi/](https://dizzi1222.github.io/portfolio-terminal-dhardi/)
+> **Live Demo:** [portfolio-terminal-dhardi.vercel.app](https://portfolio-terminal-dhardi.vercel.app)
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Stack
 
-- **Frontend:** HTML5 semántico, CSS3 (Custom Properties para temas).
-- **Lógica:** JavaScript Vanilla (Manipulación del DOM, simulación de comandos).
-- **Estética:** Estilo Retro/Modern Terminal (Inspirado en esquemas como Adwaita y JetBrains Mono).
+- **Frontend:** SvelteKit 2, Svelte 5 (Runes), TypeScript, pure CSS (sin Tailwind)
+- **Build:** Vite 8, pnpm
+- **Deploy:** Vercel (adapter-vercel, `nodejs22.x`)
+- **i18n:** ES / EN / DE (type-safe accessor)
+- **Alojamiento assets:** `/static/` (bg GIFs, avatar, modal images, favicon)
 
 ## 🚀 Características
 
-- **Interfaz de Comandos (CLI):** Navegación a través de comandos simulados (ej. `help`, `about`, `projects`).
-- **Diseño Responsive:** Adaptable a dispositivos móviles manteniendo la esencia de consola.
-- **Ligero y Rápido:** Sin dependencias externas pesadas ni frameworks innecesarios.
-- **Optimización SEO:** Estructura preparada para indexación básica.
-
-## 🎓 Certificaciones
-
-| Certificación | Estado | Progreso |
-|---|---|---|
-| **CIC Associate Developer** — Cincinnatus Bootcamp | 🟡 En proceso | ████████░░ 44% |
-| **JSCAMP — Midudev Bootcamp** | 🟡 Cursando | ██░░░░░░░░ 20% |
-| **Mimo Full-Stack Development** | 🟡 Cursando | ██░░░░░░░░ 15% |
-| **Exercism · TryHackMe** | ⚪ Iniciando | █░░░░░░░░░ 10% |
+- **Navegación por teclado:** `j`/`k` scroll, `g`/`G` top/bottom, `1-7` secciones, `?` help
+- **Cuarto muro:** toasts interactivos, frases flotantes, mensaje oculto en avatar, easter eggs
+- **Tema dark/light** con toggle de background animado (GIF ↔ sólido)
+- **Efectos visuales:** CRT scanlines, noise overlay SVG, starfield canvas, glitch text
+- **Typewriter scramble** en hero section con citas rotantes
+- **Formulario de contacto** con honeypot + rate limiting + Resend
+- **Modal JSON** coloreado para certificaciones
+- **Responsive** con menú mobile adaptativo
 
 ## 📂 Estructura del Proyecto
 
-```bash
-portfolio-terminal-dhardi/
-├── css/            # Estilos principales (Terminal UI, animaciones)
-├── js/             # Lógica del intérprete de comandos y datos
-├── index.html      # Punto de entrada principal
-└── README.md       # Documentación
 ```
+portfolio-terminal-dhardi/
+├── src/
+│   ├── routes/
+│   │   ├── +layout.svelte     # Layout global (bg, CRT, noise, header, footer, keybindings)
+│   │   └── +page.svelte        # Página principal con todas las secciones
+│   ├── lib/
+│   │   ├── components/         # 11 componentes (Header, Hero, About, TechStack, etc.)
+│   │   ├── stores/             # theme, lang, toast (Svelte 5 Runes)
+│   │   ├── i18n/               # Traducciones ES/EN/DE
+│   │   └── data/               # Datos de proyectos (7 entradas)
+│   └── app.css                 # Tema global terminal (variables, CRT, scanlines, noise)
+├── static/                     # bg GIFs, avatar, favicon, modal images
+├── svelte.config.js            # adapter-vercel
+├── vite.config.ts              # Runes mode
+└── package.json                # pnpm
+```
+
+## 🏃‍♂️ Desarrollo Local
+
+```bash
+pnpm install
+pnpm run dev        # → http://localhost:5173
+pnpm run build      # → .svelte-kit/output
+pnpm run preview    # Vista previa de producción
+```
+
+## 🚢 Deploy
+
+Conecta el repo a [Vercel](https://vercel.com) — el adapter ya está configurado en `svelte.config.js`. Vercel detecta automáticamente SvelteKit y corre `pnpm run build`.
+
+## 📜 Licencia
+
+MIT

@@ -30,7 +30,6 @@
 </script>
 
 <section class="section" id="certs">
-  <h2 class="section__title">// {t('sectionTitles.certs')}</h2>
   <div class="window" style="max-width:480px;margin:0 auto">
     <div class="window__titlebar">
       <div class="window__titlebar-dots">
@@ -41,6 +40,7 @@
       <span>cic_cert_download.sh — <span style="color:var(--accent-tertiary)">{certFrames[certFrame]}</span></span>
     </div>
     <div class="window__content" style="padding:var(--gap-lg)">
+      <h2 class="section__title" style="margin-top:0">// {t('sectionTitles.certs')}</h2>
       <div style="text-align:center">
         <div style="font-size:2.5rem;margin-bottom:var(--gap-sm);line-height:1;color:var(--accent-tertiary)">{certFrames[certFrame]}</div>
         <p style="color:var(--accent-tertiary);font-family:inherit;font-size:0.85rem;margin:var(--gap-sm) 0">
@@ -73,7 +73,8 @@
 <!-- Cert Modal -->
 {#if showModal}
   <div class="modal-overlay active">
-    <div class="modal-backdrop" onclick={() => showModal = false}></div>
+    <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+    <div class="modal-backdrop" onclick={() => showModal = false} role="presentation"></div>
     <div class="window modal-window" style="max-width:560px">
       <div class="window__titlebar">
         <div class="window__titlebar-dots">

@@ -2,6 +2,7 @@
   import { lang } from '$lib/stores/lang.svelte';
   import { i18n } from '$lib/i18n';
   import type { Lang } from '$lib/i18n';
+  import { showToast } from '$lib/stores/toast.svelte';
 
   let currentLang = $state<Lang>('es');
   lang.subscribe(v => currentLang = v);
@@ -49,9 +50,18 @@
   });
 
   let hoverMessage = $state(false);
+
+  function handleAvatarEnter() {
+    hoverMessage = true;
+    showToast('? No sabía que te gustaba espiar...');
+  }
+
+  function handleAvatarLeave() {
+    hoverMessage = false;
+  }
 </script>
 
-<section class="hero section" id="hero" style="margin-top:calc(var(--header-height) + var(--gap-lg))">
+<section class="hero section" id="hero" style="margin-top:calc(var(--header-height) + 3rem + var(--gap-lg))">
   <div class="window" style="max-width: 700px; margin: 0 auto">
     <div class="window__titlebar">
       <div class="window__titlebar-dots">
@@ -64,24 +74,27 @@
     <div class="window__content" style="position:relative;overflow:hidden">
       <div class="hero-code-overlay"></div>
       <div style="display:flex;align-items:flex-start;gap:var(--gap-lg);flex-wrap:wrap">
-        <div style="position:relative;flex-shrink:0"
-          onmouseenter={() => hoverMessage = true}
-          onmouseleave={() => hoverMessage = false}>
-          <img
-            src="/avatar.png"
-            alt="Avatar"
-            class="avatar"
-            style="width:100px;height:100px;border-radius:8px;
-              filter: blur(6px) grayscale(0.3);transition:filter 0.3s;object-fit:cover"
-          />
-          {#if hoverMessage}
-            <div style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);
-              background:var(--bg-window);border:1px solid var(--accent-tertiary);
-              padding:0.4rem 0.8rem;font-size:0.75rem;color:var(--accent-tertiary);
-              white-space:nowrap;z-index:10">
-              ? No sabía que te gustaba espiar...
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div class="avatar-container" style="position:relative;flex-shrink:0;display:flex;flex-direction:column;align-items:center"
+          onmouseenter={handleAvatarEnter}
+          onmouseleave={handleAvatarLeave}
+          role="img" aria-label="Avatar de Diego">
+          <div class="avatar-wrapper">
+            <img
+              src="/avatar.png"
+              alt="Avatar"
+              class="avatar avatar-img"
+              class:avatar-glitch={hoverMessage}
+            />
+            {#if !hoverMessage}
+              <div class="avatar-dots">...</div>
+            {/if}
+            <div class="avatar-glitch-layers" class:active={hoverMessage} aria-hidden="true">
+              <div class="glitch-layer glitch-layer--r" style="background-image:url('/avatar.png')"></div>
+              <div class="glitch-layer glitch-layer--g" style="background-image:url('/avatar.png')"></div>
+              <div class="glitch-layer glitch-layer--b" style="background-image:url('/avatar.png')"></div>
             </div>
-          {/if}
+          </div>
         </div>
         <div style="flex:1;min-width:200px">
           <h1 class="hero__name glow-text" style="font-size:2rem;margin-bottom:var(--gap-sm)">Diego Härdi</h1>
