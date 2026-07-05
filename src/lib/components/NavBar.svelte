@@ -12,9 +12,9 @@
   onMount(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-      if (currentY > lastScrollY) {
+      if (currentY > lastScrollY && currentY > 80) {
         visible = false;
-      } else if (currentY < lastScrollY && currentY < 500) {
+      } else if (currentY < lastScrollY) {
         visible = true;
       }
       lastScrollY = currentY;
@@ -61,7 +61,7 @@
     z-index: 999;
     transform: translateY(0);
     transition: transform 0.3s ease;
-    background: rgba(13,13,13,0.85);
+    background: rgba(18,18,18,0.85);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-bottom: 2px solid var(--accent-secondary);
