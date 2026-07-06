@@ -39,7 +39,8 @@ export const i18n = {
       'VoltBuilder': 'Build service para apps nativas Android/iOS desde web apps (Cordova/Capacitor). APK sin SDKs locales ni Mac requerido.',
       'Material UI': 'Biblioteca de componentes React basada en Material Design. UI profesional con temas, grids y accesibilidad.',
       'React Router': 'Enrutamiento declarativo para React. Navegación SPA con loaders, acciones y data fetching.',
-      'Bootstrap': 'Framework CSS con componentes preconstruidos. Sistema de rejilla, utilidades responsive y tematización.'
+      'Bootstrap': 'Framework CSS con componentes preconstruidos. Sistema de rejilla, utilidades responsive y tematización.',
+      'OpenCode': 'Asistente de código con memoria persistente (Engram), Claude, OpenRouter y Antigravity. Mejor que Claude Desktop.'
     },
     design: {
       hint: 'Diseño UX/UI — Prototipado con Google Stitch, maquetado en Figma. Creación y mantenimiento de Design Systems (CIC-Styles).',
@@ -109,7 +110,8 @@ export const i18n = {
       'Material UI': 'React component library based on Material Design. Professional UI with themes, grids and accessibility.',
       'Railway': 'Cloud platform for backends. Fast deploy with integrated PostgreSQL.',
       'React Router': 'Declarative routing for React. SPA navigation with loaders, actions and data fetching.',
-      'Bootstrap': 'CSS framework with pre-built components. Grid system, responsive utilities and theming.'
+      'Bootstrap': 'CSS framework with pre-built components. Grid system, responsive utilities and theming.',
+      'OpenCode': 'Code assistant with persistent memory (Engram), Claude, OpenRouter and Antigravity. Better than Claude Desktop.'
     },
     design: {
       hint: 'UX/UI Design — Prototyping with Google Stitch, layout in Figma. Design Systems creation (CIC-Styles).',
@@ -179,7 +181,8 @@ export const i18n = {
       'Material UI': 'React-Komponentenbibliothek basierend auf Material Design. Professionelle UI mit Themes und Zugänglichkeit.',
       'Railway': 'Cloud-Plattform für Backends. Schnelles Deployment mit integriertem PostgreSQL.',
       'React Router': 'Deklaratives Routing für React. SPA-Navigation mit Loadern, Aktionen und Datenabruf.',
-      'Bootstrap': 'CSS-Framework mit vorgefertigten Komponenten. Grid-System und responsive Utilities.'
+      'Bootstrap': 'CSS-Framework mit vorgefertigten Komponenten. Grid-System und responsive Utilities.',
+      'OpenCode': 'Code-Assistent mit persistentem Speicher (Engram), Claude, OpenRouter und Antigravity. Besser als Claude Desktop.'
     },
     design: {
       hint: 'UX/UI-Design — Prototyping mit Google Stitch, Layout in Figma. Designsysteme (CIC-Styles).',
