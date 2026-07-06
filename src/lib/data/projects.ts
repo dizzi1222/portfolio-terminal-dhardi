@@ -202,7 +202,7 @@ Built with HTML, CSS and vanilla JavaScript, the page demonstrates how web techn
 The project reflects artistic sensitivity and ability to create emotionally charged interfaces, demonstrating versatility beyond conventional application development.`,
     tags: ['TypeScript'],
     code: 'https://github.com/dizzi1222/proyeccion-astral-disculpa',
-    live: 'https://dizzi1222.github.io/proyeccion-astral-disculpa/',
+    live: 'https://proyeccion-astral.vercel.app/',
     image: '/modal-proyeccion-astral.png',
     status: 'Completado',
     statusEn: 'Completed',
