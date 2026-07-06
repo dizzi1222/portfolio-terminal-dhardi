@@ -13,6 +13,7 @@ export const i18n = {
     tech: {
       hint: 'Haz clic en cualquier tecnología para saber más',
       'Node.js': 'Runtime JS del lado del servidor. Lo uso para construir APIs RESTful y backends escalables con Express.',
+      'Railway': 'Plataforma cloud para backends. Deploy rápido con PostgreSQL integrado.',
       'Express': 'Framework minimalista para Node.js. Mi elección para crear servidores, middlewares y APIs limpias.',
       'React': 'Biblioteca de UI declarativa. Construyo interfaces interactivas con componentes y hooks reutilizables.',
       'MongoDB': 'Base de datos NoSQL. La uso como principal almacenamiento en mis proyectos MERN con Mongoose.',
@@ -36,7 +37,9 @@ export const i18n = {
       'Prototyping': 'Prototipado interactivo desde wireframes low-fi hasta high-fi en Figma.',
       'Canvas': 'Canvas de diseño e ilustración. Maquetación de interfaces UI, storytelling visual y exploración de layouts.',
       'VoltBuilder': 'Build service para apps nativas Android/iOS desde web apps (Cordova/Capacitor). APK sin SDKs locales ni Mac requerido.',
-      'Material UI': 'Biblioteca de componentes React basada en Material Design. UI profesional con temas, grids y accesibilidad.'
+      'Material UI': 'Biblioteca de componentes React basada en Material Design. UI profesional con temas, grids y accesibilidad.',
+      'React Router': 'Enrutamiento declarativo para React. Navegación SPA con loaders, acciones y data fetching.',
+      'Bootstrap': 'Framework CSS con componentes preconstruidos. Sistema de rejilla, utilidades responsive y tematización.'
     },
     design: {
       hint: 'Diseño UX/UI — Prototipado con Google Stitch, maquetado en Figma. Creación y mantenimiento de Design Systems (CIC-Styles).',
@@ -103,7 +106,10 @@ export const i18n = {
       'Prototyping': 'Interactive prototyping from low-fi wireframes to high-fi in Figma.',
       'Canvas': 'Design and illustration canvas. User interface mockups, visual storytelling, layout exploration.',
       'VoltBuilder': 'Build service for native Android/iOS apps from web apps (Cordova/Capacitor). APK without local SDKs or Mac required.',
-      'Material UI': 'React component library based on Material Design. Professional UI with themes, grids and accessibility.'
+      'Material UI': 'React component library based on Material Design. Professional UI with themes, grids and accessibility.',
+      'Railway': 'Cloud platform for backends. Fast deploy with integrated PostgreSQL.',
+      'React Router': 'Declarative routing for React. SPA navigation with loaders, actions and data fetching.',
+      'Bootstrap': 'CSS framework with pre-built components. Grid system, responsive utilities and theming.'
     },
     design: {
       hint: 'UX/UI Design — Prototyping with Google Stitch, layout in Figma. Design Systems creation (CIC-Styles).',
@@ -170,7 +176,10 @@ export const i18n = {
       'Prototyping': 'Interaktives Prototyping von Low-Fi bis High-Fi in Figma.',
       'Canvas': 'Design- und Illustrations-Canvas. UI-Mockups, visuelles Storytelling, Layout-Erkundung.',
       'VoltBuilder': 'Build-Dienst für native Android/iOS-Apps aus Web-Apps (Cordova/Capacitor). APK ohne lokale SDKs oder Mac erforderlich.',
-      'Material UI': 'React-Komponentenbibliothek basierend auf Material Design. Professionelle UI mit Themes und Zugänglichkeit.'
+      'Material UI': 'React-Komponentenbibliothek basierend auf Material Design. Professionelle UI mit Themes und Zugänglichkeit.',
+      'Railway': 'Cloud-Plattform für Backends. Schnelles Deployment mit integriertem PostgreSQL.',
+      'React Router': 'Deklaratives Routing für React. SPA-Navigation mit Loadern, Aktionen und Datenabruf.',
+      'Bootstrap': 'CSS-Framework mit vorgefertigten Komponenten. Grid-System und responsive Utilities.'
     },
     design: {
       hint: 'UX/UI-Design — Prototyping mit Google Stitch, Layout in Figma. Designsysteme (CIC-Styles).',
