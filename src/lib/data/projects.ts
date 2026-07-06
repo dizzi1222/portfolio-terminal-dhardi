@@ -39,7 +39,7 @@ The app includes interactive charts for data visualization, a functional calcula
 The responsive design and modular code organization allow scaling the app by adding new tools without affecting existing ones. TO-DO list data persists between sessions using localStorage, demonstrating client-side persistence.`,
     tags: ['React', 'Node.js', 'MongoDB', 'TypeScript'],
     code: 'https://github.com/dizzi1222/REACT-Diego-Dizzi-Dashboard',
-    live: 'https://reactdashboarddh.vercel.app/',
+    live: 'https://reactdashboarddh-one.vercel.app/',
     image: '/modal-tech-Dashboard-REACT.png',
     status: 'Completado',
     statusEn: 'Completed',
