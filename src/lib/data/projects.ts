@@ -187,6 +187,62 @@ The responsive design ensures an optimal experience on both desktop and mobile d
     teamSizeEn: 'Solo'
   },
   {
+    id: 7, title: 'Tics Service',
+    desc: 'Web corporativa para papelería y centro de internet. Diseño responsive con Bootstrap, galería de productos y servicios.',
+    descEn: 'Corporate website for stationery store and internet center. Responsive design with Bootstrap, product and service gallery.',
+    detailDesc: `Sitio web profesional para Papelería Tics Service Centro de Internet, desarrollado durante mi pasantía como proyecto de grado en Jarabacoa, República Dominicana.
+
+Fue mi primera experiencia real construyendo un sitio completo para un negocio local: catálogo de productos (memorias USB, cables HDMI/VGA, auriculares), servicios (fotografía, reparación de hardware, recargas), mapa de ubicación y formulario de contacto.
+
+Aquí aprendí el uso de plantillas Bootstrap, componentes CSS reutilizables, drag scroll nativo con JavaScript y conceptos fundamentales de diseño web responsive. Una etapa prehistórica pero formativa donde cada línea de código era un descubrimiento.`,
+    detailDescEn: `Professional website for Tics Service Stationery & Internet Center, developed during my internship as a graduation project in Jarabacoa, Dominican Republic.
+
+It was my first real experience building a complete site for a local business: product catalog (USB drives, HDMI/VGA cables, headphones), services (photography, hardware repair, refills), location map and contact form.
+
+Here I learned Bootstrap templates, reusable CSS components, native JavaScript drag scroll and fundamental responsive web design concepts. A prehistoric but formative stage where every line of code was a discovery.`,
+    tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+    code: 'https://github.com/dizzi1222/FCTicService.github.6c-Diego-05',
+    live: 'https://dizzi1222.github.io/FCTicService.github.6c-Diego-05/',
+    image: '/modal-ticservice.png',
+    status: 'Completado',
+    statusEn: 'Completed',
+    year: 2024,
+    category: 'Página Web',
+    categoryEn: 'Web Page',
+    teamSize: 'Solo',
+    teamSizeEn: 'Solo'
+  },
+  {
+    id: 8, title: 'MCSD · Manual Conducción',
+    desc: 'App educativa sobre conducción y seguridad vial dominicana. Proyecto final de grado con diseño moderno y glassmorphism.',
+    descEn: 'Educational app about Dominican driving and road safety. Final degree project with modern design and glassmorphism.',
+    detailDesc: `Manual de Conducción y Seguridad Dominicana — mi proyecto final para graduarme en Sistemas Informáticos.
+
+Fue un proyecto en grupo donde, spoiler, terminé haciéndolo prácticamente solo. Mis compañeros aportaron con el diseño en Canvas de los mockups (un concepto que ni siquiera estaba bien definido en ese tiempo, pero que el profesor supo indicarnos correctamente).
+
+Con nula experiencia y siendo un completo novato, fue una experiencia horrible para el inexperto Dieguito que no era Vibe Coder Pro. Aprobé, pero el proceso fue un dolor de cabeza.
+
+Años después, modernicé el proyecto a Vite 5 + Tailwind CSS v4 + glassmorphism, con 8 páginas completas, splash screen, animaciones scroll-based y diseño responsive. El APK está disponible via Volt Build.`,
+    detailDescEn: `Dominican Driving and Safety Manual — my final project to graduate in Computer Systems.
+
+It was a group project where, spoiler, I ended up doing it practically alone. My classmates contributed with Canvas mockup designs (a concept that wasn't even well defined at the time, but the professor knew how to guide us correctly).
+
+With zero experience and being a complete rookie, it was a horrible experience for inexperienced Dieguito who wasn't a Vibe Coder Pro. I passed, but the process was a headache.
+
+Years later, I modernized the project to Vite 5 + Tailwind CSS v4 + glassmorphism, with 8 complete pages, splash screen, scroll-based animations and responsive design. The APK is available via Volt Build.`,
+    tags: ['HTML', 'CSS', 'JavaScript', 'Tailwind CSS', 'Canvas'],
+    code: 'https://github.com/dizzi1222/Proyecto-App-MCSD',
+    live: 'https://apps.volt.build/1d496dbf-1137-4fec-92d0-29c05aac9a3e/android.debug.apk',
+    image: '/modal-mcsd.png',
+    status: 'Completado',
+    statusEn: 'Completed',
+    year: 2024,
+    category: 'App Educativa',
+    categoryEn: 'Educational App',
+    teamSize: 'Equipo',
+    teamSizeEn: 'Team'
+  },
+  {
     id: 6, title: 'Proyección Astral',
     desc: 'Página melancólica y romántica dedicada a una persona especial. Tipografía cuidada, atmósfera onírica.',
     descEn: 'Melancholic and romantic page dedicated to a special person. Careful typography, dreamlike atmosphere.',
