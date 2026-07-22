@@ -117,7 +117,7 @@ The frontend is built with React and TypeScript, with a custom design system (CI
 The project includes Google Cloud integration for deployment, Cloud SQL Proxy for secure database connections, and a complete CI/CD flow. Project management uses GitHub Projects following agile methodologies.`,
     tags: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'Figma', 'TypeScript', 'Material UI'],
     code: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
-    live: 'https://ptd-talento-front.vercel.app',
+    live: 'https://ptd-talento-frontend-dev-dot-cic-ptd-dev.ue.r.appspot.com/Inicio',
     image: '/modal-tech-ptd-talento.png',
     isPrivate: true,
     backUrl: 'https://github.com/Cincinnatus-Institute-of-Craftsmanship/ptd-talento-back',
