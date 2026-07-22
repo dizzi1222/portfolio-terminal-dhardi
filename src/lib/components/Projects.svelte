@@ -109,21 +109,45 @@ const tagSvg: Record<string, string> = {
     }
   }
 
+  function getDesc(p: Project) {
+    if (currentLang === 'en') return p.descEn;
+    if (currentLang === 'de') return p.descDe;
+    return p.desc;
+  }
+
+  function getDetailDesc(p: Project) {
+    if (currentLang === 'en') return p.detailDescEn;
+    if (currentLang === 'de') return p.detailDescDe;
+    return p.detailDesc;
+  }
+
   let detailParagraphs = $derived(
-    (currentLang === 'en' ? detailProject?.detailDescEn : detailProject?.detailDesc || '')
-      .split('\n\n').map(p => p.trim()).filter(Boolean)
+    detailProject ? getDetailDesc(detailProject).split('\n\n').map(p => p.trim()).filter(Boolean) : []
   );
 
   function statusColor(p: Project) {
-    const es = currentLang === 'en' ? p.statusEn : p.status;
-    return es === 'Completado' || es === 'Completed' || es === 'Abgeschlossen'
+    const s = currentLang === 'en' ? p.statusEn : (currentLang === 'de' ? p.statusDe : p.status);
+    return s === 'Completado' || s === 'Completed' || s === 'Abgeschlossen'
       ? 'var(--accent-tertiary)'
       : 'var(--accent-secondary)';
   }
 
   function statusLabel(p: Project) {
-    const s = currentLang === 'en' ? p.statusEn : (currentLang === 'de' ? (p.statusEn === 'Completed' ? 'Abgeschlossen' : 'In Entwicklung') : p.status);
-    return s;
+    if (currentLang === 'en') return p.statusEn;
+    if (currentLang === 'de') return p.statusDe;
+    return p.status;
+  }
+
+  function getCategory(p: Project) {
+    if (currentLang === 'en') return p.categoryEn;
+    if (currentLang === 'de') return p.categoryDe;
+    return p.category;
+  }
+
+  function getTeamSize(p: Project) {
+    if (currentLang === 'en') return p.teamSizeEn;
+    if (currentLang === 'de') return p.teamSizeDe;
+    return p.teamSize;
   }
 </script>
 
@@ -160,7 +184,7 @@ const tagSvg: Record<string, string> = {
                 {/if}
               </h3>
               <p style="margin:var(--gap-sm) 0">
-                {currentLang === 'en' && p.descEn ? p.descEn : p.desc}
+                {getDesc(p)}
               </p>
               <div style="display:flex;gap:var(--gap-xs);flex-wrap:wrap">
                 {#each p.tags as tag}
@@ -216,7 +240,7 @@ const tagSvg: Record<string, string> = {
 
         <!-- Short desc -->
         <p class="detail-desc">
-          {currentLang === 'en' && detailProject.descEn ? detailProject.descEn : detailProject.desc}
+          {getDesc(detailProject)}
         </p>
 
         <!-- Colorful SVG Badges -->
@@ -253,11 +277,11 @@ const tagSvg: Record<string, string> = {
           </div>
           <div class="meta-item">
             <span class="meta-label">{t('projects.category')}</span>
-            <span class="meta-value">{currentLang === 'en' ? detailProject.categoryEn : detailProject.category}</span>
+            <span class="meta-value">{getCategory(detailProject)}</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">{t('projects.team')}</span>
-            <span class="meta-value">{currentLang === 'en' ? detailProject.teamSizeEn : detailProject.teamSize}</span>
+            <span class="meta-value">{getTeamSize(detailProject)}</span>
           </div>
         </div>
 
