@@ -42,11 +42,11 @@
   async function handleSubmit() {
     if (sending) return;
     if (!formName.trim() || !formEmail.trim() || !formMsg.trim()) {
-      showToast('⚠ Complete todos los campos');
+      showToast(t('contact.form.validation.required'));
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formEmail)) {
-      showToast('⚠ Email inválido');
+      showToast(t('contact.form.validation.email'));
       return;
     }
     sending = true;
@@ -57,13 +57,13 @@
         body: JSON.stringify({ name: formName, email: formEmail, message: formMsg, honeypot })
       });
       if (res.ok) {
-        showToast('✓ Mensaje enviado correctamente');
+        showToast(t('contact.form.status.success'));
         formName = ''; formEmail = ''; formMsg = ''; honeypot = '';
       } else {
-        showToast('✗ Error al enviar. Intenta de nuevo.');
+        showToast(t('contact.form.status.errorSend'));
       }
     } catch {
-      showToast('✗ Error de conexión');
+      showToast(t('contact.form.status.errorConnection'));
     } finally {
       sending = false;
     }
@@ -147,9 +147,9 @@
         <span class="terminal-line__cmd">wget cv.pdf</span>
       </div>
       <div class="terminal-line__output">
-        <button class="btn" onclick={openCV}>⬇ Ver CV</button>
+        <button class="btn" onclick={openCV}>{t('contact.cv.view')}</button>
         <span style="color:var(--text-dim);font-size:0.8rem;margin-left:var(--gap-sm)">|</span>
-        <a href="/cv.pdf" target="_blank">⬇ Descargar PDF</a>
+        <a href="/cv.pdf" target="_blank">{t('contact.cv.download')}</a>
       </div>
 
       <!-- Contact Form -->
@@ -165,9 +165,9 @@
             <input
               type="text"
               bind:value={formName}
-              placeholder="Tu nombre"
+              placeholder={t('contact.form.namePlaceholder')}
               class="contact-input"
-              aria-label="Name"
+              aria-label={t('contact.form.namePlaceholder')}
             />
           </div>
           <div>
@@ -175,18 +175,18 @@
             <input
               type="email"
               bind:value={formEmail}
-              placeholder="tu@email.com"
+              placeholder={t('contact.form.emailPlaceholder')}
               class="contact-input"
-              aria-label="Email"
+              aria-label={t('contact.form.emailLabel')}
             />
           </div>
           <div>
             <span class="terminal-line__prompt" style="font-size:0.8rem">msg@host:~$</span>
             <textarea
               bind:value={formMsg}
-              placeholder="Escribe tu mensaje..."
+              placeholder={t('contact.form.messagePlaceholder')}
               class="contact-input contact-textarea"
-              aria-label="Message"
+              aria-label={t('contact.form.messageLabel')}
               rows="3"
             ></textarea>
           </div>
@@ -197,7 +197,7 @@
           </div>
 
           <button class="btn btn--filled" onclick={handleSubmit} disabled={sending} style="align-self:flex-start">
-            {sending ? '⏳ Enviando...' : '📨 Enviar mensaje'}
+            {sending ? t('contact.form.sending') : t('contact.form.submit')}
           </button>
         </div>
       </div>
@@ -225,13 +225,11 @@
           <img src="/modal-placeholder-cv.png" alt="CV Preview" style="max-width:100%;max-height:230px;object-fit:contain;border-radius:4px" />
         </div>
         <p style="margin:var(--gap-md) 0;color:var(--text-muted);line-height:1.7">
-          {currentLang === 'en'
-            ? 'Download my resume to see my complete experience, education and technical skills.'
-            : 'Descarga mi currículum para ver mi experiencia completa, educación y habilidades técnicas.'}
+          {t('contact.cv.modalText')}
         </p>
         <div style="display:flex;gap:var(--gap-sm);flex-wrap:wrap">
           <a href="/cv.pdf" target="_blank" class="btn btn--filled">
-            ⬇ {currentLang === 'en' ? 'Download CV (PDF)' : 'Descargar CV (PDF)'}
+            {t('contact.cv.downloadButton')}
           </a>
         </div>
       </div>

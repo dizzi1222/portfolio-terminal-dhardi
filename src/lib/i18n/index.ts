@@ -52,10 +52,11 @@ export const i18n = {
     },
     about: {
       name: 'Diego Härdi', role: 'DevOps & Software Engineer',
-      born: 'San Pedro de Macorís, RD', lives: 'Jarabacoa, RD',
+      born: '🇩🇴 San Pedro de Macorís, RD', lives: 'Jarabacoa, RD',
       passport: 'Suizo', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
       langs: 'ES · EN · DE (A2)',
-      bio: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.'
+      bio: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.',
+      label: { name: 'Nombre', role: 'Rol', born: 'Nacido', lives: 'Vive', passport: 'Pasaporte', os: 'OS', editor: 'Editor', langs: 'Idiomas' }
     },
     projects: {
       code: 'View Code', live: 'Live Preview', private: 'Private', open: 'Open project',
@@ -66,11 +67,24 @@ export const i18n = {
       footer: 'Designed and developed by Diego Härdi . Every line of code, with intention and affection.'
     },
     contact: {
-      available: 'Disponible'
+      available: 'Disponible',
+      cv: { view: '⬇ Ver CV', download: '⬇ Descargar PDF', modalText: 'Descarga mi currículum para ver mi experiencia completa, educación y habilidades técnicas.', downloadButton: '⬇ Descargar CV (PDF)' },
+      form: {
+        namePlaceholder: 'Tu nombre', emailPlaceholder: 'tu@email.com', emailLabel: 'Email',
+        messagePlaceholder: 'Escribe tu mensaje...', messageLabel: 'Mensaje',
+        submit: '📨 Enviar mensaje', sending: '⏳ Enviando...',
+        validation: { required: '⚠ Complete todos los campos', email: '⚠ Email inválido' },
+        status: { success: '✓ Mensaje enviado correctamente', errorSend: '✗ Error al enviar. Intenta de nuevo.', errorConnection: '✗ Error de conexión' }
+      }
     },
     cert: {
       download: 'cat certificaciones.json',
-      loading: 'loading...'
+      loading: 'loading...',
+      command: 'wget cic-associate-certificate.pdf',
+      waitingMessage: '⏳ Esperando programa oficial de certificación CIC...',
+      internalStatus: 'Cap. Interna ✓ — Esperando fecha de examen oficial',
+      viewDetails: '▶ ver detalles',
+      note: '※ metas de certificación 2026'
     },
     footer: {
       commercial: 'Versión Comercial'
@@ -123,25 +137,39 @@ export const i18n = {
     },
     about: {
       name: 'Diego Härdi', role: 'DevOps & Software Engineer',
-      born: 'San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
+      born: '🇩🇴 San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
       passport: 'Swiss', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
       langs: 'ES · EN · DE (A2)',
-      bio: "By day I build full-stack apps with the MERN stack. By night I'm immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn't exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems."
+      bio: "By day I build full-stack apps with the MERN stack. By night I'm immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn't exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems.",
+      label: { name: 'Name', role: 'Role', born: 'Born', lives: 'Lives', passport: 'Passport', os: 'OS', editor: 'Editor', langs: 'Languages' }
     },
     projects: {
       code: 'View Code', live: 'Live Preview', private: 'Private', open: 'Open project',
-      details: 'Ver detalles', back: '← Volver al inicio',
-      status: 'Estado', category: 'Categoría', team: 'Tamaño del equipo',
-      year: 'Año', completed: 'Completado', inProgress: 'En desarrollo',
-      solo: 'Solo', team: 'Equipo',
-      footer: 'Diseñado y desarrollado por Diego Härdi . Cada línea de código, con intención y cariño.'
+      details: 'View details', back: '← Back to start',
+      status: 'Status', category: 'Category', team: 'Team size',
+      year: 'Year', completed: 'Completed', inProgress: 'In development',
+      solo: 'Solo', team: 'Team',
+      footer: 'Designed and developed by Diego Härdi . Every line of code, with intention and affection.'
     },
     contact: {
-      available: 'Available'
+      available: 'Available',
+      cv: { view: '⬇ View CV', download: '⬇ Download PDF', modalText: 'Download my resume to see my complete experience, education and technical skills.', downloadButton: '⬇ Download CV (PDF)' },
+      form: {
+        namePlaceholder: 'Your name', emailPlaceholder: 'you@email.com', emailLabel: 'Email',
+        messagePlaceholder: 'Write your message...', messageLabel: 'Message',
+        submit: '📨 Send message', sending: '⏳ Sending...',
+        validation: { required: '⚠ Please fill in all fields', email: '⚠ Invalid email' },
+        status: { success: '✓ Message sent successfully', errorSend: '✗ Error sending. Try again.', errorConnection: '✗ Connection error' }
+      }
     },
     cert: {
       download: 'cat certifications.json',
-      loading: 'loading...'
+      loading: 'loading...',
+      command: 'wget cic-associate-certificate.pdf',
+      waitingMessage: '⏳ Waiting for CIC official certification program...',
+      internalStatus: 'Internal Cap. ✓ — Awaiting official exam date',
+      viewDetails: '▶ view details',
+      note: '※ 2026 certification goals'
     },
     footer: {
       commercial: 'Commercial Version'
@@ -194,10 +222,11 @@ export const i18n = {
     },
     about: {
       name: 'Diego Härdi', role: 'DevOps & Software Engineer',
-      born: 'San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
+      born: '🇩🇴 San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
       passport: 'Schweizer', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
       langs: 'ES · EN · DE (A2)',
-      bio: 'Tagsüber entwickle ich Full-Stack-Apps mit dem MERN-Stack. Nachts tauche ich in Neovim-Konfigurationen ein, optimiere mein Arch Linux Hyprland oder automatisiere Workflows. Ich spreche TypeScript, JavaScript, Lua und die Sprache von sauberen, wartbaren Systemen.'
+      bio: 'Tagsüber entwickle ich Full-Stack-Apps mit dem MERN-Stack. Nachts tauche ich in Neovim-Konfigurationen ein, optimiere mein Arch Linux Hyprland oder automatisiere Workflows. Ich spreche TypeScript, JavaScript, Lua und die Sprache von sauberen, wartbaren Systemen.',
+      label: { name: 'Name', role: 'Rolle', born: 'Geboren', lives: 'Lebt', passport: 'Pass', os: 'OS', editor: 'Editor', langs: 'Sprachen' }
     },
     projects: {
       code: 'Quellcode', live: 'Live-Vorschau', private: 'Privat', open: 'Projekt öffnen',
@@ -208,11 +237,24 @@ export const i18n = {
       footer: 'Entworfen und entwickelt von Diego Härdi . Jede Zeile Code, mit Absicht und Zuneigung.'
     },
     contact: {
-      available: 'Verfügbar'
+      available: 'Verfügbar',
+      cv: { view: '⬇ Lebenslauf ansehen', download: '⬇ PDF herunterladen', modalText: 'Lade meinen Lebenslauf herunter, um meine vollständige Erfahrung, Ausbildung und technischen Fähigkeiten zu sehen.', downloadButton: '⬇ Lebenslauf herunterladen (PDF)' },
+      form: {
+        namePlaceholder: 'Dein Name', emailPlaceholder: 'deine@email.com', emailLabel: 'E-Mail',
+        messagePlaceholder: 'Schreibe deine Nachricht...', messageLabel: 'Nachricht',
+        submit: '📨 Nachricht senden', sending: '⏳ Senden...',
+        validation: { required: '⚠ Bitte fülle alle Felder aus', email: '⚠ Ungültige E-Mail' },
+        status: { success: '✓ Nachricht erfolgreich gesendet', errorSend: '✗ Fehler beim Senden. Versuche es erneut.', errorConnection: '✗ Verbindungsfehler' }
+      }
     },
     cert: {
       download: 'cat zertifikate.json',
-      loading: 'loading...'
+      loading: 'loading...',
+      command: 'wget cic-associate-certificate.pdf',
+      waitingMessage: '⏳ Warte auf offizielles CIC-Zertifizierungsprogramm...',
+      internalStatus: 'Interner Cap. ✓ — Warte auf offizielles Prüfungsdatum',
+      viewDetails: '▶ details anzeigen',
+      note: '※ Zertifizierungsziele 2026'
     },
     footer: {
       commercial: 'Kommerzielle Version'

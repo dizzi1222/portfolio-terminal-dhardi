@@ -68,17 +68,17 @@
       <div style="text-align:center">
         <div style="font-size:2.5rem;margin-bottom:var(--gap-sm);line-height:1;color:var(--accent-tertiary)">{certFrames[certFrame]}</div>
         <p style="color:var(--accent-tertiary);font-family:inherit;font-size:0.85rem;margin:var(--gap-sm) 0">
-          $ wget cic-associate-certificate.pdf
+          $ {t('cert.command')}
         </p>
         <p style="color:var(--text-dim);font-family:inherit;font-size:0.75rem;margin-top:var(--gap-sm)">
-          ⏳ Esperando programa oficial de certificación CIC...
+          {t('cert.waitingMessage')}
         </p>
         <div style="background:var(--bg-secondary);height:4px;border-radius:2px;margin:var(--gap-md) auto;max-width:250px;overflow:hidden">
           <div style="background:var(--accent-tertiary);height:100%;width:44%;transition:width 0.5s ease"></div>
         </div>
         <div style="margin-top:var(--gap-sm)">
           <span style="color:var(--text-dim);font-size:0.7rem;font-family:inherit">
-            Cap. Interna ✓ — Esperando fecha de examen oficial
+            {t('cert.internalStatus')}
           </span>
           <span style="animation:blink 1s step-end infinite">_</span>
         </div>
@@ -87,7 +87,7 @@
         <div class="terminal-line cert-download-line" onclick={openModal} onkeydown={(e) => { if (e.key === 'Enter') openModal(); }} role="button" tabindex="0">
           <span class="terminal-line__prompt">$</span>
           <span class="terminal-line__cmd" style="color:var(--accent-tertiary)">{t('cert.download')}</span>
-          <span class="cert-ver-detalles">▶ ver detalles</span>
+          <span class="cert-ver-detalles">{t('cert.viewDetails')}</span>
         </div>
       </div>
     </div>
@@ -112,12 +112,12 @@
       <div class="window__content" style="padding:0">
         <div class="terminal-line" style="padding:var(--gap-md) var(--gap-lg) 0">
           <span class="terminal-line__prompt">$</span>
-          <span class="terminal-line__cmd terminal-line__cmd--cursor">cat certificaciones.json</span>
+          <span class="terminal-line__cmd terminal-line__cmd--cursor">{t('cert.download')}</span>
         </div>
         <pre style="margin:0;padding:var(--gap-md) var(--gap-lg);font-family:inherit;font-size:0.75rem;color:var(--text-dim);line-height:1.8;overflow-x:auto">{`{
   "certifications": [`}<br />{@render certItems()}<br />{`  ],
   "updated_at": "`}<span style="color:var(--text-dim)">{new Date().toISOString().replace('T', ' ').slice(0, 19)}Z</span>{`",
-  "note": "`}<span style="color:#f5bb00;text-shadow:0 0 8px rgba(245,187,0,0.4)">※ metas de certificación 2026</span>{`"
+  "note": "`}<span style="color:#f5bb00;text-shadow:0 0 8px rgba(245,187,0,0.4)">{t('cert.note')}</span>{`"
 }`}</pre>
       </div>
     </div>
