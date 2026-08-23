@@ -7,6 +7,10 @@
   let detailOpen = $state(false);
 
   function scrollTo(id: Section) {
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -37,11 +41,13 @@
 
   const sectionLabels: Record<Section, string> = {
     hero: '~/',
-    about: '~/about',
+    experience: '~/experience',
     tech: '~/tech',
     design: '~/design',
     projects: '~/projects',
+    interests: '~/interests',
     certs: '~/certs',
+    about: '~/about',
     contact: '~/contact'
   };
 </script>

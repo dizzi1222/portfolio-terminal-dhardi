@@ -1,4 +1,4 @@
-export const sections = ['hero', 'about', 'tech', 'design', 'projects', 'certs', 'contact'] as const;
+export const sections = ['hero', 'experience', 'tech', 'design', 'projects', 'interests', 'certs', 'about', 'contact'] as const;
 export type Section = typeof sections[number];
 
 class ScrollStore {
@@ -11,11 +11,13 @@ class ScrollStore {
   get sectionLabels(): Record<Section, string> {
     return {
       hero: '~/',
-      about: '~/about',
+      experience: '~/experience',
       tech: '~/tech',
       design: '~/design',
       projects: '~/projects',
+      interests: '~/interests',
       certs: '~/certs',
+      about: '~/about',
       contact: '~/contact'
     } as Record<Section, string>;
   }

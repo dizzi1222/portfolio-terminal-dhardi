@@ -44,11 +44,21 @@
   ].filter(t => !['Bootstrap', 'React Router', 'Node.js', 'Material UI', 'Render', 'JavaScript'].includes(t.name));
 
   function handleTechEnter(e: MouseEvent, name: string) {
-    const desc = i18n[currentLang]?.tech?.[name];
+    const desc = (i18n[currentLang]?.tech as Record<string, string> | undefined)?.[name];
     if (!desc) return;
     tooltipText = `${name}: ${desc}`;
     tooltipX = e.clientX + 16;
     tooltipY = e.clientY + 16;
+    tooltipVis = true;
+  }
+
+  function handleTechFocus(e: Event, name: string) {
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    const desc = (i18n[currentLang]?.tech as Record<string, string> | undefined)?.[name];
+    if (!desc) return;
+    tooltipText = `${name}: ${desc}`;
+    tooltipX = rect.right + 8;
+    tooltipY = rect.top;
     tooltipVis = true;
   }
 
@@ -84,7 +94,7 @@
             onmouseenter={(e) => handleTechEnter(e, tech.name)}
             onmousemove={handleTechMove}
             onmouseleave={handleTechLeave}
-            onfocusin={(e) => handleTechEnter(e, tech.name)}
+            onfocusin={(e) => handleTechFocus(e, tech.name)}
             onfocusout={handleTechLeave}>
             <svg width="40" height="40" viewBox={tech.viewBox || '0 0 24 24'} fill="currentColor">
               <path d={tech.svg} />

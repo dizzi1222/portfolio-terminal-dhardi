@@ -106,7 +106,7 @@
       .then(metadata => {
         const pic = metadata.common?.picture?.[0];
         if (pic?.data) {
-          const blob = new Blob([pic.data], { type: pic.format });
+          const blob = new Blob([pic.data as unknown as BlobPart], { type: pic.format });
           const url = URL.createObjectURL(blob);
           coverCache[src] = url;
           coverUrl = url;

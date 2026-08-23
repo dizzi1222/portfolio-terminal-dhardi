@@ -2,6 +2,10 @@
   import { sections, scroll, type Section } from '$lib/stores/scroll.svelte';
 
   function scrollTo(id: Section) {
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 </script>

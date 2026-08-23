@@ -7,9 +7,34 @@ const ghIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentCol
 export const i18n = {
   es: {
     header: { available: 'Disponible' },
-    hero: { tagline: 'Desarrollador MERN Stack | Arch Linux Enthusiast | Neovim + LazyVim' },
-    sections: { hero: '~/', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', certs: '~/certs', contact: '~/contact' },
-    sectionTitles: { about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', certs: 'Certificaciones', contact: 'Contact' },
+    hero: { tagline: 'Desarrollador MERN Stack | Arch Linux Enthusiast | Neovim + LazyVim', base: 'Base República Dominicana (UTC-4)', available: 'Open to work', downloadCv: '⬇ Descargar CV' },
+    sections: { hero: '~/', experience: '~/experience', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', interests: '~/interests', certs: '~/certs', contact: '~/contact' },
+    sectionTitles: { experience: 'Experiencia', about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', interests: 'Intereses', certs: 'Certificaciones', contact: 'Contact' },
+    exp: {
+      heading: 'Experiencia',
+      subtitle: 'Mi trayectoria profesional',
+      job1: { badge: 'Retail', title: 'Asistente / Cajero', company: 'La Sirena · República Dominicana', period: '2025 — 2026', desc: 'Mi primer contacto con el mundo laboral formal. Trabajar en uno de los supermercados más grandes del país me enseñó cómo funciona realmente un negocio desde adentro: logística, inventario, atención al cliente bajo presión. Esa experiencia fue el combustible que encendió mi decisión de construir una carrera en tecnología.' },
+      job2: { badge: 'Educación', title: 'Bootcamp Full-Stack', company: 'Cincinnatus · República Dominicana', period: '2024 — 2026', desc: 'El motor de arranque de mi carrera como programador. Cincinnatus fue el punto de inflexión donde pasé de ser un curioso autodidacta a un desarrollador en formación, trabajando en proyectos reales en equipo.' },
+      job3: { badge: 'Actual', title: 'MERN Stack Developer · DevOps', company: 'Freelance / Proyectos Propios · Arch Linux · Neovim', period: '2024 — Presente', desc: 'Desarrollo full-stack con el stack MERN (MongoDB, Express, React, Node.js). Arquitecturas limpias, APIs RESTful, despliegues con Docker y automatización de flujos. Mi entorno: Arch Linux con Hyprland, Neovim (LazyVim) como editor principal.' },
+      job4: { badge: 'Lead Tech', title: 'Marketplace de Talento [PTD-Talento]', company: 'Cincinnatus Institute of Craftsmanship, INC.', period: 'Ene — Oct 2026', desc: 'Desarrollo del proyecto "Marketplace de Talento" [PTD-Talento] con un equipo de 4 desarrolladores. Protagonisé como Lead Tech: agilicé y coordiné exitosamente el desarrollo del producto, actualmente en espera de la pasantía.' }
+    },
+    interests: {
+      personalLabel: '// Lo que disfruto',
+      setupLabel: '// Setup · Dotfiles',
+      futureBadge: 'Future Interest',
+      gamingCaption: 'game night', gamingTitle: 'Gaming', gamingDesc: 'Desde que tengo memoria amo los videojuegos. Empezó con una Game Boy — hoy tengo menos tiempo que antes, pero lo disfruto igual que de niño. Red Dead Redemption II y Cyberpunk 2077 siempre vienen a la mente.',
+      animeCaption: 'evening watch', animeTitle: 'Anime & Manga', animeDesc: 'Disfruto ver anime, series o películas con mi esposa — últimamente empecé a re-ver Naruto con ella.',
+      tvCaption: 'now streaming', tvTitle: 'TV · Film & Series', tvDesc: 'Cine y series por separado — no es lo mismo: del thriller psicológico al sci-fi. Mr Robot marcó un antes y un después.',
+      musicCaption: 'now playing', musicTitle: 'Music', musicDesc: 'Siempre encendida — antes escuchaba más música underground, últimamente le he agarrado gusto a artistas populares, sumando variedad a mi playlist.',
+      photographyCaption: 'through the lens', photographyTitle: 'Photography', photographyDesc: 'Me gusta moverme y capturar momentos con mi teléfono, o con mi dron cuando viajo.',
+      travelCaption: 'boarding soon', travelTitle: 'Travel', travelDesc: 'Me gusta ver la belleza del mundo en primera persona — tengo planeado conocer más del planeta.',
+      drawingCaption: 'tablet & pen', drawingTitle: 'Digital Drawing', drawingDesc: 'Empecé a desarrollar el dibujo de niño. Terminé fusionando tecnología con dibujo y ahora dibujo principalmente en mi tablet.',
+      scriptsCardCaption: './system_control.sh', scriptsCardTitle: 'System Control', scriptsCardDesc: 'Menú Rofi con 30+ herramientas: gestión de red, bluetooth, audio, power management, screen capture, modo juego, night mode y más.',
+      scriptsCaption: '$ ./automate.sh --all', scriptsTitle: 'Scripts & Automation', scriptsDesc: '50+ scripts propios: save-point system para rollback de config, scrcpy connect, widget launcher, power modes, LimpiarCache, Gitaliases y más. Automatización total del ecosistema Arch.',
+      blueprintCaption: 'extract_tokens.sh', blueprintTitle: 'Blueprints & Tokens', blueprintDesc: 'Extractor de design tokens desde imágenes: paletas de colores, CSS custom properties, prompts para IA. De la referencia visual a código listo para producción.',
+      galleryCaption: 'cat gallery.md', galleryTitle: 'Galería del Setup', galleryDesc: 'Screenshots reales del desktop: Rofi System Control, Fastfetch, Arch Rice y el ecosistema visual completo de dotfiles-dizzi.',
+      galleryCta: 'Ver repositorio de dotfiles →'
+    },
     tech: {
       hint: 'Haz clic en cualquier tecnología para saber más',
       'Node.js': 'Runtime JS del lado del servidor. Lo uso para construir APIs RESTful y backends escalables con Express.',
@@ -54,7 +79,7 @@ export const i18n = {
       name: 'Diego Härdi', role: 'DevOps & Software Engineer',
       born: '🇩🇴 San Pedro de Macorís, RD', lives: 'Jarabacoa, RD',
       passport: 'Suizo', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
-      langs: 'ES · EN · DE (A2)',
+      langs: 'ES · EN (B2) · DE (A2)',
       bio: 'Por el día construyo apps full-stack con el stack MERN. Por la noche estoy sumergido en configuraciones de Neovim, optimizando mi Arch Linux Hyprland o automatizando flujos que no deberían existir. Hablo TypeScript, JavaScript, Lua, y el idioma de los sistemas limpios y mantenibles.',
       label: { name: 'Nombre', role: 'Rol', born: 'Nacido', lives: 'Vive', passport: 'Pasaporte', os: 'OS', editor: 'Editor', langs: 'Idiomas' }
     },
@@ -63,7 +88,7 @@ export const i18n = {
       details: 'View details', back: '← Back to start',
       status: 'Status', category: 'Category', team: 'Team size',
       year: 'Year', completed: 'Completed', inProgress: 'In development',
-      solo: 'Solo', team: 'Team',
+      solo: 'Solo',
       footer: 'Designed and developed by Diego Härdi . Every line of code, with intention and affection.'
     },
     contact: {
@@ -81,8 +106,8 @@ export const i18n = {
       download: 'cat certificaciones.json',
       loading: 'loading...',
       command: 'wget cic-associate-certificate.pdf',
-      waitingMessage: '⏳ Esperando programa oficial de certificación CIC...',
-      internalStatus: 'Cap. Interna ✓ — Esperando fecha de examen oficial',
+      waitingMessage: '✓ Completado — Proyecto PTD-Talento desarrollado',
+      internalStatus: '100% — Certificación completada',
       viewDetails: '▶ ver detalles',
       note: '※ metas de certificación 2026'
     },
@@ -92,9 +117,34 @@ export const i18n = {
   },
   en: {
     header: { available: 'Available' },
-    hero: { tagline: 'MERN Stack Developer | Arch Linux Enthusiast | Neovim + LazyVim' },
-    sections: { hero: '~/', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', certs: '~/certs', contact: '~/contact' },
-    sectionTitles: { about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', certs: 'Certifications', contact: 'Contact' },
+    hero: { tagline: 'MERN Stack Developer | Arch Linux Enthusiast | Neovim + LazyVim', base: 'Base Dominican Republic (UTC-4)', available: 'Open to work', downloadCv: '⬇ Download CV' },
+    sections: { hero: '~/', experience: '~/experience', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', interests: '~/interests', certs: '~/certs', contact: '~/contact' },
+    sectionTitles: { experience: 'Experience', about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', interests: 'Interests', certs: 'Certifications', contact: 'Contact' },
+    exp: {
+      heading: 'Experience',
+      subtitle: 'My professional journey',
+      job1: { badge: 'Retail', title: 'Assistant / Cashier', company: 'La Sirena · Dominican Republic', period: '2025 — 2026', desc: 'My first contact with the formal working world. Working at one of the largest supermarkets in the country taught me how a business really works from the inside: logistics, inventory, customer service under pressure. That experience fueled my decision to build a career in technology.' },
+      job2: { badge: 'Education', title: 'Full-Stack Bootcamp', company: 'Cincinnatus · Dominican Republic', period: '2024 — 2026', desc: 'The starting engine of my programming career. Cincinnatus was the turning point where I went from a curious self-taught learner to a developer in training, working on real team projects.' },
+      job3: { badge: 'Current', title: 'MERN Stack Developer · DevOps', company: 'Freelance / Own Projects · Arch Linux · Neovim', period: '2024 — Present', desc: 'Full-stack development with the MERN stack (MongoDB, Express, React, Node.js). Clean architectures, RESTful APIs, Docker deployments and workflow automation. My environment: Arch Linux with Hyprland, Neovim (LazyVim) as main editor.' },
+      job4: { badge: 'Lead Tech', title: 'Marketplace de Talento [PTD-Talento]', company: 'Cincinnatus Institute of Craftsmanship, INC.', period: 'Jan — Oct 2026', desc: 'Developed the "Marketplace de Talento" [PTD-Talento] project with a team of 4 developers. Led as Lead Tech: successfully streamlined and coordinated the product development; currently awaiting the internship phase.' }
+    },
+    interests: {
+      personalLabel: '// What I enjoy',
+      setupLabel: '// Setup · Dotfiles',
+      futureBadge: 'Future Interest',
+      gamingCaption: 'game night', gamingTitle: 'Gaming', gamingDesc: "For as long as I can remember I've loved videogames. It all started with a Game Boy — I don't have the time I used to, but I still enjoy it like a kid. Red Dead Redemption II and Cyberpunk 2077 always come to mind.",
+      animeCaption: 'evening watch', animeTitle: 'Anime & Manga', animeDesc: "I enjoy watching anime, series or movies with my wife — lately I've started re-watching Naruto with her.",
+      tvCaption: 'now streaming', tvTitle: 'TV · Film & Series', tvDesc: 'Cinema and series, kept apart on purpose — not the same thing: from psychological thrillers to sci-fi. Mr Robot was a before and after.',
+      musicCaption: 'now playing', musicTitle: 'Music', musicDesc: "Always on — I used to listen to more underground music, but recently I've been getting a taste for popular artists, adding more variety to my playlist.",
+      photographyCaption: 'through the lens', photographyTitle: 'Photography', photographyDesc: 'I like to get around and capture moments with my phone, or with my drone when traveling.',
+      travelCaption: 'boarding soon', travelTitle: 'Travel', travelDesc: 'I like to see the beauty of the world firsthand — planning to see more of the planet.',
+      drawingCaption: 'tablet & pen', drawingTitle: 'Digital Drawing', drawingDesc: 'I started developing my drawing skill as a kid. I ended up merging technology with drawing, and now I mostly draw on my tablet.',
+      scriptsCardCaption: './system_control.sh', scriptsCardTitle: 'System Control', scriptsCardDesc: 'Rofi menu with 30+ tools: network management, bluetooth, audio, power management, screen capture, game mode, night mode and more.',
+      scriptsCaption: '$ ./automate.sh --all', scriptsTitle: 'Scripts & Automation', scriptsDesc: "50+ custom scripts: save-point system for config rollback, scrcpy connect, widget launcher, power modes, LimpiarCache, Gitaliases and more. Full automation of the Arch ecosystem.",
+      blueprintCaption: 'extract_tokens.sh', blueprintTitle: 'Blueprints & Tokens', blueprintDesc: 'Design token extraction from images: color palettes, CSS custom properties, AI prompts. From visual reference to production-ready code.',
+      galleryCaption: 'cat gallery.md', galleryTitle: 'Setup Gallery', galleryDesc: 'Real desktop screenshots: Rofi System Control, Fastfetch, Arch Rice and the complete dotfiles-dizzi visual ecosystem.',
+      galleryCta: 'View dotfiles repository →'
+    },
     tech: {
       hint: 'Click any technology to learn more',
       'Node.js': 'Server-side JS runtime. I use it to build RESTful APIs and scalable backends with Express.',
@@ -139,7 +189,7 @@ export const i18n = {
       name: 'Diego Härdi', role: 'DevOps & Software Engineer',
       born: '🇩🇴 San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
       passport: 'Swiss', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
-      langs: 'ES · EN · DE (A2)',
+      langs: 'ES · EN (B2) · DE (A2)',
       bio: "By day I build full-stack apps with the MERN stack. By night I'm immersed in Neovim configurations, optimizing my Arch Linux Hyprland or automating workflows that shouldn't exist. I speak TypeScript, JavaScript, Lua, and the language of clean, maintainable systems.",
       label: { name: 'Name', role: 'Role', born: 'Born', lives: 'Lives', passport: 'Passport', os: 'OS', editor: 'Editor', langs: 'Languages' }
     },
@@ -148,7 +198,7 @@ export const i18n = {
       details: 'View details', back: '← Back to start',
       status: 'Status', category: 'Category', team: 'Team size',
       year: 'Year', completed: 'Completed', inProgress: 'In development',
-      solo: 'Solo', team: 'Team',
+      solo: 'Solo',
       footer: 'Designed and developed by Diego Härdi . Every line of code, with intention and affection.'
     },
     contact: {
@@ -166,8 +216,8 @@ export const i18n = {
       download: 'cat certifications.json',
       loading: 'loading...',
       command: 'wget cic-associate-certificate.pdf',
-      waitingMessage: '⏳ Waiting for CIC official certification program...',
-      internalStatus: 'Internal Cap. ✓ — Awaiting official exam date',
+      waitingMessage: '✓ Completed — PTD-Talento project developed',
+      internalStatus: '100% — Certification completed',
       viewDetails: '▶ view details',
       note: '※ 2026 certification goals'
     },
@@ -177,9 +227,34 @@ export const i18n = {
   },
   de: {
     header: { available: 'Verfügbar' },
-    hero: { tagline: 'MERN Stack Entwickler | Arch Linux Enthusiast | Neovim + LazyVim' },
-    sections: { hero: '~/', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', certs: '~/certs', contact: '~/contact' },
-    sectionTitles: { about: 'Über mich', tech: 'Tech Stack', design: 'Design', projects: 'Projekte', certs: 'Zertifikate', contact: 'Kontakt' },
+    hero: { tagline: 'MERN Stack Entwickler | Arch Linux Enthusiast | Neovim + LazyVim', base: 'Base Dominikanische Republik (UTC-4)', available: 'Open to work', downloadCv: '⬇ Lebenslauf' },
+    sections: { hero: '~/', experience: '~/experience', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', interests: '~/interests', certs: '~/certs', contact: '~/contact' },
+    sectionTitles: { experience: 'Erfahrung', about: 'Über mich', tech: 'Tech Stack', design: 'Design', projects: 'Projekte', interests: 'Interessen', certs: 'Zertifikate', contact: 'Kontakt' },
+    exp: {
+      heading: 'Erfahrung',
+      subtitle: 'Mein beruflicher Werdegang',
+      job1: { badge: 'Einzelhandel', title: 'Assistent / Kassierer', company: 'La Sirena · Dominikanische Republik', period: '2025 — 2026', desc: 'Mein erster Kontakt mit der formalen Arbeitswelt. Die Arbeit in einem der größten Supermärkte des Landes lehrte mich, wie ein Unternehmen wirklich von innen funktioniert. Diese Erfahrung war der Treibstoff für meine Entscheidung, eine Karriere in der Technologie aufzubauen.' },
+      job2: { badge: 'Bildung', title: 'Full-Stack Bootcamp', company: 'Cincinnatus · Dominikanische Republik', period: '2024 — 2026', desc: 'Der Startschuss für meine Programmierkarriere. Cincinnatus war der Wendepunkt, an dem ich vom neugierigen Autodidakten zum angehenden Entwickler wurde — mit echten Teamprojekten.' },
+      job3: { badge: 'Aktuell', title: 'MERN Stack Developer · DevOps', company: 'Freiberuflich / Eigene Projekte · Arch Linux · Neovim', period: '2024 — Heute', desc: 'Full-Stack-Entwicklung mit dem MERN-Stack. Saubere Architekturen, RESTful APIs, Docker-Deployments und Workflow-Automatisierung. Meine Umgebung: Arch Linux mit Hyprland, Neovim (LazyVim) als Haupteditor.' },
+      job4: { badge: 'Lead Tech', title: 'Marketplace de Talento [PTD-Talento]', company: 'Cincinnatus Institute of Craftsmanship, INC.', period: 'Jan — Okt 2026', desc: 'Entwicklung des Projekts "Marketplace de Talento" [PTD-Talento] in einem 4-köpfigen Entwicklerteam. Als Lead Tech die Entwicklung erfolgreich koordiniert und agil gesteuert; derzeit wartet das Produkt auf die Praktikumsphase.' }
+    },
+    interests: {
+      personalLabel: '// Was ich genieße',
+      setupLabel: '// Setup · Dotfiles',
+      futureBadge: 'Future Interest',
+      gamingCaption: 'game night', gamingTitle: 'Gaming', gamingDesc: 'Solange ich mich erinnern kann, liebe ich Videospiele. Es begann mit einem Game Boy — heute habe ich weniger Zeit, aber es macht mir genauso viel Spaß wie als Kind. Red Dead Redemption II und Cyberpunk 2077 kommen mir immer in den Sinn.',
+      animeCaption: 'evening watch', animeTitle: 'Anime & Manga', animeDesc: 'Ich genieße Anime, Serien oder Filme mit meiner Frau — zuletzt habe ich angefangen, Naruto mit ihr erneut zu schauen.',
+      tvCaption: 'now streaming', tvTitle: 'TV · Film & Serien', tvDesc: 'Kino und Serien, bewusst getrennt — nicht dasselbe: von Psychothrillern bis Sci-Fi. Mr Robot war ein Einschnitt.',
+      musicCaption: 'now playing', musicTitle: 'Musik', musicDesc: 'Immer an — früher eher Underground-Musik, inzwischen habe ich Geschmack an populäre Künstler gefunden und bringe mehr Abwechslung in meine Playlist.',
+      photographyCaption: 'through the lens', photographyTitle: 'Fotografie', photographyDesc: 'Ich bewege mich gern und halte Momente mit dem Handy fest — oder mit meiner Drohne auf Reisen.',
+      travelCaption: 'boarding soon', travelTitle: 'Reisen', travelDesc: 'Ich sehe die Schönheit der Welt am liebsten mit eigenen Augen — ich plane, mehr vom Planeten zu sehen.',
+      drawingCaption: 'tablet & pen', drawingTitle: 'Digitales Zeichnen', drawingDesc: 'Als Kind begann ich zu zeichnen. Am Ende verschmolz ich Technologie mit dem Zeichnen — heute zeichne ich hauptsächlich auf meinem Tablet.',
+      scriptsCardCaption: './system_control.sh', scriptsCardTitle: 'System Control', scriptsCardDesc: 'Rofi-Menü mit 30+ Tools: Netzwerk, Bluetooth, Audio, Power Management, Screen Capture, Game Mode, Night Mode und mehr.',
+      scriptsCaption: '$ ./automate.sh --all', scriptsTitle: 'Scripts & Automation', scriptsDesc: '50+ eigene Scripts: Save-Point-System für Config-Rollback, scrcpy connect, Widget-Launcher, Power Modes, LimpiarCache, Gitaliases und mehr.',
+      blueprintCaption: 'extract_tokens.sh', blueprintTitle: 'Blueprints & Tokens', blueprintDesc: 'Design-Token-Extraktion aus Bildern: Farbpaletten, CSS Custom Properties, AI-Prompts. Von der visuellen Referenz zum produktionsreifen Code.',
+      galleryCaption: 'cat gallery.md', galleryTitle: 'Setup-Galerie', galleryDesc: 'Echte Desktop-Screenshots: Rofi System Control, Fastfetch, Arch Rice und das komplette dotfiles-dizzi Ökosystem.',
+      galleryCta: 'Dotfiles-Repository ansehen →'
+    },
     tech: {
       hint: 'Klicke auf eine Technologie, um mehr zu erfahren',
       'Node.js': 'Server-seitige JS-Laufzeitumgebung. Für RESTful APIs und skalierbare Backends mit Express.',
@@ -224,7 +299,7 @@ export const i18n = {
       name: 'Diego Härdi', role: 'DevOps & Software Engineer',
       born: '🇩🇴 San Pedro de Macorís, DR', lives: 'Jarabacoa, DR',
       passport: 'Schweizer', os: 'Arch Linux · Hyprland', editor: 'Neovim · LazyVim',
-      langs: 'ES · EN · DE (A2)',
+      langs: 'ES · EN (B2) · DE (A2)',
       bio: 'Tagsüber entwickle ich Full-Stack-Apps mit dem MERN-Stack. Nachts tauche ich in Neovim-Konfigurationen ein, optimiere mein Arch Linux Hyprland oder automatisiere Workflows. Ich spreche TypeScript, JavaScript, Lua und die Sprache von sauberen, wartbaren Systemen.',
       label: { name: 'Name', role: 'Rolle', born: 'Geboren', lives: 'Lebt', passport: 'Pass', os: 'OS', editor: 'Editor', langs: 'Sprachen' }
     },
@@ -233,7 +308,7 @@ export const i18n = {
       details: 'Details anzeigen', back: '← Zurück zum Anfang',
       status: 'Status', category: 'Kategorie', team: 'Teamgröße',
       year: 'Jahr', completed: 'Abgeschlossen', inProgress: 'In Entwicklung',
-      solo: 'Allein', team: 'Team',
+      solo: 'Allein',
       footer: 'Entworfen und entwickelt von Diego Härdi . Jede Zeile Code, mit Absicht und Zuneigung.'
     },
     contact: {
@@ -251,8 +326,8 @@ export const i18n = {
       download: 'cat zertifikate.json',
       loading: 'loading...',
       command: 'wget cic-associate-certificate.pdf',
-      waitingMessage: '⏳ Warte auf offizielles CIC-Zertifizierungsprogramm...',
-      internalStatus: 'Interner Cap. ✓ — Warte auf offizielles Prüfungsdatum',
+      waitingMessage: '✓ Abgeschlossen — PTD-Talento-Projekt entwickelt',
+      internalStatus: '100% — Zertifizierung abgeschlossen',
       viewDetails: '▶ details anzeigen',
       note: '※ Zertifizierungsziele 2026'
     },

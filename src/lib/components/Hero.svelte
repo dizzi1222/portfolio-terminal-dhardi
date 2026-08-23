@@ -107,19 +107,28 @@
           {#if displayText.length === 0}
             <span style="animation:blink 1s step-end infinite;color:var(--accent-tertiary);font-size:0.8rem">_</span>
           {/if}
+          <div class="hero-chips">
+            <span class="chip chip--base">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              {t('hero.base')}
+            </span>
+            <span class="chip chip--open">
+              <span class="pulse-dot"></span>
+              {t('hero.available')}
+            </span>
+            <a href="/cv.pdf" target="_blank" rel="noopener" class="chip chip--cv">{t('hero.downloadCv')}</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="hero-hud" style="margin-top:var(--gap-md)">
-    <span class="hud-key">h</span> <span class="hud-meta">←</span>
-    <span class="hud-key">j</span> <span class="hud-meta">↓</span>
-    <span class="hud-key">k</span> <span class="hud-meta">↑</span>
-    <span class="hud-key">l</span> <span class="hud-meta">→</span>
+    <span class="hud-key">h</span> <span class="hud-meta">← prev</span>
+    <span class="hud-key">l</span> <span class="hud-meta">next →</span>
     <span class="hud-sep">│</span>
-    <span class="hud-key">gg</span> <span class="hud-meta">top</span>
+    <span class="hud-key">j</span><span class="hud-key">k</span> <span class="hud-meta">↓↑</span>
     <span class="hud-sep">│</span>
-    <span class="hud-key">G</span> <span class="hud-meta">bottom</span>
+    <span class="hud-key">gg</span>/<span class="hud-key">G</span> <span class="hud-meta">top/bottom</span>
     <span class="hud-sep">│</span>
     <span class="hud-key">/</span> <span class="hud-meta">search</span>
     <span class="hud-sep">│</span>
@@ -131,5 +140,78 @@
         <circle cx="17" cy="16" r="2.5"/>
       </svg>
     </span>
+    <span class="hud-sep">│</span>
+    <span class="hud-key">t</span> <span class="hud-meta">theme</span>
+    <span class="hud-key">L</span> <span class="hud-meta">lang</span>
+    <span class="hud-key">B</span> <span class="hud-meta">wallpaper</span>
+    <span class="hud-key">?</span> <span class="hud-meta">help</span>
+  </div>
+  <div class="hero-hud hero-hud--more">
+    <span class="hud-meta">More vim motions:</span>
+    <span class="hud-key">Enter</span> <span class="hud-meta">next section</span>
+    <span class="hud-sep">│</span>
+    <span class="hud-key">Backspace</span> <span class="hud-meta">prev section</span>
+    <span class="hud-sep">│</span>
+    <span class="hud-key">I</span> <span class="hud-meta">insert mode → ~/contact form</span>
+    <span class="hud-sep">│</span>
+    <span class="hud-key">1-9</span> <span class="hud-meta">jump to section</span>
   </div>
 </section>
+
+<style>
+  .hero-chips {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    flex-wrap: wrap;
+    margin-top: var(--gap-md);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    font-family: inherit;
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .chip--base {
+    border: 1px solid var(--text-dim);
+    color: var(--text-muted);
+  }
+  .chip--open {
+    color: #00d9ff;
+    border: 1px solid rgba(0,217,255,0.4);
+    background: rgba(0,217,255,0.06);
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(0,217,255,0.4);
+  }
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00d9ff;
+    box-shadow: 0 0 6px #00d9ff;
+    animation: pulse-dot 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .chip--cv {
+    color: #00d9ff;
+    border: 1px solid rgba(0,217,255,0.45);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .chip--cv:hover {
+    background: rgba(0,217,255,0.1);
+    box-shadow: 0 0 10px rgba(0,217,255,0.25);
+  }
+  .hero-hud--more {
+    margin-top: 4px;
+    opacity: 0.75;
+  }
+</style>

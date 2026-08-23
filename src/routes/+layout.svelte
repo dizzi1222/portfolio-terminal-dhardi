@@ -7,8 +7,8 @@
   import Toast from '$lib/components/Toast.svelte';
   import RandomPhrases from '$lib/components/RandomPhrases.svelte';
   import SectionNav from '$lib/components/SectionNav.svelte';
-  import { initTheme, bgGifActive, toggleBgGif } from '$lib/stores/theme.svelte';
-  import { initLang } from '$lib/stores/lang.svelte';
+  import { initTheme, bgGifActive, toggleBgGif, toggleTheme } from '$lib/stores/theme.svelte';
+  import { initLang, cycleLang } from '$lib/stores/lang.svelte';
   import { sections, scroll, type Section } from '$lib/stores/scroll.svelte';
   import { player } from '$lib/stores/player.svelte';
   import MusicPlayer from '$lib/components/MusicPlayer.svelte';
@@ -16,8 +16,53 @@
   let { children } = $props();
 
   let showKeybindings = $state(false);
+  let searchOpen = $state(false);
+  let searchQuery = $state('');
   let bgGif = $state('');
   let cmdIndex = 0;
+
+  const searchResults = $derived.by(() => {
+    const q = searchQuery.trim().toLowerCase();
+    const items = sections.map(id => ({
+      id,
+      label: id === 'hero' ? '~/' : `~/${id}`
+    }));
+    if (!q) return items;
+    return items.filter(i => i.id.includes(q) || i.label.includes(q));
+  });
+
+  function goToSection(idx: number) {
+    const clamped = Math.max(0, Math.min(sections.length - 1, idx));
+    const id = sections[clamped];
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function sectionStep(dir: 1 | -1) {
+    goToSection(sections.indexOf(scroll.value) + dir);
+  }
+
+  function openSearch() {
+    searchQuery = '';
+    searchOpen = true;
+  }
+
+  function closeSearch() {
+    searchOpen = false;
+  }
+
+  function isTypingTarget(e: KeyboardEvent): boolean {
+    const el = e.target as HTMLElement | null;
+    if (!el) return false;
+    return (
+      el.tagName === 'INPUT' ||
+      el.tagName === 'TEXTAREA' ||
+      el.isContentEditable
+    );
+  }
 
   const cmdLines = [
     '$ npm run dev -- --port 5173', '$ nvim src/App.tsx', '$ git push origin main',
@@ -71,30 +116,68 @@
     });
 
     document.addEventListener('keydown', (e) => {
+      const typing = isTypingTarget(e);
+
+      if (typing) {
+        if (e.key === 'Escape') (e.target as HTMLElement).blur();
+        return;
+      }
+
+      if (searchOpen) {
+        if (e.key === 'Escape') closeSearch();
+        if (e.key === 'Enter') {
+          const first = searchResults[0];
+          if (first) goToSection(sections.indexOf(first.id));
+          closeSearch();
+        }
+        return;
+      }
+
       if (e.key === '?') {
         showKeybindings = !showKeybindings;
+        return;
       }
       if (e.key === 'Escape') {
         showKeybindings = false;
         if (player.visible) player.hide();
+        return;
       }
-      const sections = ['hero', 'about', 'tech', 'design', 'projects', 'certs', 'contact'];
-      if (e.key >= '1' && e.key <= '7') {
-        const idx = parseInt(e.key) - 1;
-        if (sections[idx]) {
-          document.getElementById(sections[idx])?.scrollIntoView({ behavior: 'smooth' });
-        }
+      if (e.key === '/') {
+        e.preventDefault();
+        openSearch();
+        return;
+      }
+
+      if (e.key >= '1' && e.key <= '9') {
+        goToSection(parseInt(e.key) - 1);
+        return;
       }
       if (e.key === 'g' && !e.shiftKey) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
       }
       if (e.key === 'G' && e.shiftKey) {
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        return;
       }
-      if (e.key === 'j') window.scrollBy({ top: 100, behavior: 'smooth' });
-      if (e.key === 'k') window.scrollBy({ top: -100, behavior: 'smooth' });
-      if (e.key === 'b') toggleBgGif();
-      if (e.key === 'm') player.toggle();
+      if (e.key === 'j') { window.scrollBy({ top: 100, behavior: 'smooth' }); return; }
+      if (e.key === 'k') { window.scrollBy({ top: -100, behavior: 'smooth' }); return; }
+      if (e.key === 'h') { sectionStep(-1); return; }
+      if (e.key === 'l') { sectionStep(1); return; }
+      if (e.key === 'Enter') { sectionStep(1); return; }
+      if (e.key === 'Backspace') { e.preventDefault(); sectionStep(-1); return; }
+      if (e.key === 'I' && e.shiftKey) {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          const input = document.querySelector('#contact input:not([tabindex="-1"])') as HTMLInputElement | null;
+          input?.focus();
+        }, 600);
+        return;
+      }
+      if (e.key === 't' && !e.shiftKey) toggleTheme();
+      if (e.key === 'L' && e.shiftKey) cycleLang();
+      if (e.key === 'b' && !e.shiftKey) toggleBgGif();
+      if (e.key === 'm' && !e.shiftKey) player.toggle();
     });
   });
 
@@ -147,17 +230,90 @@
         <span>keybindings.md</span>
       </div>
       <div class="window__content">
-        <p><code>j/k</code> - Scroll up/down</p>
-        <p><code>g</code> - Go to top</p>
+        <p><code>j/k</code> - Scroll down/up</p>
+        <p><code>h/l</code> - Previous/next section</p>
+        <p><code>gg</code> - Go to top</p>
         <p><code>G</code> - Go to bottom</p>
-        <p><code>1-7</code> - Jump to section</p>
+        <p><code>1-9</code> - Jump to section</p>
+        <p><code>/</code> - Search sections</p>
+        <p><code>I</code> - Insert mode (contact form)</p>
+        <p><code>t</code> - Toggle theme</p>
+        <p><code>L</code> - Cycle language</p>
         <p><code>b</code> - Toggle animated BG</p>
         <p><code>m</code> - Toggle music player</p>
         <p><code>Space</code> - Play/Pause (when player open)</p>
         <p><code>←/→</code> - Prev/Next track (when player open)</p>
         <p><code>?</code> - Toggle this help</p>
-        <p><code>Esc</code> - Close / hide player</p>
+        <p><code>Esc</code> - Close / hide player / leave input</p>
       </div>
     </div>
   </div>
 {/if}
+
+<!-- Search Overlay (/) -->
+{#if searchOpen}
+  <!-- svelte-ignore a11y_no_static_element_interactions a11y_click_events_have_key_events -->
+  <div class="keybindings-overlay" onclick={closeSearch} role="dialog" aria-label="Search sections" tabindex="-1">
+    <div class="window" style="max-width:360px">
+      <div class="window__titlebar">
+        <span>search.sh — /{searchQuery}</span>
+      </div>
+      <div class="window__content">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="type to filter sections…"
+          bind:value={searchQuery}
+          onclick={(e) => e.stopPropagation()}
+        />
+        {#each searchResults as r}
+          <button
+            class="search-result"
+            onclick={() => { goToSection(sections.indexOf(r.id)); closeSearch(); }}
+          >
+            <span style="color:var(--accent-secondary)">go_to()</span> {r.label}
+          </button>
+        {:else}
+          <p style="color:var(--text-dim);font-size:0.8rem">no match: {searchQuery}</p>
+        {/each}
+        <p style="color:var(--text-dim);font-size:0.65rem;margin-top:var(--gap-sm)">Enter → first result · Esc → close</p>
+      </div>
+    </div>
+  </div>
+{/if}
+
+<style>
+  .search-input {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--text-dim);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.8rem;
+    padding: var(--gap-xs) var(--gap-sm);
+    border-radius: 3px;
+    outline: none;
+    margin-bottom: var(--gap-sm);
+  }
+  .search-input:focus {
+    border-color: var(--accent-tertiary);
+    box-shadow: 0 0 8px rgba(0,217,255,0.2);
+  }
+  .search-result {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.78rem;
+    padding: var(--gap-xs) var(--gap-sm);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .search-result:hover {
+    background: rgba(0,217,255,0.08);
+    color: var(--accent-tertiary);
+  }
+</style>

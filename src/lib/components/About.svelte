@@ -24,7 +24,7 @@
     </div>
     <div class="window__content">
       <div style="display:flex;align-items:flex-start;gap:var(--gap-lg);flex-wrap:wrap">
-        <img src="/avatar.png" alt="Avatar" class="avatar--rounded"
+        <img src="/avatar2.webp" alt="Avatar" class="avatar--rounded"
           style="filter:blur(5px) grayscale(0.3);width:72px;height:72px;object-fit:cover" />
         <div style="flex:1;min-width:200px">
           <h2 style="color:var(--accent-tertiary);margin-bottom:var(--gap-sm)">
@@ -35,12 +35,6 @@
             <span class="about-grid__value">{i18n[currentLang].about.name}</span>
             <span class="about-grid__label">{t('about.label.role')}</span>
             <span class="about-grid__value">{i18n[currentLang].about.role}</span>
-            <span class="about-grid__label">{t('about.label.born')}</span>
-            <span class="about-grid__value">{i18n[currentLang].about.born}</span>
-            <span class="about-grid__label">{t('about.label.lives')}</span>
-            <span class="about-grid__value">{i18n[currentLang].about.lives}</span>
-            <span class="about-grid__label">{t('about.label.passport')}</span>
-            <span class="about-grid__value">🇨🇭 {i18n[currentLang].about.passport}</span>
             <span class="about-grid__label">{t('about.label.os')}</span>
             <span class="about-grid__value">{i18n[currentLang].about.os}</span>
             <span class="about-grid__label">{t('about.label.editor')}</span>

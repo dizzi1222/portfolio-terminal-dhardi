@@ -432,6 +432,20 @@ const tagSvg: Record<string, string> = {
     max-height: 270px;
     object-fit: contain;
     border-radius: 4px;
+    animation: detailBlurIn 0.6s ease both;
+  }
+
+  @keyframes detailBlurIn {
+    from {
+      opacity: 0;
+      filter: blur(12px);
+      transform: scale(1.02);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+    }
   }
 
   .detail-footer {

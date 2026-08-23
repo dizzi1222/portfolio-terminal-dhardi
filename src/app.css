@@ -3,6 +3,7 @@
   --bg-secondary: #1a1a2e;
   --bg-tertiary: #16213e;
   --bg-window: rgba(18,18,18,0.85);
+  --bg-modal-solid: #121212;
   --navbar-bg: rgba(18,18,18,0.85);
   --accent-primary: #e94560;
   --accent-secondary: #7b2cbf;
@@ -29,6 +30,7 @@
   --bg-secondary: #e8e8e8;
   --bg-tertiary: #ddd;
   --bg-window: #fff;
+  --bg-modal-solid: #ffffff;
   --navbar-bg: rgba(248,248,248,0.92);
   --text-primary: #1a1a1a;
   --text-muted: #666;
@@ -186,6 +188,26 @@ code, pre {
   max-height: 85vh;
   overflow-y: auto;
   z-index: 1;
+  /* Opaco permanente: resuelve legibilidad del contenido modal
+     (las ventanas normales siguen translúcidas con --bg-window) */
+  background: var(--bg-modal-solid);
+  animation: modalIn 0.25s ease both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes backdropFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-window:hover {
@@ -478,6 +500,7 @@ code, pre {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.85);
+  animation: backdropFade 0.3s ease both;
 }
 
 .modal-close-btn {

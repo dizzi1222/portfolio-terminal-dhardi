@@ -12,7 +12,6 @@
   };
 
   let showModal = $state(false);
-  let certFrame = $state(0);
 
   function openModal() {
     showModal = true;
@@ -22,11 +21,6 @@
     showModal = false;
     document.dispatchEvent(new CustomEvent('detail-close'));
   }
-
-  $effect(() => {
-    const interval = setInterval(() => certFrame = (certFrame + 1) % 4, 400);
-    return () => clearInterval(interval);
-  });
 
   function onKeydown(e: KeyboardEvent) {
     if (e.key === 'Escape') closeModal();
@@ -38,15 +32,13 @@
     }
   });
 
-  const certFrames = ['◴', '◷', '◶', '◵'];
-
   const certs = [
     { title: 'Desarrollo de Software v4', status: 'completed', progress: '100%', issuer: 'CIC · RadarX', statusColor: '#4ade80', progColor: '#4ade80' },
     { title: 'Inteligencia Artificial para Todos v1', status: 'completed', progress: '100%', issuer: 'CIC · RadarX', statusColor: '#4ade80', progColor: '#4ade80' },
     { title: 'Fundamentos de Pensamiento Crítico v4', status: 'completed', progress: '100%', issuer: 'CIC · RadarX', statusColor: '#4ade80', progColor: '#4ade80' },
     { title: 'Mi primer empleo en Tech', status: 'completed', progress: '100%', issuer: 'CIC · Panel', statusColor: '#4ade80', progColor: '#4ade80' },
     { title: 'Curso de IA para Todos', status: 'completed', progress: '100%', issuer: 'CIC · Panel', statusColor: '#4ade80', progColor: '#4ade80' },
-    { title: 'CIC Associate Developer', status: 'in_progress', progress: '44%', issuer: 'Cincinnatus Bootcamp', statusColor: 'var(--accent-tertiary)', progColor: 'var(--accent-secondary)' },
+    { title: 'CIC Associate Developer', status: 'completed', progress: '100%', issuer: 'Cincinnatus Bootcamp', statusColor: '#4ade80', progColor: '#4ade80' },
     { title: 'JSCAMP — Midudev Bootcamp', status: 'in_progress', progress: '20%', issuer: 'Midudev', statusColor: 'var(--accent-tertiary)', progColor: 'var(--accent-secondary)' },
     { title: 'Mimo Full-Stack Development', status: 'in_progress', progress: '15%', issuer: 'Mimo GmbH', statusColor: 'var(--accent-tertiary)', progColor: 'var(--accent-secondary)' },
     { title: 'Exercism · TryHackMe', status: 'starting', progress: '10%', issuer: 'Exercism · TryHackMe', statusColor: 'var(--text-dim)', progColor: 'var(--accent-secondary)' },
@@ -61,20 +53,20 @@
         <span class="window__titlebar-dot"></span>
         <span class="window__titlebar-dot"></span>
       </div>
-      <span>cic_cert_download.sh — <span style="color:var(--accent-tertiary)">{certFrames[certFrame]}</span></span>
+      <span>cic_cert_download.sh — <span style="color:#4ade80">✓</span></span>
     </div>
     <div class="window__content" style="padding:var(--gap-lg)">
       <h2 class="section__title" style="margin-top:0">// {t('sectionTitles.certs')}</h2>
       <div style="text-align:center">
-        <div style="font-size:2.5rem;margin-bottom:var(--gap-sm);line-height:1;color:var(--accent-tertiary)">{certFrames[certFrame]}</div>
+        <div style="font-size:2.5rem;margin-bottom:var(--gap-sm);line-height:1;color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,0.4)">✓</div>
         <p style="color:var(--accent-tertiary);font-family:inherit;font-size:0.85rem;margin:var(--gap-sm) 0">
           $ {t('cert.command')}
         </p>
-        <p style="color:var(--text-dim);font-family:inherit;font-size:0.75rem;margin-top:var(--gap-sm)">
+        <p style="color:#4ade80;font-family:inherit;font-size:0.75rem;margin-top:var(--gap-sm)">
           {t('cert.waitingMessage')}
         </p>
         <div style="background:var(--bg-secondary);height:4px;border-radius:2px;margin:var(--gap-md) auto;max-width:250px;overflow:hidden">
-          <div style="background:var(--accent-tertiary);height:100%;width:44%;transition:width 0.5s ease"></div>
+          <div style="background:#4ade80;height:100%;width:100%;box-shadow:0 0 8px rgba(74,222,128,0.5);transition:width 0.5s ease"></div>
         </div>
         <div style="margin-top:var(--gap-sm)">
           <span style="color:var(--text-dim);font-size:0.7rem;font-family:inherit">
