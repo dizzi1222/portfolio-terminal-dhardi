@@ -13,13 +13,74 @@
   };
 
   const personal = [
-    { key: 'gaming', img: '/interests/gaming.webp', color: '#00d9ff', future: false },
-    { key: 'anime', img: '/interests/anime.webp', color: '#f472b6', future: false },
-    { key: 'tv', img: '/interests/tv-series.webp', color: '#e94560', future: false },
-    { key: 'music', img: '/interests/music.webp', color: '#a78bfa', future: false },
-    { key: 'photography', img: '/interests/photography.webp', color: '#34d399', future: true },
-    { key: 'travel', img: '/interests/travel.webp', color: '#60a5fa', future: true },
-    { key: 'drawing', img: '/interests/drawing.webp', color: '#fbbf24', future: true }
+    {
+      key: 'gaming', color: '#00d9ff', future: false,
+      imgs: [
+        '/interests/gaming/gaming.webp',
+        '/interests/gaming/gaming-dmc3.webp',
+        '/interests/gaming/gaming-dmc3ps2.webp',
+        '/interests/gaming/gaming-kaine.webp',
+        '/interests/gaming/gaming-nier.webp',
+        '/interests/gaming/gaming-2b.webp',
+        '/interests/gaming/gaming-a2.webp',
+        '/interests/gaming/gaming-snake.webp',
+      ],
+    },
+    {
+      key: 'anime', color: '#f472b6', future: false,
+      imgs: [
+        '/interests/anime/anime.webp',
+        '/interests/anime/ashita-no-joe-art-13.jpg',
+        '/interests/anime/ashita-no-joe-carlos.png',
+        '/interests/anime/berserk-art-11.jpg',
+        '/interests/anime/berserk-guts-casca.jpg',
+        '/interests/anime/berserk-yume-no-kagaribi.jpg',
+        '/interests/anime/bleach-art-13.png',
+        '/interests/anime/csm-art-19.png',
+        '/interests/anime/csm-art-20.jpg',
+        '/interests/anime/dragon-ball-art-4.jpg',
+        '/interests/anime/dragon-ball-art-6.jpg',
+        '/interests/anime/dragon-ball-art-9.jpg',
+      ],
+    },
+    {
+      key: 'tv', color: '#e94560', future: false,
+      imgs: ['/interests/tv-series/tv-series.webp'],
+      video: '/interests/tv-series/star-wars-best-of.mp4',
+    },
+    {
+      key: 'music', color: '#a78bfa', future: false,
+      imgs: [
+        '/interests/music/music.webp',
+        '/interests/music/kew-music.webp',
+        '/interests/music/kew-icon.webp',
+      ],
+    },
+    {
+      key: 'photography', color: '#34d399', future: true,
+      imgs: [
+        '/interests/photography/photography.webp',
+        '/interests/photography/photography2.webp',
+        '/interests/photography/photography3.webp',
+      ],
+    },
+    {
+      key: 'travel', color: '#60a5fa', future: true,
+      imgs: [
+        '/interests/travel/travel.webp',
+        '/interests/travel/travel2.webp',
+        '/interests/travel/travel3.webp',
+        '/interests/travel/travel4.webp',
+        '/interests/travel/travel5.webp',
+      ],
+    },
+    {
+      key: 'drawing', color: '#fbbf24', future: true,
+      imgs: [
+        '/interests/drawing/drawing.webp',
+        '/interests/drawing/drawing-kaneki-study.webp',
+      ],
+    },
   ];
 
   const setup = [
@@ -28,6 +89,36 @@
     { key: 'blueprint', img: '/interests/setup-nvim.webp', color: '#e94560', badges: ['Bash', 'CSS', 'AI'] },
     { key: 'gallery', img: '/interests/setup-rice.webp', color: '#00d9ff', badges: ['Arch', 'Hyprland', 'EWW'] }
   ];
+
+  const activeIdx = $state<Record<string, number>>({});
+  const timers: Record<string, ReturnType<typeof setInterval>> = {};
+
+  function startCycle(key: string, len: number) {
+    if (len < 2 || timers[key]) return;
+    timers[key] = setInterval(() => {
+      activeIdx[key] = ((activeIdx[key] ?? 0) + 1) % len;
+    }, 1500);
+  }
+
+  function stopCycle(key: string) {
+    clearInterval(timers[key]);
+    delete timers[key];
+    activeIdx[key] = 0;
+  }
+
+  let tvPlaying = $state(false);
+  let videoEl: HTMLVideoElement | undefined = $state();
+
+  function playTv() {
+    if (!videoEl) return;
+    tvPlaying = true;
+    requestAnimationFrame(() => videoEl?.play().catch(() => {}));
+  }
+
+  function endTv() {
+    tvPlaying = false;
+    if (videoEl) videoEl.currentTime = 0;
+  }
 </script>
 
 <section class="section" id="interests">
@@ -48,9 +139,24 @@
       <p class="interests-label">{t('interests.personalLabel')}</p>
       <div class="grid grid-3">
         {#each personal as c}
-          <div class="card">
+          <!-- svelte-ignore a11y_no_static_element_interactions -->
+          <div class="card" onmouseenter={() => startCycle(c.key, c.imgs.length)} onmouseleave={() => stopCycle(c.key)}>
             <div class="card__imgwrap">
-              <img src={c.img} alt={t(`interests.${c.key}Title`)} loading="lazy" />
+              <div class="media-stack">
+                {#each c.imgs as src, i}
+                  <img {src} alt="{c.key}-{i + 1}" loading="lazy" decoding="async" class:is-active={(activeIdx[c.key] ?? 0) === i} />
+                {/each}
+              </div>
+              {#if c.video}
+                {#if !tvPlaying}
+                  <button type="button" class="play-btn" onclick={playTv} aria-label="Play">
+                    <span class="play-circle">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                  </button>
+                {/if}
+                <video bind:this={videoEl} class="media-video" hidden={!tvPlaying} preload="metadata" controls playsinline poster={c.imgs[0]} src={c.video} onended={endTv}></video>
+              {/if}
               {#if c.future}
                 <span class="future-badge">{t('interests.futureBadge')}</span>
               {/if}
@@ -131,14 +237,69 @@
     height: 8.5rem;
     overflow: hidden;
   }
-  .card__imgwrap img {
+  .media-stack {
+    position: absolute;
+    inset: 0;
+  }
+  .media-stack img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.5s ease;
   }
-  .card:hover .card__imgwrap img {
+  .media-stack img.is-active {
+    opacity: 1;
+  }
+  .card:hover .media-stack img.is-active {
     transform: scale(1.05);
+  }
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .card:hover .play-btn {
+    opacity: 1;
+  }
+  .play-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 9999px;
+    background: rgba(233, 69, 96, 0.85);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    box-shadow: 0 0 24px rgba(233, 69, 96, 0.5);
+    transition: transform 0.25s ease;
+  }
+  .play-btn:hover .play-circle {
+    transform: scale(1.08);
+  }
+  .media-video {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+  }
+  .media-video[hidden] {
+    display: none;
   }
   .img-top {
     object-position: top;

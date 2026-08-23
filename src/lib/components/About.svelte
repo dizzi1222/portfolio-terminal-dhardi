@@ -35,6 +35,12 @@
             <span class="about-grid__value">{i18n[currentLang].about.name}</span>
             <span class="about-grid__label">{t('about.label.role')}</span>
             <span class="about-grid__value">{i18n[currentLang].about.role}</span>
+            <span class="about-grid__label">{t('about.label.born')}</span>
+            <span class="about-grid__value">{i18n[currentLang].about.born}</span>
+            <span class="about-grid__label">{t('about.label.lives')}</span>
+            <span class="about-grid__value">{i18n[currentLang].about.lives}</span>
+            <span class="about-grid__label">{t('about.label.passport')}</span>
+            <span class="about-grid__value">🇨🇭 {i18n[currentLang].about.passport}</span>
             <span class="about-grid__label">{t('about.label.os')}</span>
             <span class="about-grid__value">{i18n[currentLang].about.os}</span>
             <span class="about-grid__label">{t('about.label.editor')}</span>

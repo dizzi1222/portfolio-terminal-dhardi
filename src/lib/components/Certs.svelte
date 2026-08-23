@@ -43,6 +43,8 @@
     { title: 'Mimo Full-Stack Development', status: 'in_progress', progress: '15%', issuer: 'Mimo GmbH', statusColor: 'var(--accent-tertiary)', progColor: 'var(--accent-secondary)' },
     { title: 'Exercism · TryHackMe', status: 'starting', progress: '10%', issuer: 'Exercism · TryHackMe', statusColor: 'var(--text-dim)', progColor: 'var(--accent-secondary)' },
   ];
+
+  const activeCerts = certs.filter(c => c.status !== 'completed');
 </script>
 
 <section class="section" id="certs">
@@ -74,6 +76,17 @@
           </span>
           <span style="animation:blink 1s step-end infinite">_</span>
         </div>
+      </div>
+      <div class="cert-mini-section">
+        <p class="cert-mini-label">// {t('cert.inProgress')}</p>
+        {#each activeCerts as c}
+          <div class="cert-mini">
+            <span style={`color:${c.statusColor};flex-shrink:0`}>▸</span>
+            <span class="cert-mini__title">{c.title}</span>
+            <span class="cert-mini__bar"><span style={`width:${c.progress};background:${c.progColor}`}></span></span>
+            <span class="cert-mini__pct" style={`color:${c.progColor}`}>{c.progress}</span>
+          </div>
+        {/each}
       </div>
       <div style="margin-top:var(--gap-md);padding-top:var(--gap-md);border-top:1px solid var(--text-dim)">
         <div class="terminal-line cert-download-line" onclick={openModal} onkeydown={(e) => { if (e.key === 'Enter') openModal(); }} role="button" tabindex="0">
@@ -128,6 +141,52 @@
 {/snippet}
 
 <style>
+  .cert-mini-section {
+    margin-top: var(--gap-md);
+    padding-top: var(--gap-md);
+    border-top: 1px dashed var(--text-dim);
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .cert-mini-label {
+    color: var(--accent-tertiary);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 2px;
+  }
+  .cert-mini {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.68rem;
+  }
+  .cert-mini__title {
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cert-mini__bar {
+    flex: 1;
+    height: 3px;
+    min-width: 30px;
+    background: var(--bg-secondary);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .cert-mini__bar span {
+    display: block;
+    height: 100%;
+    border-radius: 2px;
+  }
+  .cert-mini__pct {
+    flex-shrink: 0;
+    font-size: 0.62rem;
+    width: 32px;
+    text-align: right;
+  }
   .cert-download-line {
     cursor: pointer;
     transition: border-color 0.2s ease;
