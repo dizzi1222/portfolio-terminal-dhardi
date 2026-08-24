@@ -12,6 +12,7 @@ export const i18n = {
     sectionTitles: { experience: 'Experiencia', about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', interests: 'Intereses', certs: 'Certificaciones', contact: 'Contact' },
     exp: {
       heading: 'Experiencia',
+      collapsedHint: '{n} entradas ocultas — click para expandir',
       subtitle: 'Mi trayectoria profesional',
       job1: { badge: 'Retail', title: 'Asistente / Cajero', company: 'La Sirena · República Dominicana', period: '2025 — 2026', desc: 'Mi primer contacto con el mundo laboral formal. Trabajar en uno de los supermercados más grandes del país me enseñó cómo funciona realmente un negocio desde adentro: logística, inventario, atención al cliente bajo presión. Esa experiencia fue el combustible que encendió mi decisión de construir una carrera en tecnología.' },
       job2: { badge: 'Educación', title: 'Bootcamp Full-Stack', company: 'Cincinnatus · República Dominicana', period: '2024 — 2026', desc: 'El motor de arranque de mi carrera como programador. Cincinnatus fue el punto de inflexión donde pasé de ser un curioso autodidacta a un desarrollador en formación, trabajando en proyectos reales en equipo.' },
@@ -65,7 +66,14 @@ export const i18n = {
       'Material UI': 'Biblioteca de componentes React basada en Material Design. UI profesional con temas, grids y accesibilidad.',
       'React Router': 'Enrutamiento declarativo para React. Navegación SPA con loaders, acciones y data fetching.',
       'Bootstrap': 'Framework CSS con componentes preconstruidos. Sistema de rejilla, utilidades responsive y tematización.',
-      'OpenCode': 'Asistente de código con memoria persistente (Engram), Claude, OpenRouter, Antigravity y herramientas MCP (n8n, archivos, terminal). Mejor que Claude Desktop.'
+      'OpenCode': 'Asistente de código con memoria persistente (Engram), Claude, OpenRouter, Antigravity y herramientas MCP (n8n, archivos, terminal). Mejor que Claude Desktop.',
+      'Ollama': 'Ejecuta LLMs open-source (Llama, Mistral, Gemma) localmente en tu máquina.',
+      'Antigravity': 'IDE basado en VS Code con Gemini, Claude Opus y Sonnet integrados.',
+      'HTML': 'Lenguaje de marcado web. Estructura semántica y accesible.',
+      'CSS': 'Estilos web modernos. Flexbox, Grid, animaciones y variables.',
+      'Vite': 'Build tool ultrarrápido. HMR instantáneo y optimización de módulos.',
+      'Lua': 'Lenguaje ligero y embebible. Configuración de Neovim.',
+      'Shell': 'Bash/Zsh scripting. Automatización de sistema y dotfiles.',
     },
     design: {
       hint: 'Diseño UX/UI — Prototipado con Google Stitch, maquetado en Figma. Creación y mantenimiento de Design Systems (CIC-Styles).',
@@ -123,6 +131,7 @@ export const i18n = {
     sectionTitles: { experience: 'Experience', about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', interests: 'Interests', certs: 'Certifications', contact: 'Contact' },
     exp: {
       heading: 'Experience',
+      collapsedHint: '{n} hidden entries — click to expand',
       subtitle: 'My professional journey',
       job1: { badge: 'Retail', title: 'Assistant / Cashier', company: 'La Sirena · Dominican Republic', period: '2025 — 2026', desc: 'My first contact with the formal working world. Working at one of the largest supermarkets in the country taught me how a business really works from the inside: logistics, inventory, customer service under pressure. That experience fueled my decision to build a career in technology.' },
       job2: { badge: 'Education', title: 'Full-Stack Bootcamp', company: 'Cincinnatus · Dominican Republic', period: '2024 — 2026', desc: 'The starting engine of my programming career. Cincinnatus was the turning point where I went from a curious self-taught learner to a developer in training, working on real team projects.' },
@@ -176,7 +185,14 @@ export const i18n = {
       'Railway': 'Cloud platform for backends. Fast deploy with integrated PostgreSQL.',
       'React Router': 'Declarative routing for React. SPA navigation with loaders, actions and data fetching.',
       'Bootstrap': 'CSS framework with pre-built components. Grid system, responsive utilities and theming.',
-      'OpenCode': 'Code assistant with persistent memory (Engram), Claude, OpenRouter, Antigravity and MCP tools (n8n, files, terminal). Better than Claude Desktop.'
+      'OpenCode': 'Code assistant with persistent memory (Engram), Claude, OpenRouter, Antigravity and MCP tools (n8n, files, terminal). Better than Claude Desktop.',
+      'Ollama': 'Run open-source LLMs (Llama, Mistral, Gemma) locally on your machine.',
+      'Antigravity': 'VS Code-based IDE with Gemini, Claude Opus and Sonnet built in.',
+      'HTML': 'Web markup language. Semantic and accessible structure.',
+      'CSS': 'Modern web styling. Flexbox, Grid, animations and variables.',
+      'Vite': 'Blazing-fast build tool. Instant HMR and module optimization.',
+      'Lua': 'Lightweight embeddable language. Neovim configuration.',
+      'Shell': 'Bash/Zsh scripting. System automation and dotfiles.',
     },
     design: {
       hint: 'UX/UI Design — Prototyping with Google Stitch, layout in Figma. Design Systems creation (CIC-Styles).',
@@ -234,6 +250,7 @@ export const i18n = {
     sectionTitles: { experience: 'Erfahrung', about: 'Über mich', tech: 'Tech Stack', design: 'Design', projects: 'Projekte', interests: 'Interessen', certs: 'Zertifikate', contact: 'Kontakt' },
     exp: {
       heading: 'Erfahrung',
+      collapsedHint: '{n} ausgeblendete Einträge — zum Aufklappen klicken',
       subtitle: 'Mein beruflicher Werdegang',
       job1: { badge: 'Einzelhandel', title: 'Assistent / Kassierer', company: 'La Sirena · Dominikanische Republik', period: '2025 — 2026', desc: 'Mein erster Kontakt mit der formalen Arbeitswelt. Die Arbeit in einem der größten Supermärkte des Landes lehrte mich, wie ein Unternehmen wirklich von innen funktioniert. Diese Erfahrung war der Treibstoff für meine Entscheidung, eine Karriere in der Technologie aufzubauen.' },
       job2: { badge: 'Bildung', title: 'Full-Stack Bootcamp', company: 'Cincinnatus · Dominikanische Republik', period: '2024 — 2026', desc: 'Der Startschuss für meine Programmierkarriere. Cincinnatus war der Wendepunkt, an dem ich vom neugierigen Autodidakten zum angehenden Entwickler wurde — mit echten Teamprojekten.' },
@@ -287,7 +304,14 @@ export const i18n = {
       'Railway': 'Cloud-Plattform für Backends. Schnelles Deployment mit integriertem PostgreSQL.',
       'React Router': 'Deklaratives Routing für React. SPA-Navigation mit Loadern, Aktionen und Datenabruf.',
       'Bootstrap': 'CSS-Framework mit vorgefertigten Komponenten. Grid-System und responsive Utilities.',
-      'OpenCode': 'Code-Assistent mit persistentem Speicher (Engram), Claude, OpenRouter, Antigravity und MCP-Tools (n8n, Dateien, Terminal). Besser als Claude Desktop.'
+      'OpenCode': 'Code-Assistent mit persistentem Speicher (Engram), Claude, OpenRouter, Antigravity und MCP-Tools (n8n, Dateien, Terminal). Besser als Claude Desktop.',
+      'Ollama': 'Führt Open-Source-LLMs (Llama, Mistral, Gemma) lokal auf deinem Rechner aus.',
+      'Antigravity': 'Auf VS Code basierende IDE mit integriertem Gemini, Claude Opus und Sonnet.',
+      'HTML': 'Web-Auszeichnungssprache. Semantische und barrierefreie Struktur.',
+      'CSS': 'Modernes Web-Styling. Flexbox, Grid, Animationen und Variablen.',
+      'Vite': 'Blitzschnelles Build-Tool. Sofortiges HMR und Moduloptimierung.',
+      'Lua': 'Leichte eingebettete Sprache. Neovim-Konfiguration.',
+      'Shell': 'Bash/Zsh-Scripting. Systemautomatisierung und Dotfiles.',
     },
     design: {
       hint: 'UX/UI-Design — Prototyping mit Google Stitch, Layout in Figma. Designsysteme (CIC-Styles).',

@@ -10,6 +10,7 @@
   let bgActive = $state(true);
   let mobileOpen = $state(false);
   let navVisible = $state(true);
+  let lastY = 0;
 
   function toggleNav() {
     if (navVisible) {
@@ -20,6 +21,20 @@
       mobileOpen = true;
     }
   }
+
+  $effect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y < lastY - 4 || y < 80) {
+        navVisible = true;
+      } else if (y > lastY + 4 && y > 120 && !mobileOpen) {
+        navVisible = false;
+      }
+      lastY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  });
 
   lang.subscribe(v => currentLang = v);
   theme.subscribe(v => currentTheme = v);

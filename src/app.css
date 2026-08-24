@@ -60,17 +60,32 @@
   background: rgba(255, 255, 255, 0.72);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
+.light-mode .social--gh {
+  color: #792ebb;
+}
+.light-mode .social--gmail {
+  color: #d93025;
+}
+.light-mode .social--li {
+  color: #0a66c2;
+}
 .light-mode .hero-socials a:hover {
   background: #fff;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
 }
 .light-mode .social--gh:hover {
+  color: #6a1b9a;
+  border-color: #8e24aa;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18), 0 0 16px rgba(168, 85, 247, 0.35);
 }
 .light-mode .social--gmail:hover {
+  color: #c5221f;
+  border-color: #ff6b5a;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18), 0 0 16px rgba(234, 67, 53, 0.35);
 }
 .light-mode .social--li:hover {
+  color: #004182;
+  border-color: #1e88e5;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18), 0 0 16px rgba(10, 102, 194, 0.35);
 }
 .light-mode .btn--purple {
@@ -714,39 +729,45 @@ code, pre {
 
 .mobile-menu-btn { display: none; }
 
-.nav-reveal { display: none; }
+.header {
+  transition: transform 0.3s ease;
+}
+.header.nav-hidden {
+  transform: translateY(-110%);
+  pointer-events: none;
+}
+
+.nav-reveal {
+  display: inline-flex;
+  position: fixed;
+  top: calc(var(--header-height) + 0.5rem);
+  right: 0.6rem;
+  z-index: 1001;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-secondary);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.68rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s;
+}
+.nav-reveal:hover {
+  color: var(--accent-tertiary);
+  border-color: var(--accent-tertiary);
+}
 
 @media (max-width: 450px) {
   .header {
     padding: 0 var(--gap-md);
     font-size: 0.75rem;
-    transition: transform 0.3s ease;
-  }
-  .header.nav-hidden {
-    transform: translateY(-110%);
-    pointer-events: none;
   }
   .nav-reveal {
-    display: inline-flex;
-    position: fixed;
     top: 0.55rem;
-    right: 0.6rem;
-    z-index: 1001;
-    align-items: center;
-    background: var(--bg-secondary);
-    border: 1px solid var(--accent-secondary);
-    color: var(--text-muted);
-    font-family: inherit;
-    font-size: 0.68rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 3px;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-    transition: all 0.2s;
-  }
-  .nav-reveal:hover {
-    color: var(--accent-tertiary);
-    border-color: var(--accent-tertiary);
+    font-size: 0.62rem;
   }
   .header__right { display: none; }
   .mobile-menu-btn {

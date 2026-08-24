@@ -106,15 +106,15 @@
           </div>
         </div>
         <div style="flex:1;min-width:200px">
-          <h1 class="hero__name glow-text" style="font-size:2rem;margin-bottom:var(--gap-sm)">Diego Härdi</h1>
-          <p class="hero__tagline" style="color:var(--text-muted);font-size:0.9rem;margin-bottom:var(--gap-md)">
+          <h1 class="hero__name glow-text">Diego Härdi</h1>
+          <p class="hero__tagline">
             {t('hero.tagline')}
           </p>
-          <div id="typewriter" class="hero__typewriter" style="color:var(--accent-tertiary);font-size:0.8rem;min-height:1.5rem">
+          <div id="typewriter" class="hero__typewriter" style="color:var(--accent-tertiary);font-size:0.95rem;min-height:1.6rem">
             {displayText}
           </div>
           {#if displayText.length === 0}
-            <span style="animation:blink 1s step-end infinite;color:var(--accent-tertiary);font-size:0.8rem">_</span>
+            <span style="animation:blink 1s step-end infinite;color:var(--accent-tertiary);font-size:0.95rem">_</span>
           {/if}
           <p class="hero__desc">{t('hero.profileDesc')}</p>
           <div class="hero-chips">
@@ -264,9 +264,19 @@
     box-shadow: 0 0 22px rgba(168, 85, 247, 0.35);
     transform: translateY(-1px);
   }
+  .hero__name {
+    font-size: clamp(2.4rem, 6.5vw, 3.4rem);
+    line-height: 1.1;
+    margin: 0 0 var(--gap-sm);
+  }
+  .hero__tagline {
+    color: var(--text-muted);
+    font-size: clamp(0.95rem, 2.2vw, 1.08rem);
+    margin-bottom: var(--gap-md);
+  }
   .hero__desc {
     margin-top: var(--gap-sm);
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     line-height: 1.6;
     color: var(--text-muted);
     max-width: 46ch;
@@ -292,32 +302,42 @@
     width: 72px;
     height: 72px;
     border-radius: 14px;
-    border: 3px solid #000;
+    border: 3px solid transparent;
     background: rgba(0, 0, 0, 0.45);
     transition: all 0.2s ease;
   }
-  .social--gh { color: #792ebb; }
-  .social--gmail { color: #ea4335; }
-  .social--li { color: #0a66c2; }
+  .social--gh {
+    color: #b57edc;
+    border-color: #792ebb;
+    background: rgba(121, 46, 187, 0.12);
+  }
+  .social--gmail {
+    color: #ff7a6b;
+    border-color: #ea4335;
+    background: rgba(234, 67, 53, 0.1);
+  }
+  .social--li {
+    color: #5aa2ff;
+    border-color: #0a66c2;
+    background: rgba(10, 102, 194, 0.12);
+  }
   .hero-socials a:hover {
     transform: translateY(-3px) scale(1.05);
-    border-color: #000;
-    box-shadow: 0 10px 26px rgba(0,0,0,0.5);
   }
   .social--gh:hover {
-    color: #a855f7;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 18px rgba(168, 85, 247, 0.25);
+    color: #c9a0f0;
+    border-color: #a855f7;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 22px rgba(168, 85, 247, 0.35);
   }
   .social--gmail:hover {
-    color: #ff6b5a;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 18px rgba(234, 67, 53, 0.25);
+    color: #ff9a8d;
+    border-color: #ff6b5a;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 22px rgba(234, 67, 53, 0.35);
   }
   .social--li:hover {
-    color: #1e88e5;
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 18px rgba(10, 102, 194, 0.3);
+    color: #82bcff;
+    border-color: #1e88e5;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 22px rgba(10, 102, 194, 0.4);
   }
   .chip--base {
     display: inline-flex;
@@ -350,6 +370,8 @@
 
   .hero-marquee {
     overflow: hidden;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
     margin-top: var(--gap-lg);
     border-top: 1px solid var(--text-dim);
     border-bottom: 1px solid var(--text-dim);
@@ -407,6 +429,18 @@
     .hero-socials svg {
       width: 24px;
       height: 24px;
+    }
+    .hero-chips {
+      gap: var(--gap-sm);
+    }
+    .chip--base {
+      font-size: 0.6rem;
+      padding: 3px 8px;
+      gap: 4px;
+    }
+    .btn-big--open {
+      font-size: 0.68rem;
+      padding: 5px 10px;
     }
     .hero-marquee__item {
       font-size: 0.62rem;

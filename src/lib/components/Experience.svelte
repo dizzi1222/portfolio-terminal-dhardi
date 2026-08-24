@@ -12,11 +12,13 @@
   };
 
   const jobs = [
-    { key: 'job4', color: '#00d9ff', cic: true },
-    { key: 'job1', color: 'var(--accent-primary)', cic: false },
-    { key: 'job2', color: 'var(--accent-secondary)', cic: true },
-    { key: 'job3', color: '#4ade80', cic: false }
+    { key: 'job4', color: '#00d9ff', cic: true, tags: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'] },
+    { key: 'job1', color: 'var(--accent-primary)', cic: false, tags: [] as string[] },
+    { key: 'job2', color: 'var(--accent-secondary)', cic: true, tags: ['HTML', 'CSS', 'JavaScript', 'Git'] },
+    { key: 'job3', color: '#4ade80', cic: false, tags: [] as string[] }
   ];
+
+  let expanded = $state(false);
 </script>
 
 <section class="section" id="experience">
@@ -29,38 +31,108 @@
       </div>
       <span>cat experience.sh</span>
     </div>
-    <div class="window__content">
-      <h2 style="color:var(--accent-tertiary);margin-bottom:var(--gap-xs)">
-        // {t('exp.heading')} <span style="color:var(--text-dim);font-size:0.85rem;font-weight:400">· {t('exp.subtitle')}</span>
-      </h2>
-      <div class="exp-timeline">
-        {#each jobs as job}
-          {@const data = t(`exp.${job.key}`)}
-          {@const badge = (i18n[currentLang].exp as unknown as Record<string, { badge: string }>)[job.key].badge}
-          <div class="exp-entry">
-            <div class="exp-entry__marker" style="border-color:{job.color}"></div>
-            <div class="exp-entry__card" style={`--job:${job.color}`}>
-              <div class="exp-entry__meta">
-                <span class="exp-entry__badge" style="color:{job.color};border-color:{job.color}">{badge}</span>
-                {#if job.cic}
-                  <span class="exp-entry__cic" title="Cincinnatus Institute of Craftsmanship, INC.">CIC</span>
-                {/if}
-                <span class="exp-entry__period">{data.period}</span>
-                <p class="exp-entry__company">{data.company}</p>
-              </div>
-              <div class="exp-entry__main">
-                <h3 class="exp-entry__title">{data.title}</h3>
-                <p class="exp-entry__desc">{data.desc}</p>
+    <button
+      type="button"
+      class="exp-toggle"
+      onclick={() => expanded = !expanded}
+      aria-expanded={expanded}
+    >
+      <span style="color:var(--accent-tertiary)">$ ./experience.sh --list</span>
+      <span class="exp-toggle__hint" style="color:var(--text-dim)">
+        {expanded ? '[-]' : `[+] ${t('exp.collapsedHint').replace('{n}', String(jobs.length))}`}
+      </span>
+    </button>
+    {#if expanded}
+      <div class="window__content">
+        <h2 style="color:var(--accent-tertiary);margin-bottom:var(--gap-xs)">
+          // {t('exp.heading')} <span style="color:var(--text-dim);font-size:0.85rem;font-weight:400">· {t('exp.subtitle')}</span>
+        </h2>
+        <div class="exp-timeline">
+          {#each jobs as job}
+            {@const data = t(`exp.${job.key}`)}
+            {@const badge = (i18n[currentLang].exp as unknown as Record<string, { badge: string }>)[job.key].badge}
+            <div class="exp-entry">
+              <div class="exp-entry__marker" style="border-color:{job.color}"></div>
+              <div class="exp-entry__card" style={`--job:${job.color}`}>
+                <div class="exp-entry__meta">
+                  <span class="exp-entry__badge" style="color:{job.color};border-color:{job.color}">{badge}</span>
+                  {#if job.cic}
+                    <span class="exp-entry__cic" title="Cincinnatus Institute of Craftsmanship, INC.">CIC</span>
+                  {/if}
+                  <span class="exp-entry__period">{data.period}</span>
+                  <p class="exp-entry__company">{data.company}</p>
+                </div>
+                <div class="exp-entry__main">
+                  <h3 class="exp-entry__title">{data.title}</h3>
+                  <p class="exp-entry__desc">{data.desc}</p>
+                  {#if job.tags.length}
+                    <div class="exp-entry__tags">
+                      {#each job.tags as tag}
+                        <span class="exp-tag">{tag}</span>
+                      {/each}
+                    </div>
+                  {/if}
+                </div>
               </div>
             </div>
-          </div>
-        {/each}
+          {/each}
+        </div>
       </div>
-    </div>
+    {/if}
   </div>
 </section>
 
 <style>
+  .exp-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-sm);
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed var(--text-dim);
+    padding: var(--gap-sm) var(--gap-md);
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .exp-toggle:hover {
+    background: rgba(0, 217, 255, 0.05);
+  }
+  .exp-toggle__hint {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+  }
+  .window__content {
+    padding-top: var(--gap-sm);
+  }
+  .exp-entry__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--gap-xs);
+  }
+  .exp-tag {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    color: var(--accent-tertiary);
+    border: 1px solid rgba(0, 217, 255, 0.35);
+    background: rgba(0, 217, 255, 0.06);
+    white-space: nowrap;
+  }
+  :global(.light-mode) .exp-tag {
+    color: #0891b2;
+    border-color: rgba(8, 145, 178, 0.4);
+    background: rgba(8, 145, 178, 0.06);
+  }
+  :global(.light-mode) .exp-toggle:hover {
+    background: rgba(8, 145, 178, 0.05);
+  }
   .exp-timeline {
     margin-top: var(--gap-md);
     display: flex;
