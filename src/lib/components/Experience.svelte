@@ -44,11 +44,13 @@
               <div class="exp-entry__marker" style="border-color:{job.color}"></div>
               <div class="exp-entry__card" style={`--job:${job.color}`}>
                 <div class="exp-entry__meta">
-                  <span class="exp-entry__badge" style="color:{job.color};border-color:{job.color}">{badge}</span>
-                  {#if job.cic}
-                    <span class="exp-entry__cic" title="Cincinnatus Institute of Craftsmanship, INC.">CIC</span>
-                  {/if}
-                  <span class="exp-entry__period">{data.period}</span>
+                  <span class="exp-entry__meta-top">
+                    <span class="exp-entry__badge" style="color:{job.color};border-color:{job.color}">{badge}</span>
+                    {#if job.cic}
+                      <span class="exp-entry__cic" title="Cincinnatus Institute of Craftsmanship, INC.">CIC</span>
+                    {/if}
+                    <span class="exp-entry__period">{data.period}</span>
+                  </span>
                   <p class="exp-entry__company">{data.company}</p>
                 </div>
                 <div class="exp-entry__main">
@@ -132,6 +134,19 @@
     flex-wrap: wrap;
     margin-bottom: var(--gap-xs);
   }
+  .exp-entry__meta-top {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  @media (max-width: 899px) {
+    .exp-entry__meta-top {
+      gap: var(--gap-xs);
+    }
+  }
   .exp-entry__main {
     min-width: 0;
   }
@@ -149,6 +164,12 @@
       padding-right: var(--gap-sm);
       border-right: 1px solid var(--text-dim);
       margin-bottom: 0;
+    }
+    .exp-entry__meta-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--gap-xs);
+      white-space: normal;
     }
     .exp-entry__company {
       color: var(--job, var(--accent-tertiary));

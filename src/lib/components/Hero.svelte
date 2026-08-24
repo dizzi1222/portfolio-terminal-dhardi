@@ -82,7 +82,7 @@
     </div>
     <div class="window__content" style="position:relative;overflow:hidden">
       <div class="hero-code-overlay"></div>
-      <div style="display:flex;align-items:flex-start;gap:var(--gap-lg);flex-wrap:wrap">
+      <div class="hero-intro" style="display:flex;align-items:flex-start;gap:var(--gap-lg);flex-wrap:wrap">
         <!-- svelte-ignore a11y_no_static_element_interactions -->
         <div class="avatar-container" style="position:relative;flex-shrink:0;display:flex;flex-direction:column;align-items:center"
           onmouseenter={handleAvatarEnter}
@@ -105,7 +105,7 @@
             </div>
           </div>
         </div>
-        <div style="flex:1;min-width:200px">
+        <div class="hero-intro__text" style="flex:1;min-width:200px">
           <h1 class="hero__name glow-text">Diego Härdi</h1>
           <p class="hero__tagline">
             {t('hero.tagline')}
@@ -269,6 +269,29 @@
     line-height: 1.05;
     margin: 0 0 var(--gap-sm);
     letter-spacing: -0.02em;
+  }
+  @media (max-width: 450px) {
+    .hero-intro {
+      flex-direction: column !important;
+      align-items: center !important;
+      text-align: center;
+      gap: var(--gap-md);
+    }
+    .hero-intro__text {
+      min-width: 0 !important;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero-chips {
+      justify-content: center;
+      width: 100%;
+    }
+    .hero__desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   .hero__tagline {
     color: var(--text-muted);

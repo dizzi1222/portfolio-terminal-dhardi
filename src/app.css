@@ -57,7 +57,7 @@
 
 /* Light theme — Hero socials / chips / botones nuevos */
 .light-mode .hero-socials a {
-  background: rgba(255, 255, 255, 0.72);
+  background: #ffffff;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
 }
 .light-mode .social--gh {
@@ -758,6 +758,12 @@ code, pre {
 .nav-reveal:hover {
   color: var(--accent-tertiary);
   border-color: var(--accent-tertiary);
+}
+
+@media (min-width: 451px) {
+  .nav-reveal {
+    display: none;
+  }
 }
 
 @media (max-width: 450px) {
