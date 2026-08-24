@@ -1,6 +1,7 @@
 <script lang="ts">
   import { lang } from '$lib/stores/lang.svelte';
   import { i18n, type Lang } from '$lib/i18n';
+  import { projectData } from '$lib/data/projects';
 
   let currentLang = $state<Lang>('es');
   lang.subscribe(v => currentLang = v);
@@ -11,14 +12,14 @@
     return v || '';
   };
 
+  const ptdTags = projectData.find(p => p.title === 'PTD-Talento')?.tags ?? [];
+
   const jobs = [
-    { key: 'job4', color: '#00d9ff', cic: true, tags: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Docker'] },
+    { key: 'job4', color: '#00d9ff', cic: true, tags: ptdTags },
     { key: 'job1', color: 'var(--accent-primary)', cic: false, tags: [] as string[] },
     { key: 'job2', color: 'var(--accent-secondary)', cic: true, tags: ['HTML', 'CSS', 'JavaScript', 'Git'] },
     { key: 'job3', color: '#4ade80', cic: false, tags: [] as string[] }
   ];
-
-  let expanded = $state(false);
 </script>
 
 <section class="section" id="experience">
@@ -31,19 +32,7 @@
       </div>
       <span>cat experience.sh</span>
     </div>
-    <button
-      type="button"
-      class="exp-toggle"
-      onclick={() => expanded = !expanded}
-      aria-expanded={expanded}
-    >
-      <span style="color:var(--accent-tertiary)">$ ./experience.sh --list</span>
-      <span class="exp-toggle__hint" style="color:var(--text-dim)">
-        {expanded ? '[-]' : `[+] ${t('exp.collapsedHint').replace('{n}', String(jobs.length))}`}
-      </span>
-    </button>
-    {#if expanded}
-      <div class="window__content">
+    <div class="window__content">
         <h2 style="color:var(--accent-tertiary);margin-bottom:var(--gap-xs)">
           // {t('exp.heading')} <span style="color:var(--text-dim);font-size:0.85rem;font-weight:400">· {t('exp.subtitle')}</span>
         </h2>
@@ -78,36 +67,10 @@
           {/each}
         </div>
       </div>
-    {/if}
   </div>
 </section>
 
 <style>
-  .exp-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--gap-sm);
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px dashed var(--text-dim);
-    padding: var(--gap-sm) var(--gap-md);
-    font-family: inherit;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .exp-toggle:hover {
-    background: rgba(0, 217, 255, 0.05);
-  }
-  .exp-toggle__hint {
-    font-size: 0.72rem;
-    letter-spacing: 0.03em;
-  }
-  .window__content {
-    padding-top: var(--gap-sm);
-  }
   .exp-entry__tags {
     display: flex;
     flex-wrap: wrap;
@@ -129,9 +92,6 @@
     color: #0891b2;
     border-color: rgba(8, 145, 178, 0.4);
     background: rgba(8, 145, 178, 0.06);
-  }
-  :global(.light-mode) .exp-toggle:hover {
-    background: rgba(8, 145, 178, 0.05);
   }
   .exp-timeline {
     margin-top: var(--gap-md);

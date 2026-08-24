@@ -21,7 +21,7 @@
     'Node.js', 'Express', 'React', 'MongoDB', 'PostgreSQL', 'TypeScript', 'JavaScript', 'Python',
     'Git', 'Docker', 'Arch', 'Neovim', 'Tailwind CSS', 'Svelte', 'Astro',
     'Render', 'Vercel', 'Google Cloud', 'Railway', 'Material UI', 'VoltBuilder', 'React Router', 'Bootstrap',
-    'Figma', 'HTML', 'CSS', 'Vite', 'Lua', 'Shell', 'Canvas', 'OpenCode', 'Antigravity', 'Ollama'
+    'Figma', 'HTML', 'CSS', 'Vite', 'Lua', 'Shell', 'OpenCode', 'Antigravity', 'Ollama'
   ];
   const techs = techNames.map(name => ({ name }));
 

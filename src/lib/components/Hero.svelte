@@ -265,21 +265,22 @@
     transform: translateY(-1px);
   }
   .hero__name {
-    font-size: clamp(2.4rem, 6.5vw, 3.4rem);
-    line-height: 1.1;
+    font-size: clamp(3rem, 9vw, 4.6rem);
+    line-height: 1.05;
     margin: 0 0 var(--gap-sm);
+    letter-spacing: -0.02em;
   }
   .hero__tagline {
     color: var(--text-muted);
-    font-size: clamp(0.95rem, 2.2vw, 1.08rem);
+    font-size: clamp(1.05rem, 2.8vw, 1.3rem);
     margin-bottom: var(--gap-md);
   }
   .hero__desc {
     margin-top: var(--gap-sm);
-    font-size: 0.92rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.65;
     color: var(--text-muted);
-    max-width: 46ch;
+    max-width: 50ch;
   }
   .hero-chips {
     display: flex;
