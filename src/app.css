@@ -780,7 +780,7 @@ code, pre {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 468px) {
   .header {
     padding: 0 var(--gap-md);
     font-size: 0.75rem;

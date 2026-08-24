@@ -437,7 +437,7 @@
     box-shadow: 0 0 4px var(--accent-tertiary);
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 468px) {
     .music-float {
       bottom: 7rem;
       right: 0.5rem;

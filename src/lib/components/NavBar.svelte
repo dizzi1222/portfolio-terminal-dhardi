@@ -43,7 +43,7 @@
 
   $effect(() => {
     scroll.value;
-    if (!strip || dragging || window.innerWidth > 450) return;
+    if (!strip || dragging || window.innerWidth > 468) return;
     const btn = strip.querySelector<HTMLElement>('.navbar__link.active');
     if (!btn) return;
     const target = btn.offsetLeft - (strip.clientWidth - btn.offsetWidth) / 2;
@@ -191,7 +191,7 @@
     display: none;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 468px) {
     .navbar__content {
       flex-wrap: nowrap;
       justify-content: flex-start;
