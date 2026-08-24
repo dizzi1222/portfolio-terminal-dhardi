@@ -10,19 +10,12 @@
   let bgActive = $state(true);
   let mobileOpen = $state(false);
   let navVisible = $state(true);
-  let manualHidden = $state(false);
+  let btnVisible = $state(true);
   let lastY = 0;
 
   function toggleNav() {
-    if (navVisible) {
-      navVisible = false;
-      mobileOpen = false;
-      manualHidden = true;
-    } else {
-      navVisible = true;
-      mobileOpen = true;
-      manualHidden = false;
-    }
+    navVisible = !navVisible;
+    mobileOpen = navVisible;
   }
 
   $effect(() => {
@@ -30,9 +23,10 @@
       const y = window.scrollY;
       if (y < lastY - 4 || y < 80) {
         navVisible = true;
-        manualHidden = false;
-      } else if (y > lastY + 4 && y > 120 && !mobileOpen) {
+        btnVisible = true;
+      } else if (y > lastY + 4 && y > 120) {
         navVisible = false;
+        btnVisible = false;
       }
       lastY = y;
     };
@@ -98,14 +92,11 @@
       <span>{String(currentTime.getHours()).padStart(2, '0')}:{String(currentTime.getMinutes()).padStart(2, '0')}</span>
     {/if}
   </div>
-  <button class="mobile-menu-btn" class:open={mobileOpen} onclick={toggleNav} aria-label="Toggle nav">
-    {navVisible ? '󰅮 close' : 'menu 󰅬'}
-  </button>
 </header>
 
-{#if !navVisible && manualHidden}
-  <button class="nav-reveal" onclick={toggleNav}>~/nav.sh ▾</button>
-{/if}
+<button class="nav-reveal" class:off={!btnVisible} onclick={toggleNav} aria-label="Toggle nav">
+  {navVisible ? 'close ✕' : '~/nav.sh ▾'}
+</button>
 
 {#if mobileOpen}
   <div id="mobile-menu" style="
