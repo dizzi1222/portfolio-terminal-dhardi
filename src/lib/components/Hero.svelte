@@ -223,10 +223,10 @@
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-size: 0.78rem;
+    font-size: 0.84rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    padding: 6px 12px;
+    padding: 7px 14px;
     border-radius: 4px;
     white-space: nowrap;
     color: #00d9ff;
@@ -265,7 +265,7 @@
     transform: translateY(-1px);
   }
   .hero__name {
-    font-size: clamp(3rem, 9vw, 4.6rem);
+    font-size: clamp(2.6rem, 7.5vw, 4rem);
     line-height: 1.05;
     margin: 0 0 var(--gap-sm);
     letter-spacing: -0.02em;
@@ -344,11 +344,11 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.68rem;
+    font-size: 0.74rem;
     border: 1px solid #792ebb;
     color: #b57edc;
     background: rgba(121, 46, 187, 0.08);
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 3px;
     white-space: nowrap;
   }
@@ -435,13 +435,13 @@
       gap: var(--gap-sm);
     }
     .chip--base {
-      font-size: 0.6rem;
-      padding: 3px 8px;
+      font-size: 0.65rem;
+      padding: 4px 10px;
       gap: 4px;
     }
     .btn-big--open {
-      font-size: 0.68rem;
-      padding: 5px 10px;
+      font-size: 0.72rem;
+      padding: 6px 11px;
     }
     .hero-marquee__item {
       font-size: 0.62rem;

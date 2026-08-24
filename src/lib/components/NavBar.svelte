@@ -6,6 +6,41 @@
   let lastScrollY = 0;
   let detailOpen = $state(false);
 
+  let strip: HTMLElement | undefined = $state();
+  let dragging = $state(false);
+  let dragMoved = $state(false);
+  let startX = 0, startY = 0, startScroll = 0;
+
+  function onDown(e: PointerEvent) {
+    if (!strip || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    dragging = true;
+    dragMoved = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    startScroll = strip.scrollLeft;
+  }
+  function onMove(e: PointerEvent) {
+    if (!dragging || !strip) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (!dragMoved && Math.abs(dx) * 0.6 + Math.abs(dy) > 10) {
+      dragMoved = true;
+      try { strip.setPointerCapture(e.pointerId); } catch {}
+    }
+    if (dragMoved) {
+      e.preventDefault();
+      strip.scrollLeft = startScroll - dx;
+    }
+  }
+  function onUp() { dragging = false; }
+  function onClickCapture(e: MouseEvent) {
+    if (dragMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+      dragMoved = false;
+    }
+  }
+
   function scrollTo(id: Section) {
     if (id === 'hero') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -61,7 +96,15 @@
     </div>
     <span>nav.sh</span>
   </div>
-  <div class="navbar__content">
+  <div
+    class="navbar__content"
+    bind:this={strip}
+    onpointerdown={onDown}
+    onpointermove={onMove}
+    onpointerup={onUp}
+    onpointercancel={onUp}
+    onclickcapture={onClickCapture}
+  >
     {#each sections as s}
       <button class="navbar__link" class:active={scroll.value === s} onclick={() => scrollTo(s)}>
         {sectionLabels[s]}
@@ -133,6 +176,24 @@
     gap: var(--gap-sm);
     padding: var(--gap-xs) var(--gap-sm);
     flex-wrap: wrap;
+    scrollbar-width: none;
+  }
+  .navbar__content::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 450px) {
+    .navbar__content {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      touch-action: none;
+    }
+    .navbar__link {
+      flex: 0 0 auto;
+    }
   }
 
   .navbar__link {
