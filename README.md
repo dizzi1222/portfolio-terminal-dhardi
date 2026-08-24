@@ -72,9 +72,10 @@ El player flotante de OSTs funciona 100% client-side, sin backend ni base de dat
 
 ### Alojamiento de los temas (lo que hace que suene desde Vercel)
 
-- Los ~30 MP3s viven **dentro del repo** en `static/playlist/*.mp3`.
-- Al hacer deploy, Vercel los publica como **assets estáticos en su CDN** (misma infraestructura que el resto de `static/`), así que las URLs `/playlist/<tema>.mp3` se sirven globalmente con caché — no hay API ni storage externo.
-- El playlist está hardcodeado en `src/lib/components/MusicPlayer.svelte` (`const tracks: Track[]`), apuntando a esas rutas estáticas.
+- Los MP3s viven **en el repo** en `src/lib/assets/playlist/` y se sirven vía assets de Vite (URLs hasheadas con caché eterna en el CDN de Vercel) — no hay API ni storage externo.
+- **El playlist es automático**: `import.meta.glob('/src/lib/assets/playlist/*.mp3')` trackea todo lo que haya en la carpeta. Para agregar un tema, soltá el `.mp3` ahí y listo — sin tocar código.
+- Convención de nombre: `<Juego> OST - <Tema>.mp3` → de ahí salen los metadatos que muestra el player. Orden: alfabético por nombre de archivo.
+- Nota: históricamente estaban en `static/playlist/` pero **fuera de git** (.gitignore), así que solo los deploys hechos con CLI local (`vercel deploy`) tenían la música; cualquier deploy desde GitHub nacía sin MP3s. Ahora están commiteados y todos los deploys los incluyen.
 
 ### Carátulas (el paquete externo)
 

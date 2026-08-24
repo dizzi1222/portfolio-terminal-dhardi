@@ -8,75 +8,22 @@
     src: string;
   }
 
-  const tracks: Track[] = [
-    { title: 'Memories of You - Kimi no Kioku', game: 'Persona', src: '/playlist/Persona OST - Memories of You - Kimi no Kioku (キミの記憶).mp3' },
-    { title: 'Windmill Isle (Day)', game: 'Sonic', src: '/playlist/Sonic OST - Windmill Isle (Day) (Unleashed).mp3' },
-    { title: 'Title Theme', game: 'Zelda', src: '/playlist/Zelda OST - Title Theme.mp3' },
-    { title: 'Lost Woods', game: 'Zelda', src: '/playlist/Zelda OST - Lost Woods.mp3' },
-    { title: 'Main Theme', game: 'Zelda', src: '/playlist/Zelda OST - Main Theme.mp3' },
-    { title: 'Song of Healing', game: 'Zelda', src: '/playlist/Zelda OST - Song of Healing.mp3' },
-    { title: 'Song of Storms', game: 'Zelda', src: '/playlist/Zelda OST - Song of Storms.mp3' },
-    { title: 'Iwatodai Dorm', game: 'Persona', src: '/playlist/Persona OST - Iwatodai Dorm.mp3' },
-    { title: 'Beneath the Mask', game: 'Persona', src: '/playlist/Persona OST - Beneath the Mask.mp3' },
-    { title: 'Burn My Dread', game: 'Persona', src: '/playlist/Persona OST - Burn My Dread.mp3' },
-    { title: 'Last Surprise', game: 'Persona', src: '/playlist/Persona OST - Last Surprise.mp3' },
-    { title: 'I believe', game: 'Persona', src: '/playlist/Persona OST - I believe.mp3' },
-    { title: 'Butterfly Kiss (Tae Takemi Theme)', game: 'Persona', src: '/playlist/Persona OST - Butterfly Kiss (Tae Takemi Theme) アトラスサウンドチーム.mp3' },
-    { title: 'A Corner of Memories', game: 'Persona', src: '/playlist/Persona OST - A Corner of Memories.mp3' },
-    { title: 'Wait and See', game: 'Persona', src: '/playlist/Persona OST - Wait and See.mp3' },
-    { title: 'Ideal and the Real (end version)', game: 'Persona', src: '/playlist/Persona OST - Ideal and the Real (end version).mp3' },
-    { title: 'Gehrman The First Hunter', game: 'Bloodborne', src: '/playlist/Bloodborne OST - Gehrman The First Hunter.mp3' },
-    { title: 'Lady Maria of the Astral Clocktower', game: 'Bloodborne', src: '/playlist/Bloodborne OST - Lady Maria of the Astral Clocktower.mp3' },
-    { title: 'Ludwig The Accursed / Holy Blade', game: 'Bloodborne', src: '/playlist/Bloodborne OST - Ludwig The Accursed  Holy Blade.mp3' },
-    { title: 'The First Hunter', game: 'Bloodborne', src: '/playlist/Bloodborne OST - The First Hunter.mp3' },
-    { title: 'Bury the Light', game: 'Devil May Cry', src: '/playlist/Devil May Cry OST - Bury the Light.mp3' },
-    { title: 'DEVILS NEVER CRY', game: 'Devil May Cry', src: '/playlist/Devil May Cry OST - DEVILS NEVER CRY.mp3' },
-    { title: 'A Rules of Nature', game: 'Metal Gear Rising', src: '/playlist/Metal Gear Rising Revengeance OST - A Rules of Nature.mp3' },
-    { title: 'The Only Thing I Know For Real', game: 'Metal Gear Rising', src: '/playlist/Metal Gear Rising Revengeance OST - A The Only Thing I Know For Real.mp3' },
-    { title: 'Arsenals Guts', game: 'Metal Gear Solid', src: '/playlist/Metal Gear Solid OST - Arsenals Guts (tema turbio).mp3' },
-    { title: 'Song of the Ancients (Atonement)', game: 'Nier', src: '/playlist/Nier OST - Song of the Ancients (Atonement) Popola.mp3' },
-    { title: 'Shadowlord', game: 'Nier', src: '/playlist/Nier OST - Shadowlord.mp3' },
-    { title: 'A Beautiful Song', game: 'Nier', src: '/playlist/Nier OST - A Beautiful Song_帆足圭吾.mp3' },
-    { title: 'Clocktowers Beneath The Sea', game: 'A Hat in Time', src: '/playlist/A Hat in Time OST - Clocktowers Beneath The Sea.mp3' },
-    { title: "Scootin' through Clocktowers Beneath the Sea", game: 'A Hat in Time', src: '/playlist/A Hat in Time OST - Scootin\u2019 through Clocktowers Beneath the Sea.mp3' },
-    { title: 'Corridors of Time', game: 'Chrono Trigger', src: '/playlist/Chronno Trigger OST - Corridors of Time.mp3' },
-    { title: 'Secret of the Forest', game: 'Chrono Trigger', src: '/playlist/Chronno Trigger OST - Secret of the Forest.mp3' },
-    { title: 'Fields of Time (Home World 3)', game: 'Chrono Cross', src: '/playlist/Chrono Cross OST - Fields of Time Home World 3.mp3' },
-    { title: 'High and Scream', game: 'Dragon Ball Tenkaichi', src: '/playlist/Dragon Ball Tenkaichi OST -High and Scream.mp3' },
-    { title: 'Survive Theme', game: 'Dragon Ball Tenkaichi', src: '/playlist/Dragon Ball Tenkaichi OST -Survive Theme.mp3' },
-    { title: 'Aerith Theme', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Aerith Theme (VII) エアリスのテーマ.mp3' },
-    { title: 'APOCALYPSIS AQUARIUS', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - APOCALYPSIS AQUARIUS.mp3' },
-    { title: 'Blinded by Light', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Blinded by Light.mp3' },
-    { title: 'Chaos Temple', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Chaos Temple.mp3' },
-    { title: 'Premonition', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Premonition.mp3' },
-    { title: 'Theme of Love', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Theme of Love.mp3' },
-    { title: "Tifa's Theme", game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Tifa\'s Theme (Final Fantasy VII).mp3' },
-    { title: 'Trisection', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Trisection.mp3' },
-    { title: 'Valse di Fantastica', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Valse di Fantastica.mp3' },
-    { title: 'Veiled in Black', game: 'Final Fantasy', src: '/playlist/Final Fantasy OST - Veiled in Black.mp3' },
-    { title: 'Darkness of the Unknown', game: 'Kingdom Hearts', src: '/playlist/Kingdom Hearts OST - Darkness of the Unknown.mp3' },
-    { title: 'Dearly Beloved', game: 'Kingdom Hearts', src: '/playlist/Kingdom Hearts OST - Dearly Beloved.mp3' },
-    { title: 'Kairis II (Extended)', game: 'Kingdom Hearts', src: '/playlist/Kingdom Hearts OST - Kairis II (Extended).mp3' },
-    { title: 'Vector to the Heavens (Xion)', game: 'Kingdom Hearts', src: '/playlist/Kingdom Hearts OST - Vector to the Heavens Xion.mp3' },
-    { title: 'Intro NUN3', game: 'Naruto Ultimate Ninja', src: '/playlist/Naruto Ultimate Ninja OST - Intro NUN3.mp3' },
-    { title: 'Intro NUN5', game: 'Naruto Ultimate Ninja', src: '/playlist/Naruto Ultimate Ninja OST - Intro NUN5.mp3' },
-    { title: 'Champion Cynthia Battle', game: 'Pokemon', src: '/playlist/Pokemon OST - Champion Cynthia Battle (Pearl).mp3' },
-    { title: 'Champion Cynthia Encounter', game: 'Pokemon', src: '/playlist/Pokemon OST - Champion Cynthia Encounter (Pearl).mp3' },
-    { title: 'Champion - Red vs Gold', game: 'Pokemon', src: '/playlist/Pokemon OST - Champion - Red vs Gold (Red Fire).mp3' },
-    { title: 'Menu 1 (Melee)', game: 'Smash Bros', src: '/playlist/Smash Bros OST - Menu 1 (Melee).mp3' },
-    { title: 'Temple Theme (Melee)', game: 'Smash Bros', src: '/playlist/Smash Bros OST - Temple Theme (Melee).mp3' },
-    { title: 'Dragon Road Day', game: 'Sonic', src: '/playlist/Sonic OST - Dragon Road Day (Unleashed).mp3' },
-    { title: 'Undefeatable', game: 'Sonic', src: '/playlist/Sonic OST - Undefeatable (Frontier).mp3' },
-    { title: 'Battle Against A True Hero', game: 'Undertale', src: '/playlist/Undertale OST - Battle Against A True Hero.mp3' },
-    { title: 'But The Earth Refused To Die', game: 'Undertale', src: '/playlist/Undertale OST - But The Earth Refused To Die.mp3' },
-    { title: "Don't Give Up", game: 'Undertale', src: '/playlist/Undertale OST - Don-t Give Up.mp3' },
-    { title: 'Home', game: 'Undertale', src: '/playlist/Undertale OST - Home.mp3' },
-    { title: 'Hopes And Dreams', game: 'Undertale', src: '/playlist/Undertale OST - Hopes And Dreams.mp3' },
-    { title: "It's Raining Somewhere Else", game: 'Undertale', src: '/playlist/Undertale OST - Its Raining Somewhere Else.mp3' },
-    { title: 'Reunited', game: 'Undertale', src: '/playlist/Undertale OST - Reunited.mp3' },
-    { title: 'Ruins', game: 'Undertale', src: '/playlist/Undertale OST - Ruins.mp3' },
-    { title: 'sans.', game: 'Undertale', src: '/playlist/Undertale OST - sans..mp3' },
-  ];
+  const modules = import.meta.glob('/src/lib/assets/playlist/*.mp3', {
+    query: '?url',
+    import: 'default',
+    eager: true
+  }) as Record<string, string>;
+
+  function parseTrackName(path: string): { title: string; game: string } {
+    const name = path.split('/').pop()!.replace(/\.mp3$/i, '');
+    const sep = name.indexOf(' OST ');
+    if (sep === -1) return { title: name, game: 'OST' };
+    return { game: name.slice(0, sep), title: name.slice(sep + 5).replace(/^[-\s]+/, '') };
+  }
+
+  const tracks: Track[] = Object.entries(modules)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([path, src]) => ({ ...parseTrackName(path), src }))
 
   let currentTrack = $state(0);
   let playing = $state(false);
