@@ -20,7 +20,7 @@
 </script>
 
 <section class="section" id="experience">
-  <div class="window" style="max-width:700px;margin:0 auto">
+  <div class="window" style="max-width:800px;margin:0 auto">
     <div class="window__titlebar">
       <div class="window__titlebar-dots">
         <span class="window__titlebar-dot window__titlebar-dot--close"></span>
@@ -39,14 +39,16 @@
           {@const badge = (i18n[currentLang].exp as unknown as Record<string, { badge: string }>)[job.key].badge}
           <div class="exp-entry">
             <div class="exp-entry__marker" style="border-color:{job.color}"></div>
-            <div class="exp-entry__card">
-              <div class="exp-entry__head">
+            <div class="exp-entry__card" style={`--job:${job.color}`}>
+              <div class="exp-entry__meta">
                 <span class="exp-entry__badge" style="color:{job.color};border-color:{job.color}">{badge}</span>
                 <span class="exp-entry__period">{data.period}</span>
+                <p class="exp-entry__company">{data.company}</p>
               </div>
-              <h3 class="exp-entry__title">{data.title}</h3>
-              <p class="exp-entry__company">{data.company}</p>
-              <p class="exp-entry__desc">{data.desc}</p>
+              <div class="exp-entry__main">
+                <h3 class="exp-entry__title">{data.title}</h3>
+                <p class="exp-entry__desc">{data.desc}</p>
+              </div>
             </div>
           </div>
         {/each}
@@ -88,13 +90,34 @@
     border-color: var(--accent-tertiary);
     box-shadow: 0 0 12px rgba(0,217,255,0.15);
   }
-  .exp-entry__head {
+  .exp-entry__meta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: var(--gap-sm);
     flex-wrap: wrap;
     margin-bottom: var(--gap-xs);
+  }
+  .exp-entry__main {
+    min-width: 0;
+  }
+  @media (min-width: 900px) {
+    .exp-entry__card {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: var(--gap-md) var(--gap-lg);
+      align-items: start;
+    }
+    .exp-entry__meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--gap-xs);
+      padding-right: var(--gap-sm);
+      border-right: 1px solid var(--text-dim);
+      margin-bottom: 0;
+    }
+    .exp-entry__company {
+      color: var(--job, var(--accent-tertiary));
+    }
   }
   .exp-entry__badge {
     font-size: 0.65rem;

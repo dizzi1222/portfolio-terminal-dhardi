@@ -14,14 +14,14 @@
 
 <footer class="footer">
   <div class="footer__left">
-    <span class="footer__mode">NORMAL</span>
-    <span>index.html</span>
+    <span class="footer__mode"> NORMAL</span>
+    <span>&#xe736; index.html</span>
   </div>
   <div class="footer__right">
     <span>utf-8</span>
     <span>html</span>
-    <span>1,1</span>
-    <span>All</span>
+    <span>&#xf418; 1,1</span>
+    <span>All &#xe0b0;</span>
     <span>
       <a href="https://dhardidev.vercel.app/" target="_blank" style="color:var(--accent-tertiary);text-decoration:underline;display:inline-flex;align-items:center;gap:4px">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle">

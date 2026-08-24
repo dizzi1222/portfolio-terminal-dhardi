@@ -55,12 +55,12 @@
         <span class="window__titlebar-dot"></span>
         <span class="window__titlebar-dot"></span>
       </div>
-      <span>cic_cert_download.sh — <span style="color:#4ade80">✓</span></span>
+      <span>cic_cert_download.sh — <span style="color:#4ade80">&#xf058;</span></span>
     </div>
     <div class="window__content" style="padding:var(--gap-lg)">
       <h2 class="section__title" style="margin-top:0">// {t('sectionTitles.certs')}</h2>
       <div style="text-align:center">
-        <div style="font-size:2.5rem;margin-bottom:var(--gap-sm);line-height:1;color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,0.4)">✓</div>
+        <div style="font-size:2.5rem;margin-bottom:var(--gap-sm);line-height:1;color:#4ade80;text-shadow:0 0 12px rgba(74,222,128,0.4)">&#xf058;</div>
         <p style="color:var(--accent-tertiary);font-family:inherit;font-size:0.85rem;margin:var(--gap-sm) 0">
           $ {t('cert.command')}
         </p>
@@ -81,7 +81,7 @@
         <p class="cert-mini-label">// {t('cert.inProgress')}</p>
         {#each activeCerts as c}
           <div class="cert-mini">
-            <span style={`color:${c.statusColor};flex-shrink:0`}>▸</span>
+            <span style={`color:${c.statusColor};flex-shrink:0`}>&#xe0b0;</span>
             <span class="cert-mini__title">{c.title}</span>
             <span class="cert-mini__bar"><span style={`width:${c.progress};background:${c.progColor}`}></span></span>
             <span class="cert-mini__pct" style={`color:${c.progColor}`}>{c.progress}</span>

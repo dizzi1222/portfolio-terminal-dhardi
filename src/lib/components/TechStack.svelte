@@ -1,6 +1,7 @@
 <script lang="ts">
   import { lang } from '$lib/stores/lang.svelte';
   import { i18n, type Lang } from '$lib/i18n';
+  import { iconSvgs } from '$lib/data/techIcons';
 
   let currentLang = $state<Lang>('es');
   lang.subscribe(v => currentLang = v);
@@ -41,7 +42,46 @@
     { name: 'React Router', svg: 'M12.118 5.482c1.81-1.81 4.766-1.81 6.576 0 1.81 1.81 1.81 4.766 0 6.576l-3.34 3.34-3.069-3.07 3.34-3.34c.38-.38.38-.99 0-1.37-.38-.38-.99-.38-1.37 0l-8.936 8.936c-.38.38-.38.99 0 1.37.38.38.99.38 1.37 0l3.278-3.278 3.069 3.07-3.278 3.279c-1.81 1.81-4.766 1.81-6.576 0-1.81-1.81-1.81-4.766 0-6.576l8.936-8.936z' },
     { name: 'Bootstrap', svg: 'M11.77 11.24H9.956V8.202h2.152c1.17 0 1.834.522 1.834 1.466 0 1.008-.773 1.572-2.174 1.572zm.324 1.206H9.957v3.348h2.231c1.459 0 2.232-.585 2.232-1.685s-.795-1.663-2.326-1.663zM24 11.39v1.218c-1.128.108-1.817.944-2.226 2.268-.407 1.319-.463 2.937-.42 4.186.045 1.3-.968 2.5-2.337 2.5H4.985c-1.37 0-2.383-1.2-2.337-2.5.043-1.249-.013-2.867-.42-4.186-.41-1.324-1.1-2.16-2.228-2.268V11.39c1.128-.108 1.819-.944 2.227-2.268.408-1.319.464-2.937.42-4.186-.045-1.3.968-2.5 2.338-2.5h14.032c1.37 0 2.382 1.2 2.337 2.5-.043 1.249.013 2.867.42 4.186.409 1.324 1.098 2.16 2.226 2.268zm-7.927 2.817c0-1.354-.953-2.333-2.368-2.488v-.057c1.04-.169 1.856-1.135 1.856-2.213 0-1.537-1.213-2.538-3.062-2.538h-4.16v10.172h4.181c2.218 0 3.553-1.086 3.553-2.876z' },
     { name: 'OpenCode', svg: 'M0 0H240V300H0ZM60 60V240H180V60H60Z', viewBox: '0 0 240 300' },
-  ].filter(t => !['Bootstrap', 'React Router', 'Node.js', 'Material UI', 'Render', 'JavaScript'].includes(t.name));
+  ];
+
+  const iconKeys: Record<string, string> = {
+    'Node.js': 'IconNode',
+    Express: 'IconExpress',
+    React: 'IconReact',
+    MongoDB: 'IconMongoDB',
+    PostgreSQL: 'IconPostgreSQL',
+    Python: 'IconPython',
+    TypeScript: 'IconTypeScript',
+    JavaScript: 'IconJavaScript',
+    Docker: 'IconDocker',
+    Git: 'IconGit',
+    'Tailwind CSS': 'IconTailwind',
+    Svelte: 'IconSvelte',
+    Astro: 'IconAstro',
+    Arch: 'IconArch',
+    Neovim: 'IconNeovim',
+    Render: 'IconRender',
+    Vercel: 'IconVercel',
+    'Google Cloud': 'IconGCloud',
+    Railway: 'IconRailway',
+    'Material UI': 'IconMaterialUI',
+    VoltBuilder: 'IconVoltBuilder',
+    'React Router': 'IconReactRouter',
+    Bootstrap: 'IconBootstrap',
+    OpenCode: 'IconOpenCode'
+  };
+
+  interface ColorSvg {
+    viewBox: string;
+    content?: string;
+    paths?: { d: string; fill: string; fillRule?: string }[];
+  }
+
+  function getColorSvg(name: string): ColorSvg | null {
+    const key = iconKeys[name];
+    const data = key ? iconSvgs[key] : undefined;
+    return data?.hoverSvg ?? null;
+  }
 
   function handleTechEnter(e: MouseEvent, name: string) {
     const desc = (i18n[currentLang]?.tech as Record<string, string> | undefined)?.[name];
@@ -88,6 +128,7 @@
       <h2 class="section__title">// {t('sectionTitles.tech')}</h2>
       <div class="icon-grid">
         {#each techs as tech}
+          {@const colorSvg = getColorSvg(tech.name)}
           <div class="icon-grid__item"
             role="button"
             tabindex="0"
@@ -96,9 +137,26 @@
             onmouseleave={handleTechLeave}
             onfocusin={(e) => handleTechFocus(e, tech.name)}
             onfocusout={handleTechLeave}>
-            <svg width="40" height="40" viewBox={tech.viewBox || '0 0 24 24'} fill="currentColor">
-              <path d={tech.svg} />
-            </svg>
+            <div class="tech-icon">
+              <svg class="tech-icon__mono" width="40" height="40" viewBox={tech.viewBox || '0 0 24 24'} fill="currentColor" aria-hidden="true">
+                <path d={tech.svg} />
+              </svg>
+              {#if colorSvg?.content}
+                <svg class="tech-icon__color" width="40" height="40" viewBox={colorSvg.viewBox} aria-hidden="true">
+                  {@html colorSvg.content}
+                </svg>
+              {:else if colorSvg?.paths}
+                <svg class="tech-icon__color" width="40" height="40" viewBox={colorSvg.viewBox} aria-hidden="true">
+                  {#each colorSvg.paths as p}
+                    <path d={p.d} fill={p.fill} fill-rule={p.fillRule === 'evenodd' ? 'evenodd' : undefined} />
+                  {/each}
+                </svg>
+              {:else}
+                <svg class="tech-icon__color tech-icon__color--tint" width="40" height="40" viewBox={tech.viewBox || '0 0 24 24'} style="color: var(--accent-tertiary)" aria-hidden="true">
+                  <path d={tech.svg} fill="currentColor" />
+                </svg>
+              {/if}
+            </div>
             <span class="icon-grid__label">{tech.name}</span>
           </div>
         {/each}
@@ -115,6 +173,34 @@
 {/if}
 
 <style>
+  .tech-icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+  }
+  .tech-icon__mono {
+    color: var(--accent-primary);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .tech-icon__color {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+  }
+  .icon-grid__item:hover .tech-icon__mono,
+  .icon-grid__item:focus-visible .tech-icon__mono {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+  .icon-grid__item:hover .tech-icon__color,
+  .icon-grid__item:focus-visible .tech-icon__color {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(233, 69, 96, 0.35));
+  }
   .tech-tooltip {
     position: fixed;
     z-index: 10001;

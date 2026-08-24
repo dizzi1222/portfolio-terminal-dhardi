@@ -245,6 +245,8 @@
         <p><code>←/→</code> - Prev/Next track (when player open)</p>
         <p><code>?</code> - Toggle this help</p>
         <p><code>Esc</code> - Close / hide player / leave input</p>
+        <p><code>F11</code> - Maximize project modal</p>
+        <p><code>O</code> - Cycle overlay opacity (project modal)</p>
       </div>
     </div>
   </div>

@@ -17,9 +17,15 @@
   let detailProject = $state<Project | null>(null);
   let clickCount = $state(0);
   let maximized = $state(true);
+  let overlayDim = $state(1);
   let modalContentEl: HTMLDivElement | undefined = $state();
 
   const ghIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>';
+  const liveIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>';
+
+  function hasLiveSite(p: Project): boolean {
+    return !!p.live && !p.live.includes('github.com');
+  }
 
   const railwaySvg = '<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.368 219.093A260.486 260.486 0 000 244.864h388.907a44.635 44.635 0 00-5.035-7.381c-66.475-85.888-102.25-78.443-153.387-80.64-17.066-.683-28.65-.982-96.533-.982-36.352 0-75.84.107-114.325.214-4.971 13.44-9.771 26.453-12.118 37.056h199.296v25.962H2.347h.021zm389.59 51.755H.213c.427 6.933 1.067 13.76 2.006 20.501h361.685c16.128 0 25.152-9.152 28.075-20.48l-.021-.02zM22.507 362.155S82.453 509.398 255.723 512c103.552 0 192.533-61.504 232.96-149.845H22.507z" fill="currentColor"/><path d="M255.723 0C160 0 76.65 52.587 32.66 130.304c34.368-.064 101.334-.107 101.334-.107h.021v-.02c79.147 0 82.09.34 97.557.98l9.6.363c33.323 1.11 74.326 4.693 106.582 29.099 17.493 13.226 42.773 42.453 57.856 63.253 13.93 19.243 17.92 41.387 8.448 62.592-8.704 19.477-27.456 31.104-50.176 31.104H8.32s2.133 8.96 5.29 18.88h485.334c8.619-25.92 12.992-53.035 13.014-80.341C512 114.667 397.29 0 255.744 0h-.021z" fill="currentColor"/></svg>';
 
@@ -71,6 +77,7 @@ const tagSvg: Record<string, string> = {
   function openDetail(id: number) {
     clickCount = 0;
     maximized = true;
+    overlayDim = 1;
     const p = projectData.find(x => x.id === id);
     if (p) detailProject = p;
     document.dispatchEvent(new CustomEvent('detail-open'));
@@ -79,7 +86,12 @@ const tagSvg: Record<string, string> = {
   function closeDetail() {
     detailProject = null;
     maximized = true;
+    overlayDim = 1;
     document.dispatchEvent(new CustomEvent('detail-close'));
+  }
+
+  function cycleOverlayOpacity() {
+    overlayDim = overlayDim === 1 ? 0.45 : 1;
   }
 
   function toggleMaximize() {
@@ -94,6 +106,7 @@ const tagSvg: Record<string, string> = {
     if (!detailProject) return;
     if (e.key === 'Escape') closeDetail();
     if (e.key === 'F11') { e.preventDefault(); toggleMaximize(); }
+    if (e.key === 'o' || e.key === 'O') cycleOverlayOpacity();
   }
 
   onMount(() => {
@@ -177,6 +190,11 @@ const tagSvg: Record<string, string> = {
               <span>project_{String(p.id + 1).padStart(2, '0')}.json</span>
             </div>
             <div class="window__content">
+              {#if p.image}
+                <div class="card-thumb">
+                  <img src={p.image} alt={p.title} loading="lazy" decoding="async" />
+                </div>
+              {/if}
               <h3 style="color:var(--accent-tertiary)">
                 {p.title}
                 {#if p.isPrivate}
@@ -195,9 +213,15 @@ const tagSvg: Record<string, string> = {
                 <button class="btn" style="flex:1" onclick={() => openDetail(p.id)}>
                   {t('projects.details')}
                 </button>
-                <a href={p.code} target="_blank" class="btn" style="flex:1;text-align:center">
-                  {@html ghIcon} {t('projects.code')}
-                </a>
+                {#if hasLiveSite(p)}
+                  <a href={p.live} target="_blank" rel="noopener" class="btn btn--live-outline" style="flex:1;text-align:center">
+                    {@html liveIcon} {t('projects.live')}
+                  </a>
+                {:else}
+                  <a href={p.code} target="_blank" rel="noopener" class="btn btn--purple" style="flex:1;text-align:center">
+                    {@html ghIcon} {t('projects.code')}
+                  </a>
+                {/if}
               </div>
             </div>
           </div>
@@ -210,7 +234,7 @@ const tagSvg: Record<string, string> = {
 <!-- Detail Overlay -->
 {#if detailProject}
   <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-  <div class="modal-overlay active" class:maximized onclick={closeDetail} role="presentation">
+  <div class="modal-overlay active" class:maximized style="opacity:{overlayDim}" onclick={closeDetail} role="presentation">
     <div class="window modal-window" class:maximized
       style="overflow-y:auto;max-width:720px;max-height:90vh"
       bind:this={modalContentEl}
@@ -268,7 +292,7 @@ const tagSvg: Record<string, string> = {
           <div class="meta-item">
             <span class="meta-label">{t('projects.status')}</span>
             <span class="meta-value" style="color:{statusColor(detailProject)}">
-              ● {statusLabel(detailProject)}
+              &#xf058; {statusLabel(detailProject)}
             </span>
           </div>
           <div class="meta-item">
@@ -363,17 +387,56 @@ const tagSvg: Record<string, string> = {
   }
 
   .btn--live {
-    background: var(--accent-secondary);
-    color: #000;
+    background: transparent;
+    color: var(--accent-secondary);
     border-color: var(--accent-secondary);
   }
 
-  .btn--live:hover {
-    background: #7730b8;
+  .btn--live:hover,
+  .btn--live-outline:hover {
+    background: rgba(119, 48, 184, 0.12);
     border-color: #7730b8;
     color: #fff;
-    box-shadow: 0 0 16px #7730b8, 0 0 32px rgba(119,48,184,0.4);
+    box-shadow: 0 0 16px #7730b8, 0 0 32px rgba(119, 48, 184, 0.4);
     transform: translateY(-2px);
+  }
+
+  .btn--purple {
+    background: transparent;
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+  }
+
+  .card-window .btn--purple:hover,
+  .card-window .btn--live-outline:hover {
+    background: rgba(119, 48, 184, 0.12);
+    border-color: #7730b8;
+    box-shadow: 0 0 14px rgba(119, 48, 184, 0.45), 0 0 28px rgba(119, 48, 184, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .btn--live-outline {
+    background: transparent;
+    color: var(--accent-secondary);
+    border-color: var(--accent-secondary);
+  }
+
+  .card-thumb {
+    margin: calc(var(--gap-md) * -1) calc(var(--gap-md) * -1) var(--gap-sm);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    max-height: 150px;
+  }
+  .card-thumb img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.35s ease;
+  }
+  .card-window:hover .card-thumb img {
+    transform: scale(1.04);
   }
 
   .detail-meta {

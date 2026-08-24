@@ -7,7 +7,7 @@ const ghIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentCol
 export const i18n = {
   es: {
     header: { available: 'Disponible' },
-    hero: { tagline: 'Desarrollador MERN Stack | Arch Linux Enthusiast | Neovim + LazyVim', base: 'Base República Dominicana (UTC-4)', available: 'Open to work', downloadCv: '⬇ Descargar CV' },
+    hero: { tagline: 'Desarrollador MERN Stack | Arch Linux Enthusiast | Neovim + LazyVim', profileDesc: 'Construyo apps web con React y Node, personalizo mi entorno Linux hasta el último píxel y aprendo algo nuevo en cada commit.', base: 'Base República Dominicana (UTC-4)', available: 'Open to work', downloadCv: '⬇ Descargar CV', contact: 'Contáctame' },
     sections: { hero: '~/', experience: '~/experience', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', interests: '~/interests', certs: '~/certs', contact: '~/contact' },
     sectionTitles: { experience: 'Experiencia', about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', interests: 'Intereses', certs: 'Certificaciones', contact: 'Contact' },
     exp: {
@@ -118,7 +118,7 @@ export const i18n = {
   },
   en: {
     header: { available: 'Available' },
-    hero: { tagline: 'MERN Stack Developer | Arch Linux Enthusiast | Neovim + LazyVim', base: 'Base Dominican Republic (UTC-4)', available: 'Open to work', downloadCv: '⬇ Download CV' },
+    hero: { tagline: 'MERN Stack Developer | Arch Linux Enthusiast | Neovim + LazyVim', profileDesc: 'I build web apps with React and Node, customize my Linux setup down to the last pixel, and learn something new with every commit.', base: 'Base Dominican Republic (UTC-4)', available: 'Open to work', downloadCv: '⬇ Download CV', contact: 'Contact me' },
     sections: { hero: '~/', experience: '~/experience', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', interests: '~/interests', certs: '~/certs', contact: '~/contact' },
     sectionTitles: { experience: 'Experience', about: 'About', tech: 'Tech Stack', design: 'Design', projects: 'Projects', interests: 'Interests', certs: 'Certifications', contact: 'Contact' },
     exp: {
@@ -229,7 +229,7 @@ export const i18n = {
   },
   de: {
     header: { available: 'Verfügbar' },
-    hero: { tagline: 'MERN Stack Entwickler | Arch Linux Enthusiast | Neovim + LazyVim', base: 'Base Dominikanische Republik (UTC-4)', available: 'Open to work', downloadCv: '⬇ Lebenslauf' },
+    hero: { tagline: 'MERN Stack Entwickler | Arch Linux Enthusiast | Neovim + LazyVim', profileDesc: 'Ich baue Web-Apps mit React und Node, passe mein Linux-Setup bis ins letzte Pixel an und lerne mit jedem Commit etwas Neues.', base: 'Base Dominikanische Republik (UTC-4)', available: 'Open to work', downloadCv: '⬇ Lebenslauf', contact: 'Kontaktiere mich' },
     sections: { hero: '~/', experience: '~/experience', about: '~/about', tech: '~/tech', design: '~/design', projects: '~/projects', interests: '~/interests', certs: '~/certs', contact: '~/contact' },
     sectionTitles: { experience: 'Erfahrung', about: 'Über mich', tech: 'Tech Stack', design: 'Design', projects: 'Projekte', interests: 'Interessen', certs: 'Zertifikate', contact: 'Kontakt' },
     exp: {
