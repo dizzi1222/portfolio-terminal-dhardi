@@ -152,6 +152,7 @@
       audioEl.play().catch(() => {});
     }
     playing = !playing;
+    setupMediaSession();
     if ('mediaSession' in navigator) {
       navigator.mediaSession.playbackState = playing ? 'playing' : 'paused';
     }
@@ -187,17 +188,22 @@
     loadTrack();
   }
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (!player.visible) return;
-    if (e.key === ' ') { e.preventDefault(); togglePlay(); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); nextTrack(); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); prevTrack(); }
+  function isTypingTarget(e: KeyboardEvent): boolean {
+    const el = e.target as HTMLElement | null;
+    if (!el) return false;
+    return el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable;
   }
 
-  $effect(() => {
-    document.addEventListener('keydown', handleKeydown);
-    return () => document.removeEventListener('keydown', handleKeydown);
-  });
+  function handleKeydown(e: KeyboardEvent) {
+    if (!player.visible || isTypingTarget(e)) return;
+    const isSpace = e.code === 'Space' || e.key === ' ';
+    if (isSpace || e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (isSpace) togglePlay();
+      else if (e.key === 'ArrowRight') nextTrack();
+      else prevTrack();
+    }
+  }
 
   function handleAudioReady(el: HTMLAudioElement) {
     audioEl = el;
@@ -236,6 +242,8 @@
     }
   });
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <div class="music-float" class:visible={player.visible} class:minimized={isMinimized} onclick={() => isMinimized && toggleMinimize()}>
 

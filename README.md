@@ -66,6 +66,31 @@ pnpm run preview    # Vista previa de producción
 
 Conecta el repo a [Vercel](https://vercel.com) — el adapter ya está configurado en `svelte.config.js`. Vercel detecta automáticamente SvelteKit y corre `pnpm run build`.
 
+## 🎵 Music Player — cómo funciona el audio en Vercel
+
+El player flotante de OSTs funciona 100% client-side, sin backend ni base de datos. Así está configurado:
+
+### Alojamiento de los temas (lo que hace que suene desde Vercel)
+
+- Los ~30 MP3s viven **dentro del repo** en `static/playlist/*.mp3`.
+- Al hacer deploy, Vercel los publica como **assets estáticos en su CDN** (misma infraestructura que el resto de `static/`), así que las URLs `/playlist/<tema>.mp3` se sirven globalmente con caché — no hay API ni storage externo.
+- El playlist está hardcodeado en `src/lib/components/MusicPlayer.svelte` (`const tracks: Track[]`), apuntando a esas rutas estáticas.
+
+### Carátulas (el paquete externo)
+
+- Las portadas de cada tema **no son imágenes aparte**: se extraen de los tags ID3 embebidos en los propios MP3s.
+- Se usa el paquete npm [`music-metadata`](https://www.npmjs.com/package/music-metadata) (v11) con `parseBlob()`:
+  1. `fetch(src)` del MP3 → `blob`
+  2. `parseBlob(blob)` → lee los metadatos ID3
+  3. La imagen de `metadata.common.picture` se convierte en un `objectURL` y se muestra como cover
+- Hay caché en memoria (`coverCache`) para no re-parsear al volver a un tema.
+
+### Controles y reproducción
+
+- **Media Session API**: `navigator.mediaSession` expone play/pause/prev/next → funcionan las teclas multimedia del SO (auriculares, teclado, lockscreen).
+- Atajos de teclado (via `<svelte:window>`): `m` abre/cierra el player, `Space` play/pause, `←`/`→` cambian de tema.
+- Detalles: autoplay al abrir, volumen fijo `0.15`, barra de progreso clickeable (seek), se pausa al cerrar o minimizar.
+
 ## 📜 Licencia
 
 MIT
