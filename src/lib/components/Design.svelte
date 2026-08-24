@@ -117,7 +117,7 @@
             onfocusin={(e) => handleFocus(e, it.name)}
             onfocusout={handleLeave}>
             <div class="tech-icon">
-              <svg class="tech-icon__mono" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="tech-icon__mono" width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 {@html it.monoHtml}
               </svg>
               {#if c?.content}
