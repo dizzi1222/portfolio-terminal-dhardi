@@ -411,8 +411,20 @@ const tagSvg: Record<string, string> = {
   .card-window .btn--live-outline:hover {
     background: rgba(119, 48, 184, 0.12);
     border-color: #7730b8;
+    color: #fff;
     box-shadow: 0 0 14px rgba(119, 48, 184, 0.45), 0 0 28px rgba(119, 48, 184, 0.2);
     transform: translateY(-2px);
+  }
+
+  .detail-action-btn:hover {
+    color: #fff;
+  }
+  :global(.light-mode) .detail-action-btn:hover {
+    color: #10131a;
+  }
+  :global(.light-mode) .card-window .btn--purple:hover,
+  :global(.light-mode) .card-window .btn--live-outline:hover {
+    color: #10131a;
   }
 
   .btn--live-outline {

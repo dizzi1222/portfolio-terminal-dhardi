@@ -314,14 +314,16 @@ export const iconSvgs: Record<string, SvgIcon> = {
     }
   },
   IconOpenCode: {
-    viewBox: '0 0 32 32',
+    viewBox: '0 0 240 300',
     paths: [
-      { d: 'M28 4H4v24h24V4z M10 10h12v12H10z', fillRule: 'evenodd' }
+      { d: 'M180 60H60V240H180V60ZM240 300H0V0H240V300Z' },
+      { d: 'M180 240H60V120H180V240Z' }
     ],
     hoverSvg: {
-      viewBox: '0 0 32 32',
+      viewBox: '0 0 240 300',
       paths: [
-        { d: 'M28 4H4v24h24V4z M10 10h12v12H10z', fill: '#6C5CE7', fillRule: 'evenodd' }
+        { d: 'M180 60H60V240H180V60ZM240 300H0V0H240V300Z', fill: '#F1ECEC' },
+        { d: 'M180 240H60V120H180V240Z', fill: '#4B4646' }
       ]
     }
   },

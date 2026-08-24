@@ -17,7 +17,7 @@
   const jobs = [
     { key: 'job4', color: '#00d9ff', cic: true, tags: ptdTags },
     { key: 'job1', color: 'var(--accent-primary)', cic: false, tags: [] as string[] },
-    { key: 'job2', color: 'var(--accent-secondary)', cic: true, tags: ['HTML', 'CSS', 'JavaScript', 'Git'] },
+    { key: 'job2', color: 'var(--accent-secondary)', cic: true, tags: ['HTML', 'CSS', 'JavaScript', 'Git', 'Docker'] },
     { key: 'job3', color: '#4ade80', cic: false, tags: [] as string[] }
   ];
 </script>
