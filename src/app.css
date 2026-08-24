@@ -772,7 +772,7 @@ code, pre {
     font-size: 0.75rem;
   }
   .nav-reveal {
-    top: 0.55rem;
+    top: calc(var(--header-height) + 0.4rem);
     font-size: 0.62rem;
   }
   .header__right { display: none; }

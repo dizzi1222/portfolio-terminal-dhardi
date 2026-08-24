@@ -348,6 +348,10 @@
   .hero-socials a:hover {
     transform: translateY(-3px) scale(1.05);
   }
+  :global(.light-mode) .hero-socials a,
+  :global(.light-mode) .hero-socials a:hover {
+    background: #ffffff;
+  }
   .social--gh:hover {
     color: #c9a0f0;
     border-color: #a855f7;

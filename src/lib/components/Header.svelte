@@ -10,15 +10,18 @@
   let bgActive = $state(true);
   let mobileOpen = $state(false);
   let navVisible = $state(true);
+  let manualHidden = $state(false);
   let lastY = 0;
 
   function toggleNav() {
     if (navVisible) {
       navVisible = false;
       mobileOpen = false;
+      manualHidden = true;
     } else {
       navVisible = true;
       mobileOpen = true;
+      manualHidden = false;
     }
   }
 
@@ -27,6 +30,7 @@
       const y = window.scrollY;
       if (y < lastY - 4 || y < 80) {
         navVisible = true;
+        manualHidden = false;
       } else if (y > lastY + 4 && y > 120 && !mobileOpen) {
         navVisible = false;
       }
@@ -99,7 +103,7 @@
   </button>
 </header>
 
-{#if !navVisible}
+{#if !navVisible && manualHidden}
   <button class="nav-reveal" onclick={toggleNav}>~/nav.sh ▾</button>
 {/if}
 

@@ -41,6 +41,15 @@
     }
   }
 
+  $effect(() => {
+    scroll.value;
+    if (!strip || dragging || window.innerWidth > 450) return;
+    const btn = strip.querySelector<HTMLElement>('.navbar__link.active');
+    if (!btn) return;
+    const target = btn.offsetLeft - (strip.clientWidth - btn.offsetWidth) / 2;
+    strip.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+  });
+
   function scrollTo(id: Section) {
     if (id === 'hero') {
       window.scrollTo({ top: 0, behavior: 'smooth' });

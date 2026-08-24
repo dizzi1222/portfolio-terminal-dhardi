@@ -85,15 +85,15 @@
     letter-spacing: 0.04em;
     padding: 2px 8px;
     border-radius: 3px;
-    color: var(--accent-tertiary);
-    border: 1px solid rgba(0, 217, 255, 0.35);
-    background: rgba(0, 217, 255, 0.06);
+    color: var(--accent-primary);
+    border: 1px solid color-mix(in srgb, var(--accent-primary) 35%, transparent);
+    background: color-mix(in srgb, var(--accent-primary) 6%, transparent);
     white-space: nowrap;
   }
   :global(.light-mode) .exp-tag {
-    color: #0891b2;
-    border-color: rgba(8, 145, 178, 0.4);
-    background: rgba(8, 145, 178, 0.06);
+    color: #b8324a;
+    border-color: rgba(184, 50, 74, 0.45);
+    background: rgba(184, 50, 74, 0.07);
   }
   .exp-timeline {
     margin-top: var(--gap-md);
@@ -147,6 +147,11 @@
       gap: var(--gap-xs);
     }
   }
+  @media (max-width: 450px) {
+    .exp-entry__meta-top {
+      gap: var(--gap-sm);
+    }
+  }
   .exp-entry__main {
     min-width: 0;
   }
@@ -166,10 +171,7 @@
       margin-bottom: 0;
     }
     .exp-entry__meta-top {
-      flex-direction: column;
-      align-items: flex-start;
       gap: var(--gap-xs);
-      white-space: normal;
     }
     .exp-entry__company {
       color: var(--job, var(--accent-tertiary));
