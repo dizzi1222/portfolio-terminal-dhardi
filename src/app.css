@@ -714,10 +714,39 @@ code, pre {
 
 .mobile-menu-btn { display: none; }
 
+.nav-reveal { display: none; }
+
 @media (max-width: 450px) {
   .header {
     padding: 0 var(--gap-md);
     font-size: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+  .header.nav-hidden {
+    transform: translateY(-110%);
+    pointer-events: none;
+  }
+  .nav-reveal {
+    display: inline-flex;
+    position: fixed;
+    top: 0.55rem;
+    right: 0.6rem;
+    z-index: 1001;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-secondary);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s;
+  }
+  .nav-reveal:hover {
+    color: var(--accent-tertiary);
+    border-color: var(--accent-tertiary);
   }
   .header__right { display: none; }
   .mobile-menu-btn {

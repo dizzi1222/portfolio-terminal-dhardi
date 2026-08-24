@@ -9,6 +9,17 @@
   let currentTheme = $state('dark');
   let bgActive = $state(true);
   let mobileOpen = $state(false);
+  let navVisible = $state(true);
+
+  function toggleNav() {
+    if (navVisible) {
+      navVisible = false;
+      mobileOpen = false;
+    } else {
+      navVisible = true;
+      mobileOpen = true;
+    }
+  }
 
   lang.subscribe(v => currentLang = v);
   theme.subscribe(v => currentTheme = v);
@@ -28,11 +39,10 @@
 
   function handleLang() { cycleLang(); }
   function handleTheme() { toggleTheme(); }
-  function toggleMobile() { mobileOpen = !mobileOpen; }
-  function toggleHelp() { document.dispatchEvent(new CustomEvent('toggle-keybindings')); }
+  function toggleMobile() { mobileOpen = !mobileOpen; }  function toggleHelp() { document.dispatchEvent(new CustomEvent('toggle-keybindings')); }
 </script>
 
-<header class="header">
+<header class="header" class:nav-hidden={!navVisible}>
   <div class="header__left">
     <span class="header__prompt">❯</span>
     <span class="header__user glow-text">diego</span>
@@ -69,10 +79,14 @@
       <span>{String(currentTime.getHours()).padStart(2, '0')}:{String(currentTime.getMinutes()).padStart(2, '0')}</span>
     {/if}
   </div>
-  <button class="mobile-menu-btn" class:open={mobileOpen} onclick={toggleMobile} aria-label="Toggle menu">
-    {mobileOpen ? '󰅮 close' : 'menu 󰅬'}
+  <button class="mobile-menu-btn" class:open={mobileOpen} onclick={toggleNav} aria-label="Toggle nav">
+    {navVisible ? '󰅮 close' : 'menu 󰅬'}
   </button>
 </header>
+
+{#if !navVisible}
+  <button class="nav-reveal" onclick={toggleNav}>~/nav.sh ▾</button>
+{/if}
 
 {#if mobileOpen}
   <div id="mobile-menu" style="
