@@ -481,4 +481,109 @@
     background: var(--accent-tertiary);
     box-shadow: 0 0 4px var(--accent-tertiary);
   }
+
+  @media (max-width: 450px) {
+    .music-float {
+      bottom: 7rem;
+      right: 0.5rem;
+      min-width: 190px;
+      max-width: 220px;
+      border-radius: 6px;
+    }
+    .music-float.minimized {
+      min-width: 140px;
+    }
+    .music-float__handle {
+      gap: 0.35rem;
+      padding: 0.25rem 0.4rem;
+    }
+    .music-float__toggle,
+    .music-float__close {
+      font-size: 0.52rem;
+      padding: 0.05rem 0.25rem;
+    }
+    .music-float__nowplaying {
+      font-size: 0.55rem;
+    }
+    .music-float__body {
+      padding: 0.35rem;
+    }
+    .music-float__art {
+      margin-bottom: 0.3rem;
+    }
+    .music-float__art-img,
+    .music-float__art-placeholder {
+      width: 64px;
+      height: 64px;
+      border-radius: 4px;
+    }
+    .music-float__art-placeholder :global(svg),
+    .music-float__art-placeholder svg {
+      width: 22px;
+      height: 22px;
+    }
+    .music-float__info {
+      margin-bottom: 0.25rem;
+    }
+    .music-float__title {
+      font-size: 0.62rem;
+    }
+    .music-float__game {
+      font-size: 0.5rem;
+    }
+    .music-float__bar {
+      margin-bottom: 0.3rem;
+    }
+    .music-float__controls {
+      gap: 0.25rem;
+      margin-bottom: 0.3rem;
+    }
+    .mf-btn {
+      font-size: 0.58rem;
+      padding: 0.15rem 0.3rem;
+      border-radius: 3px;
+    }
+    .mf-btn--play {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.4rem;
+    }
+    .music-float__track-num {
+      font-size: 0.48rem;
+      margin-left: 0.2rem;
+    }
+    .music-float__dots {
+      gap: 2px;
+      max-height: 26px;
+    }
+    .music-float__dot {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .music-float {
+      right: 0.3rem;
+      min-width: 160px;
+      max-width: 180px;
+      bottom: 6.5rem;
+    }
+    .music-float.minimized {
+      min-width: 120px;
+    }
+    .music-float__art-img,
+    .music-float__art-placeholder {
+      width: 52px;
+      height: 52px;
+    }
+    .music-float__title {
+      font-size: 0.55rem;
+    }
+    .music-float__nowplaying {
+      font-size: 0.5rem;
+    }
+    .mf-btn--play {
+      font-size: 0.62rem;
+    }
+  }
 </style>

@@ -91,7 +91,7 @@ const tagSvg: Record<string, string> = {
   }
 
   function cycleOverlayOpacity() {
-    overlayDim = overlayDim === 1 ? 0.45 : 1;
+    overlayDim = overlayDim === 1 ? 0.65 : 1;
   }
 
   function toggleMaximize() {
@@ -403,7 +403,7 @@ const tagSvg: Record<string, string> = {
 
   .btn--purple {
     background: transparent;
-    color: var(--accent-secondary);
+    color: #fff;
     border-color: var(--accent-secondary);
   }
 
@@ -422,10 +422,23 @@ const tagSvg: Record<string, string> = {
   }
 
   .card-thumb {
+    position: relative;
     margin: calc(var(--gap-md) * -1) calc(var(--gap-md) * -1) var(--gap-sm);
     overflow: hidden;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     max-height: 150px;
+  }
+  .card-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(123, 44, 191, 0.4));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .card-window:hover .card-thumb::after {
+    opacity: 1;
   }
   .card-thumb img {
     display: block;
@@ -433,10 +446,11 @@ const tagSvg: Record<string, string> = {
     height: 150px;
     object-fit: cover;
     object-position: top;
-    transition: transform 0.35s ease;
+    transition: transform 0.35s ease, filter 0.35s ease;
   }
   .card-window:hover .card-thumb img {
-    transform: scale(1.04);
+    transform: scale(1.08);
+    filter: brightness(1.12) saturate(1.15);
   }
 
   .detail-meta {

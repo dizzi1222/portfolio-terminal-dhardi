@@ -4,7 +4,7 @@
   import { i18n } from '$lib/i18n';
   import { scroll } from '$lib/stores/scroll.svelte';
 
-  let currentTime = $state(new Date());
+  let currentTime = $state<Date | null>(null);
   let currentLang = $state<Lang>('es');
   let currentTheme = $state('dark');
   let bgActive = $state(true);
@@ -15,6 +15,7 @@
   bgGifActive.subscribe(v => bgActive = v);
 
   $effect(() => {
+    currentTime = new Date();
     const t = setInterval(() => currentTime = new Date(), 1000);
     return () => clearInterval(t);
   });
@@ -64,10 +65,12 @@
       </svg>
       8GB
     </span>
-    <span>{String(currentTime.getHours()).padStart(2, '0')}:{String(currentTime.getMinutes()).padStart(2, '0')}</span>
+    {#if currentTime}
+      <span>{String(currentTime.getHours()).padStart(2, '0')}:{String(currentTime.getMinutes()).padStart(2, '0')}</span>
+    {/if}
   </div>
   <button class="mobile-menu-btn" class:open={mobileOpen} onclick={toggleMobile} aria-label="Toggle menu">
-    {mobileOpen ? '󰅮' : '󰅬'}
+    {mobileOpen ? '󰅮 close' : 'menu 󰅬'}
   </button>
 </header>
 
@@ -87,7 +90,9 @@
     <div style="color:var(--text-dim);font-size:0.85rem">
       <span><svg width="14" height="14" viewBox="0 0 512 512" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M256 1.6c-22.3 55.7-36.6 90.6-62 144.7 15.9 17.5 35 36.6 65.2 57.2-33.4-12.7-55.7-27-71.6-41.3C154.2 230.6 103.4 326 1.6 512c79.5-47.7 143.1-76.3 201.9-87.5-3.2-11.1-4.8-22.3-4.8-35V388c1.6-52.5 28.6-92.2 60.4-89 31.8 1.6 57.2 46.1 55.7 98.6l-3.2 27c57.2 11.1 119.3 41.3 198.8 85.9L467.5 431c-20.7-15.9-42.9-36.6-87.5-60.4 30.2 8 52.5 17.5 70 27C313.2 144.7 302.1 111.3 256 0z"/></svg> arch</span>
       <span style="margin-left:var(--gap-md)"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px"><path d="M4 4h16v2H4V4zm0 4h16v2H4V8zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></svg> 8GB</span>
-      <span style="margin-left:var(--gap-md)">{String(currentTime.getHours()).padStart(2, '0')}:{String(currentTime.getMinutes()).padStart(2, '0')}</span>
+      {#if currentTime}
+        <span style="margin-left:var(--gap-md)">{String(currentTime.getHours()).padStart(2, '0')}:{String(currentTime.getMinutes()).padStart(2, '0')}</span>
+      {/if}
     </div>
   </div>
 {/if}

@@ -38,12 +38,16 @@ portfolio-terminal-dhardi/
 │   │   ├── +layout.svelte     # Layout global (bg, CRT, noise, header, footer, keybindings)
 │   │   └── +page.svelte        # Página principal con todas las secciones
 │   ├── lib/
-│   │   ├── components/         # 11 componentes (Header, Hero, About, TechStack, etc.)
+│   │   ├── components/         # 12 componentes (Hero, TechStack, Design, Projects,
+│   │   │                       #   Interests v2 — carrusel hover + player TV, MusicPlayer…)
 │   │   ├── stores/             # theme, lang, toast (Svelte 5 Runes)
 │   │   ├── i18n/               # Traducciones ES/EN/DE
-│   │   └── data/               # Datos de proyectos (7 entradas)
+│   │   └── data/               # projects.ts (10 entradas) · techIcons.ts (SVGs + hover color)
 │   └── app.css                 # Tema global terminal (variables, CRT, scanlines, noise)
-├── static/                     # bg GIFs, avatar, favicon, modal images
+├── static/
+│   ├── projects/               # Thumbnails de las tarjetas (10 PNG)
+│   ├── playlist/               # OSTs del reproductor de música
+│   └── …                       # bg GIFs, avatar, favicon, CV 2026
 ├── svelte.config.js            # adapter-vercel
 ├── vite.config.ts              # Runes mode
 └── package.json                # pnpm

@@ -12,10 +12,10 @@
   };
 
   const jobs = [
-    { key: 'job4', color: '#00d9ff' },
-    { key: 'job1', color: 'var(--accent-primary)' },
-    { key: 'job2', color: 'var(--accent-secondary)' },
-    { key: 'job3', color: '#4ade80' }
+    { key: 'job4', color: '#00d9ff', cic: true },
+    { key: 'job1', color: 'var(--accent-primary)', cic: false },
+    { key: 'job2', color: 'var(--accent-secondary)', cic: true },
+    { key: 'job3', color: '#4ade80', cic: false }
   ];
 </script>
 
@@ -42,6 +42,9 @@
             <div class="exp-entry__card" style={`--job:${job.color}`}>
               <div class="exp-entry__meta">
                 <span class="exp-entry__badge" style="color:{job.color};border-color:{job.color}">{badge}</span>
+                {#if job.cic}
+                  <span class="exp-entry__cic" title="Cincinnatus Institute of Craftsmanship, INC.">CIC</span>
+                {/if}
                 <span class="exp-entry__period">{data.period}</span>
                 <p class="exp-entry__company">{data.company}</p>
               </div>
@@ -127,6 +130,20 @@
     border: 1px solid;
     border-radius: 3px;
     padding: 1px var(--gap-sm);
+  }
+  .exp-entry__cic {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 1px 7px;
+    border-radius: 3px;
+    background: rgba(123,44,191,0.18);
+    border: 1px solid var(--accent-secondary);
+    color: #b57edc;
+  }
+  :global(.light-mode) .exp-entry__cic {
+    background: rgba(123,44,191,0.08);
+    color: #7b2cbf;
   }
   .exp-entry__period {
     color: var(--text-dim);
