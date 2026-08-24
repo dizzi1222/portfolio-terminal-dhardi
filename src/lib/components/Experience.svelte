@@ -138,8 +138,8 @@
     display: flex;
     align-items: center;
     gap: var(--gap-sm);
-    flex-wrap: nowrap;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    row-gap: var(--gap-xs);
     min-width: 0;
   }
   @media (max-width: 899px) {
@@ -150,6 +150,15 @@
   @media (max-width: 450px) {
     .exp-entry__meta-top {
       gap: var(--gap-sm);
+    }
+    .exp-timeline {
+      padding-left: var(--gap-sm);
+    }
+    .exp-entry__marker {
+      left: calc(-1 * var(--gap-sm) - 5.5px);
+    }
+    .exp-entry__card {
+      padding: var(--gap-xs) var(--gap-sm);
     }
   }
   .exp-entry__main {
