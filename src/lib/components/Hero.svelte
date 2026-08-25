@@ -435,7 +435,7 @@
     overflow: hidden;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    margin-top: 110px;
+    margin-top: 65px;
     border-top: 1px solid var(--text-dim);
     border-bottom: 1px solid var(--text-dim);
     padding: 0.55rem 0;
