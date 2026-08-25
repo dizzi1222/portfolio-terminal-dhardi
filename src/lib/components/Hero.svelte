@@ -70,7 +70,7 @@
   }
 </script>
 
-<section class="hero section" id="hero" style="margin-top:calc(var(--header-height) + 3rem + var(--gap-lg))">
+<section class="hero section" id="hero">
   <div class="window" style="max-width: 700px; margin: 0 auto">
     <div class="window__titlebar">
       <div class="window__titlebar-dots">
@@ -110,12 +110,10 @@
           <p class="hero__tagline">
             {t('hero.tagline')}
           </p>
-          <div id="typewriter" class="hero__typewriter" style="color:var(--accent-tertiary);font-size:0.95rem;min-height:1.6rem">
-            {displayText}
+          <div id="typewriter" class="hero__typewriter">
+            <span class="hero__type-live">{displayText}{#if displayText.length === 0}<span class="hero__type-caret">_</span>{/if}</span>
+            <span class="hero__type-ghost" aria-hidden="true">'">_ "Código limpio siempre parece que fue escrito por alguien que se preocupa." — Robert C. Martin'</span>
           </div>
-          {#if displayText.length === 0}
-            <span style="animation:blink 1s step-end infinite;color:var(--accent-tertiary);font-size:0.95rem">_</span>
-          {/if}
           <p class="hero__desc">{t('hero.profileDesc')}</p>
           <div class="hero-chips">
             <span class="chip chip--base">
@@ -196,6 +194,20 @@
 </section>
 
 <style>
+  .hero.section {
+    margin-top: calc(var(--header-height) + 3rem + var(--gap-lg));
+  }
+  .hero__typewriter {
+    color: var(--accent-tertiary);
+    font-size: 0.95rem;
+    min-height: 1.6rem;
+  }
+  .hero__type-caret {
+    animation: blink 1s step-end infinite;
+  }
+  .hero__type-ghost {
+    display: none;
+  }
   .hero-actions {
     display: flex;
     align-items: center;
@@ -392,15 +404,38 @@
     50% { opacity: 0.35; }
   }
   .hero-hud--more {
-    margin-top: 4px;
+    margin-top: 20px;
     opacity: 0.75;
+  }
+
+  @media (min-width: 481px) {
+    .hero.section {
+      margin-top: calc(var(--header-height) + 8rem + var(--gap-lg));
+    }
+    .hero-socials {
+      margin-top: 2.5rem;
+    }
+    .hero__typewriter {
+      position: relative;
+    }
+    .hero__type-live {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .hero__type-ghost {
+      display: block;
+      visibility: hidden;
+      pointer-events: none;
+    }
   }
 
   .hero-marquee {
     overflow: hidden;
     width: 100vw;
     margin-left: calc(50% - 50vw);
-    margin-top: var(--gap-lg);
+    margin-top: 110px;
     border-top: 1px solid var(--text-dim);
     border-bottom: 1px solid var(--text-dim);
     padding: 0.55rem 0;
