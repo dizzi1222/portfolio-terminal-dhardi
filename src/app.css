@@ -774,13 +774,13 @@ code, pre {
   box-shadow: 0 0 10px rgba(0, 217, 255, 0.25);
 }
 
-@media (min-width: 451px) {
+@media (min-width: 481px) {
   .nav-reveal {
     display: none;
   }
 }
 
-@media (max-width: 468px) {
+@media (max-width: 480px) {
   .header {
     padding: 0 var(--gap-md);
     font-size: 0.75rem;

@@ -147,7 +147,7 @@
       gap: var(--gap-xs);
     }
   }
-  @media (max-width: 468px) {
+  @media (max-width: 480px) {
     .exp-entry__meta-top {
       gap: var(--gap-sm);
     }

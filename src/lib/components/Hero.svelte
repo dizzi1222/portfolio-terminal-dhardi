@@ -270,7 +270,7 @@
     margin: 0 0 var(--gap-sm);
     letter-spacing: -0.02em;
   }
-  @media (max-width: 468px) {
+  @media (max-width: 480px) {
     .hero-intro {
       flex-direction: column !important;
       align-items: center !important;
@@ -434,7 +434,7 @@
     .hero-marquee__track { animation: none; }
   }
 
-  @media (max-width: 468px) {
+  @media (max-width: 480px) {
     .hero-actions {
       gap: var(--gap-sm);
       margin-top: var(--gap-md);
